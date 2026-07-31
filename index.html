@@ -1,915 +1,464 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import {
-  ArrowUpRight,
-  ArrowLeft,
-  ChevronRight,
-  Mail,
-  MapPin,
-  Sparkles,
-  Menu,
-  X,
-  Briefcase,
-  Brain,
-  ClipboardList,
-  Leaf,
-  LineChart,
-  BarChart3,
-  Database,
-  Target,
-  FileText,
-  Heart,
-  HeartPulse,
-  User,
-  ExternalLink,
-  Cpu,
-  ImageIcon,
-  Code2,
-  Github
-} from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-vi="Vũ Hương Linh | Business Analyst & Data Storyteller 🌿" data-en="Huong Linh Vu (Harlin Vu) | Business Analyst & Data Storyteller 🌿">Huong Linh Vu (Harlin Vu) | Business Analyst & Data Storyteller 🌿</title>
+    <!-- Google Font M PLUS Rounded 1c & Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fffaf7;
+            --card-bg: #ffffff;
+            --border-color: #f3e3d8;
+            --primary-pink: #f4a6bc;
+            --dark-text: #4a3b3e;
+            --accent-rose: #d9647e;
+            --accent-purple: #8767c9;
+            --accent-green: #3f9a78;
+            --accent-blue: #3a93b8;
+            --glow: 0 8px 20px rgba(217, 100, 126, 0.08);
+        }
 
-type Lang = "en" | "vi";
-type PageKey = "home" | "aftercare" | "airbnb" | "house" | "waste" | "esg" | "sharethelove";
-type ProjectKey = Exclude<PageKey, "home">;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
 
-type TextMap = {
-  nav: { about: string; experience: string; projects: string; skills: string; contact: string };
-  heroBadge: string;
-  heroTitle: string;
-  heroBody: string;
-  viewProjects: string;
-  contact: string;
-  focus: string;
-  aboutTitle: string;
-  aboutBody: { p1: string; p2: string; p3: string };
-  whatIShowTitle: string;
-  whatIShow: string[];
-  experienceTitle: string;
-  experienceIntro: string;
-  projectsTitle: string;
-  projectsIntro: string;
-  skillsTitle: string;
-  contactTitle: string;
-  contactIntro: string;
-  projectButtons: { open: string; back: string; demo: string; report: string; slides: string; github: string; gallery: string };
-  labels: { role: string; problem: string; approach: string; contribution: string; result: string; reflection: string; gallery: string };
-};
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark-text);
+            line-height: 1.7;
+            padding: 0;
+        }
 
-const texts: Record<Lang, TextMap> = {
-  en: {
-    nav: { about: "About", experience: "Experience", projects: "Projects", skills: "Skills", contact: "Contact" },
-    heroBadge: "Aspiring Data & Business Analyst",
-    heroTitle: "I turn data, research, and AI into clear business decisions.",
-    heroBody:
-      "Business Analytics student at Deakin University with experience in sustainability consulting, research, project coordination, and applied AI. Explore evidence-led case studies showcasing practical problem-solving and rigorous analysis.",
-    viewProjects: "View Projects",
-    contact: "Contact",
-    focus: "Data analysis, business analysis, sustainability research, and practical problem solving.",
-    aboutTitle: "About Me",
-    aboutBody: {
-      p1: "I believe the best use of data is not simply to optimise business performance, but to create positive change for people and communities.",
-      p2: "As a Business Analytics student at Deakin University, I am passionate about applying analytics, AI, and business strategy to solve challenges that matter. This passion has guided the projects and experiences I choose - from sustainability consulting and ESG research, to developing AI solutions for post-discharge healthcare and exploring technology-driven approaches to environmental sustainability.",
-      p3: "These experiences have strengthened both my analytical capabilities and my belief that innovation should be human-centred, ethical, and socially meaningful. I enjoy working with multidisciplinary teams, turning complex problems into actionable insights, and designing solutions that balance business value with long-term community impact. I aspire to build a career where business analytics becomes a tool not only for smarter decisions, but also for creating healthier communities and a more sustainable world."
-    },
-    whatIShowTitle: "What I show",
-    whatIShow: [
-      "Business questions, stakeholders, and practical recommendations",
-      "Data cleaning, preprocessing, models, and evaluation metrics",
-      "Evidence of research, communication, coordination, and delivery",
-    ],
-    experienceTitle: "Experience",
-    experienceIntro: "Selected roles from consulting, sustainability, and project work.",
-    projectsTitle: "Featured projects & case studies",
-    projectsIntro: "Each case study outlines the problem, evidence, insight, and my contribution.",
-    skillsTitle: "Skills",
-    contactTitle: "Contact",
-    contactIntro: "Available for analyst internships and graduate opportunities in Australia.",
-    projectButtons: { open: "View project details", back: "Back to portfolio", demo: "Live Demo", report: "Report", slides: "Slides", github: "GitHub Repository", gallery: "Project Image & Drive Folder" },
-    labels: { role: "My role", problem: "Problem", approach: "Approach", contribution: "My contribution", result: "Result", reflection: "Reflection", gallery: "Key evidence at a glance" },
-  },
-  vi: {
-    nav: { about: "Về mình", experience: "Kinh nghiệm", projects: "Dự án", skills: "Kỹ năng", contact: "Liên hệ" },
-    heroBadge: "Ứng viên Data & Business Analyst",
-    heroTitle: "Mình biến dữ liệu, nghiên cứu và AI thành các quyết định kinh doanh rõ ràng.",
-    heroBody:
-      "Sinh viên Business Analytics tại Deakin University có kinh nghiệm tư vấn bền vững, nghiên cứu kinh doanh, điều phối dự án và AI ứng dụng. Khám phá các case study chi tiết thể hiện tư duy logic và thực chiến.",
-    viewProjects: "Xem dự án",
-    contact: "Liên hệ",
-    focus: "Phân tích dữ liệu, phân tích nghiệp vụ, nghiên cứu bền vững và giải quyết vấn đề thực tế.",
-    aboutTitle: "About Me",
-    aboutBody: {
-      p1: "Mình tin rằng giá trị tuyệt vời nhất của dữ liệu không chỉ nằm ở việc tối ưu hóa hiệu suất kinh doanh, mà còn là tạo ra những thay đổi tích cực cho con người và cộng đồng.",
-      p2: "Là một sinh viên chuyên ngành Business Analytics tại Deakin University, mình có niềm đam mê sâu sắc với việc ứng dụng phân tích dữ liệu, trí tuệ nhân tạo (AI) và chiến lược kinh doanh để giải quyết những bài toán thực tế có ý nghĩa. Niềm đam mê này đã định hình các dự án và trải nghiệm mà mình lựa chọn – từ tư vấn phát triển bền vững và nghiên cứu ESG, đến việc phát triển giải pháp AI chăm sóc sức khỏe hậu phẫu hay khám phá các phương pháp hướng tới sự bền vững môi trường nhờ công nghệ.",
-      p3: "Những trải nghiệm đó không chỉ củng cố năng lực phân tích của bản thân, mà còn củng cố niềm tin rằng sự đổi mới phải luôn xoay quanh con người, mang tính đạo đức và có ý nghĩa xã hội. Mình yêu thích việc làm việc trong các đội ngũ đa lĩnh vực, chuyển đổi các vấn đề phức tạp thành những hiểu biết (insights) hành động được, và thiết kế các giải pháp cân bằng giữa giá trị kinh doanh với tác động lâu dài cho cộng đồng. Mình hướng tới việc xây dựng sự nghiệp nơi Business Analytics trở thành công cụ không chỉ cho những quyết định thông minh hơn, mà còn để kiến tạo những cộng đồng khỏe mạnh hơn và một thế giới bền vững hơn."
-    },
-    whatIShowTitle: "Mình thể hiện gì",
-    whatIShow: [
-      "Câu hỏi kinh doanh, stakeholder và khuyến nghị thực tế",
-      "Quy trình xử lý dữ liệu, xây dựng mô hình và đánh giá chỉ số",
-      "Bằng chứng về nghiên cứu, giao tiếp, điều phối và triển khai",
-    ],
-    experienceTitle: "Kinh nghiệm",
-    experienceIntro: "Các vai trò nổi bật trong tư vấn ESG, phát triển bền vững và điều phối dự án.",
-    projectsTitle: "Dự án nổi bật & Case Studies",
-    projectsIntro: "Mỗi case study thể hiện rõ vấn đề, bằng chứng, phương pháp tiếp cận và đóng góp của mình.",
-    skillsTitle: "Kỹ năng",
-    contactTitle: "Liên hệ",
-    contactIntro: "Sẵn sàng cho các cơ hội thực tập và graduate analyst tại Australia.",
-    projectButtons: { open: "Xem chi tiết dự án", back: "Quay lại portfolio", demo: "Trải nghiệm Demo", report: "Báo cáo", slides: "Slides", github: "Mã nguồn GitHub", gallery: "Hình ảnh & Tài liệu dự án" },
-    labels: { role: "Vai trò của mình", problem: "Vấn đề & Bối cảnh", approach: "Phương pháp & Cách tiếp cận", contribution: "Đóng góp chi tiết của mình", result: "Kết quả & Giá trị mang lại", reflection: "Tự đánh giá & Bài học", gallery: "Bằng chứng trọng tâm" },
-  },
-};
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-const projects = {
-  aftercare: {
-    title: "AfterCare App",
-    tag: "AI / Healthtech",
-    subtitle: {
-      en: "AI-driven post-discharge care platform for hospitals, built around voice follow-up, risk screening, and doctor dashboards.",
-      vi: "Nền tảng trợ lý giọng nói AI kết nối bệnh nhân và cơ sở y tế sau xuất viện, tích hợp bảng điều phối y tế thời gian thực.",
-    },
-    highlights: {
-      en: ["Top 8 out of 210 at Vietnamese Students HackAIthon 2026 (Merit Prize).", "Designed for automated voice follow-ups, red-flag escalation, and triage.", "Integrated with VNPT Cloud and compliant with data privacy regulations."],
-      vi: ["Top 8/210 tại Vietnamese Students HackAIthon 2026 (Giải Khuyến Khích).", "Thiết kế cho gọi theo dõi tự động, kích hoạt cờ đỏ và sàng lọc nguy cơ.", "Tích hợp nền tảng VNPT Cloud và tuân thủ bảo mật dữ liệu y tế."],
-    },
-    role: { en: "Business analysis, market research, requirement gathering, user flow design.", vi: "Business analysis, nghiên cứu thị trường, thu thập yêu cầu, thiết kế luồng người dùng." },
-    cards: {
-      problem: {
-        en: "Millions of discharged patients face high complication risks due to lack of continuous home monitoring while hospital nursing staff is severely overburdened.",
-        vi: "Hàng triệu bệnh nhân sau xuất viện đối mặt với rủi ro biến chứng cao do thiếu theo dõi liên tục trong khi nhân lực điều dưỡng quá tải.",
-      },
-      approach: {
-        en: "Conducted stakeholder research and competitive analysis, defined MVP features for the AI voice assistant (SmartBot), and structured the real-time doctor dashboard.",
-        vi: "Nghiên cứu thị trường và pain points, định nghĩa tính năng MVP cho trợ lý giọng nói AI (SmartBot) và thiết kế khung Admin Dashboard.",
-      },
-      contribution: {
-        en: "Led business analysis and product strategy, mapped out end-to-end user flows, and co-pitched the solution to judges.",
-        vi: "Chủ trì mảng Business Analysis & Product Strategy, thiết kế user flow từ bệnh viện về nhà và cùng team thuyết trình trước Ban giám khảo.",
-      },
-      result: {
-        en: "Delivered a comprehensive 52-page proposal and working MVP, successfully securing Top 8 out of 210 teams.",
-        vi: "Hoàn thiện đề án 52 trang và bản MVP hoạt động thực tế, xuất sắc đạt Top 8 / 210 đội thi.",
-      },
-      reflection: {
-        en: "This project sharpened my ability to translate healthcare constraints into a viable, compliant SaaS product.",
-        vi: "Dự án rèn giũa khả năng dịch các ràng buộc y tế thực tế thành một sản phẩm SaaS khả thi và tuân thủ pháp lý.",
-      },
-    },
-    links: { demo: "https://mvp-aftercare.onrender.com/index.html", report: "", slides: "", github: "" },
-    gallery: ["Voice call flow", "Doctor dashboard", "Architecture map", "Compliance standards"],
-    palette: "emerald",
-  },
-  esg: {
-    title: "Pharma ESG Strategy & Framework",
-    tag: "ESG Consulting",
-    subtitle: {
-      en: "Comprehensive sustainability research report applying GRI Standards and global best practices to Vietnam's pharmaceutical sector.",
-      vi: "Báo cáo nghiên cứu chiến lược ứng dụng chuẩn GRI Standards và thực tiễn quốc tế vào ngành Dược phẩm Việt Nam.",
-    },
-    highlights: {
-      en: ["Benchmarked global pharma leaders (Pfizer, AstraZeneca) on net-zero and carbon reduction.", "Analyzed Vietnam's regulatory landscape and pharmaceutical supply chain bottlenecks.", "Synthesized 8 strategic recommendations for sustainable industry transformation."],
-      vi: ["So sánh chuẩn mực với các tập đoàn dược toàn cầu (Pfizer, AstraZeneca).", "Phân tích bối cảnh pháp lý và điểm nghẽn chuỗi cung ứng dược tại Việt Nam.", "Tổng hợp 8 khuyến nghị chiến lược phát triển bền vững toàn diện."],
-    },
-    role: { en: "Desk research, framework benchmarking, regulatory analysis, and deliverable synthesis.", vi: "Desk research, so sánh chuẩn mực khung ESG, phân tích quy định và tổng hợp báo cáo." },
-    cards: {
-      problem: {
-        en: "Global pharma faces increasing pressure to balance medicine accessibility, pricing, and environmental accountability; Vietnamese firms need structured pathways to adopt ESG.",
-        vi: "Ngành dược chịu áp lực lớn về cân bằng lợi nhuận và trách nhiệm môi trường; doanh nghiệp Việt cần lộ trình áp dụng ESG thực tiễn.",
-      },
-      approach: {
-        en: "Conducted extensive desk research on GRI Standards, analyzed international case studies, and mapped out domestic industry challenges.",
-        vi: "Thực hiện desk research sâu về GRI Standards, phân tích các case study quốc tế và khảo sát khó khăn nội tại ngành dược.",
-      },
-      contribution: {
-        en: "Synthesized research findings into structured client-ready reports and formulated 8 actionable recommendations covering supply chain, digital transformation, and local manufacturing.",
-        vi: "Tổng hợp kết quả nghiên cứu thành báo cáo chiến lược và xây dựng 8 nhóm giải pháp trọng tâm về chuỗi cung ứng, chuyển đổi số và sản xuất nội địa.",
-      },
-      result: {
-        en: "Provided foundational insights for consulting recommendations to help domestic pharmaceutical enterprises enhance international competitiveness.",
-        vi: "Cung cấp nền tảng tri thức vững chắc cho các gói tư vấn chiến lược giúp doanh nghiệp dược nâng cao năng lực cạnh tranh quốc tế.",
-      },
-      reflection: {
-        en: "Strengthened my understanding of how corporate sustainability metrics directly translate into long-term business value.",
-        vi: "Giúp mình hiểu rõ cách các chỉ số phát triển bền vững chuyển hóa trực tiếp thành giá trị kinh doanh dài hạn.",
-      },
-    },
-    links: { demo: "", report: "", slides: "", github: "" },
-    gallery: ["GRI Standards mapping", "Supply chain bottleneck", "8 Strategic pillars", "Pharma benchmarking"],
-    palette: "orange",
-  },
-  house: {
-    title: "House Price Prediction Model (ANN)",
-    tag: "Deep Learning",
-    subtitle: {
-      en: "End-to-end deep learning regression study using approximately 20,000 property records and 8 neural network architectures.",
-      vi: "Nghiên cứu hồi quy Deep Learning sử dụng khoảng 20,000 bản ghi bất động sản và 8 kiến trúc mạng Neural khác nhau.",
-    },
-    highlights: {
-      en: ["Cleaned and preprocessed ~20,000 records with zero missing values.", "Handled outliers using 99th percentile thresholding to reduce price skewness.", "Developed and benchmarked 8 ANN models using Adam optimizer and evaluated via 6 metrics."],
-      vi: ["Làm sạch và tiền xử lý ~20,000 bản ghi hoàn toàn không khuyết thiếu dữ liệu.", "Xử lý ngoại lai tại ngưỡng phân vị 99% để giảm độ lệch phân phối giá.", "Phát triển và so sánh 8 mô hình ANN dùng Adam optimizer, đánh giá qua 6 metrics."],
-    },
-    role: { en: "Data preprocessing, feature engineering, model architecture design, and evaluation.", vi: "Tiền xử lý dữ liệu, kỹ thuật đặc trưng, thiết kế kiến trúc mô hình và đánh giá hiệu năng." },
-    cards: {
-      problem: {
-        en: "Determine which property features drive real estate prices and construct a robust predictive neural network model.",
-        vi: "Xác định các yếu tố thúc đẩy giá trị bất động sản và xây dựng mô hình mạng Neural dự báo chính xác.",
-      },
-      approach: {
-        en: "Exploratory data analysis (EDA), outlier removal (99% threshold), data normalisation, 70/30 train-validation split, and sequential ANN experimentation.",
-        vi: "Khám phá dữ liệu (EDA), cắt bỏ outliers (ngưỡng 99%), chuẩn hóa dữ liệu, chia tập train/val 70:30 và thử nghiệm tuần tự các mô hình ANN.",
-      },
-      contribution: {
-        en: "Implemented the data cleaning pipeline, configured multi-layer perceptrons, and evaluated performance across MSE, MAE, MAPE, RMSE, correlation, and R².",
-        vi: "Triển khai pipeline làm sạch dữ liệu, cấu hình các mạng đa lớp và đánh giá toàn diện qua MSE, MAE, MAPE, RMSE, correlation và R².",
-      },
-      result: {
-        en: "Identified that deeper 3-layer neural networks achieved the best overall generalisation without overfitting.",
-        vi: "Chỉ ra rằng mạng Neural 3 lớp ẩn đạt hiệu năng tổng thể và khả năng khái quát hóa tốt nhất.",
-      },
-      reflection: {
-        en: "Emphasized the critical importance of outlier management and data scaling before feeding numerical data into deep networks.",
-        vi: "Nhận thức sâu sắc tầm quan trọng của việc quản lý giá trị ngoại lai và scaling dữ liệu trước khi đưa vào mạng sâu.",
-      },
-    },
-    links: { demo: "", report: "", slides: "", github: "https://github.com/harlin-vu/houseprice_prediction" },
-    gallery: ["Skewness reduction", "Train/Val split", "Model architecture table", "Performance metrics"],
-    palette: "violet",
-  },
-  airbnb: {
-    title: "Airbnb Victoria Sentiment & LDA",
-    tag: "Python & NLP",
-    subtitle: {
-      en: "Natural language processing and topic modelling study on 129,510 review sentences across Victorian Airbnb listings.",
-      vi: "Nghiên cứu khai phá văn bản trên 129,510 câu đánh giá Airbnb tại Victoria bằng NLP và mô hình chủ đề LDA.",
-    },
-    highlights: {
-      en: ["Processed 85,155 reviews resulting in 129,510 sentences for granular analysis.", "Applied sentence-level tokenisation, stopwords removal, and PorterStemmer.", "Combined VADER sentiment scoring with Latent Dirichlet Allocation (LDA) topic modelling."],
-      vi: ["Xử lý 85,155 bài đánh giá tương đương 129,510 câu để phân tích chi tiết.", "Áp dụng tách câu, lọc stopwords và chuẩn hóa từ gốc bằng PorterStemmer.", "Kết hợp chấm điểm cảm xúc VADER với mô hình hóa chủ đề LDA."],
-    },
-    role: { en: "Text preprocessing, sentiment scoring, LDA topic modelling, and business interpretation.", vi: "Tiền xử lý văn bản, chấm điểm cảm xúc, xây dựng mô hình LDA và diễn giải kinh doanh." },
-    cards: {
-      problem: {
-        en: "Explain Victorian Airbnb market trends, pinpoint root drivers of guest dissatisfaction, and uncover differing expectations across room types.",
-        vi: "Làm rõ xu hướng thị trường Airbnb Victoria, tìm nguyên nhân cốt lõi gây bất mãn và phát hiện sự khác biệt kỳ vọng theo loại phòng.",
-      },
-      approach: {
-        en: "Listing geographic analysis (EDA), sentence-level NLP pipeline, VADER compound sentiment classification, and LDA topic probability extraction by room type.",
-        vi: "Phân tích địa lý listings (EDA), pipeline NLP cấp độ câu, phân loại cảm xúc VADER và trích xuất xác suất chủ đề LDA theo loại phòng.",
-      },
-      contribution: {
-        en: "Extracted actionable insights showing that entire home guests focus on amenities/cleanliness while shared room guests prioritize host interaction and transit access.",
-        vi: "Rút ra insight hành động cho thấy khách thuê nguyên căn ưu tiên tiện nghi/vệ sinh, trong khi khách thuê phòng chia sẻ quan tâm đến giao tiếp và vị trí.",
-      },
-      result: {
-        en: "Delivered clear findings showing Melbourne's high listing density and providing targeted operational recommendations for hosts.",
-        vi: "Đưa ra các phát hiện rõ ràng về mật độ niêm yết tại Melbourne và đề xuất giải pháp vận hành cụ thể cho chủ nhà.",
-      },
-      reflection: {
-        en: "Demonstrated how unstructured text reviews can be successfully transformed into structured business intelligence.",
-        vi: "Minh họa cách chuyển đổi các đánh giá văn bản phi cấu trúc thành Business Intelligence có giá trị.",
-      },
-    },
-    links: { demo: "", report: "", slides: "", github: "https://github.com/harlin-vu/airbnb-victoria-sentiment-analysis" },
-    gallery: ["Listing density map", "Sentiment distribution", "Topic probability chart", "Host recommendations"],
-    palette: "orange",
-  },
-  waste: {
-    title: "Waste Image Classification (CNN)",
-    tag: "Computer Vision",
-    subtitle: {
-      en: "Image classification study comparing traditional ANN and 6 Convolutional Neural Network architectures on ~2,900 waste images.",
-      vi: "Nghiên cứu phân loại ảnh so sánh ANN truyền thống và 6 kiến trúc CNN trên khoảng 2,900 ảnh rác thực tế.",
-    },
-    highlights: {
-      en: ["Preprocessed ~2,900 color waste images across 6 recycling categories.", "Evaluated 4 baseline ANN models against 6 advanced CNN configurations.", "Best CNN achieved 69.53% validation accuracy and 0.631 Cohen’s Kappa."],
-      vi: ["Tiền xử lý khoảng 2,900 ảnh màu rác thải thuộc 6 danh mục tái chế.", "Đánh giá 4 mô hình ANN cơ sở đối chiếu với 6 cấu hình CNN chuyên sâu.", "Mô hình CNN tốt nhất đạt độ chính xác 69.53% và Cohen's Kappa 0.631."],
-    },
-    role: { en: "Image data pipeline, model training, CNN experimentation, and performance evaluation.", vi: "Xây dựng pipeline dữ liệu ảnh, huấn luyện mô hình, thử nghiệm CNN và đánh giá hiệu năng." },
-    cards: {
-      problem: {
-        en: "Manual waste sorting is inefficient; determine whether deep learning computer vision models can accurately automate multi-class waste sorting.",
-        vi: "Phân loại rác thủ công kém hiệu quả; kiểm chứng khả năng tự động hóa phân loại rác đa danh mục bằng Deep Learning.",
-      },
-      approach: {
-        en: "Resized images, normalized pixel values, structured 70/30 splits, built Conv2D/MaxPooling layers, and analyzed Confusion Matrices.",
-        vi: "Resize ảnh, chuẩn hóa giá trị pixel, chia train/test 70:30, xây dựng các lớp Conv2D/MaxPooling và phân tích Confusion Matrix.",
-      },
-      contribution: {
-        en: "Implemented the image preprocessing pipeline, trained multi-class classifiers, and analyzed per-class performance strengths.",
-        vi: "Triển khai pipeline tiền xử lý ảnh, huấn luyện các bộ phân loại đa lớp và phân tích thế mạnh hiệu suất theo từng lớp.",
-      },
-      result: {
-        en: "Proved that spatial convolutional layers significantly outperform flattened ANN layers in extracting complex waste textures.",
-        vi: "Chứng minh các lớp tích chập không gian vượt trội hơn hẳn so với ANN phẳng trong việc trích xuất kết cấu rác phức tạp.",
-      },
-      reflection: {
-        en: "Highlighted the necessity of spatial feature retention when applying deep learning to computer vision tasks.",
-        vi: "Làm nổi bật sự cần thiết của việc bảo toàn đặc trưng không gian khi ứng dụng Deep Learning cho thị giác máy tính.",
-      },
-    },
-    links: { demo: "", report: "", slides: "", github: "https://github.com/harlin-vu/waste_classification" },
-    gallery: ["Sample waste images", "Conv2D feature maps", "Confusion matrix", "Class accuracy breakdown"],
-    palette: "green",
-  },
-  sharethelove: {
-    title: '"Share the Love, Send Warmth" Project',
-    tag: "Volunteering & Leadership",
-    subtitle: {
-      en: "Charity fundraising and logistics coordination initiative supporting kindergarten students in remote mountainous areas of Y Ty, Lao Cai.",
-      vi: "Dự án thiện nguyện gây quỹ và điều phối logistics hỗ trợ các em học sinh mầm non tại vùng cao Y Tý, Lào Cai.",
-    },
-    highlights: {
-      en: [
-        "Planned marketing and budget strategy across 3 major fundraising events.",
-        "Organized the 'Trao Yeu Thuong Gui Hoi Am' handcrafted product sales campaign.",
-        "Raised over 60+ million VND to deliver essential supplies directly to Y Ty School, Bat Xat, Lao Cai.",
-      ],
-      vi: [
-        "Lập kế hoạch marketing và ngân sách chi tiết cho 3 sự kiện gây quỹ.",
-        "Tổ chức chuỗi sự kiện 'Trao Yêu Thương Gửi Hơi Ấm' bán sản phẩm thủ công.",
-        "Gây quỹ thành công hơn 60 triệu VNĐ để trao tặng trực tiếp cho học sinh trường Y Tý, Bát Xát, Lào Cai.",
-      ],
-    },
-    role: { en: "Logistics Team Leader, budget planning, supplier coordination, and event operations.", vi: "Trưởng nhóm Logistics, lập kế hoạch ngân sách, điều phối nhà cung cấp và vận hành sự kiện." },
-    cards: {
-      problem: {
-        en: "Children in remote mountainous areas like Y Ty face severe winter conditions and lack warm winter clothing, books, and essential school supplies.",
-        vi: "Trẻ em vùng cao Y Tý gặp nhiều khó khăn trong mùa đông lạnh giá, thiếu thốn áo ấm, sách vở và trang thiết bị học tập thiết yếu.",
-      },
-      approach: {
-        en: "Structured a fundraising campaign combining marketing outreach, handmade product sales, and rigorous supply chain logistics with local partners.",
-        vi: "Xây dựng chiến dịch gây quỹ kết hợp truyền thông, bán sản phẩm thủ công và quản lý chuỗi cung ứng hậu cần chặt chẽ với đối tác địa phương.",
-      },
-      contribution: {
-        en: "Led logistics operations, managed supplier communications, and supervised inventory distribution to ensure 100% of donations reached the right children on time.",
-        vi: "Điều phối toàn bộ hoạt động logistics, làm việc trực tiếp với nhà cung cấp và giám sát phân phát hiện vật đảm bảo quà tới đúng tay học sinh.",
-      },
-      result: {
-        en: "Successfully raised 60+ million VND and delivered winter warmth and school supplies to hundreds of children in Y Ty.",
-        vi: "Gây quỹ hơn 60 triệu VNĐ và trao tận tay hàng trăm suất quà áo ấm, đồ dùng học tập cho các em nhỏ vùng cao.",
-      },
-      reflection: {
-        en: "Demonstrated strong project coordination, resource allocation, and leadership skills in high-stakes community initiatives.",
-        vi: "Rèn luyện năng lực điều phối dự án, phân bổ nguồn lực và kỹ năng lãnh đạo trong các sáng kiến cộng đồng thực tế.",
-      },
-    },
-    links: { demo: "https://drive.google.com/drive/folders/1glsoQjJaocc8EY7Y96roef9Bvtzhqh8A", report: "", slides: "", github: "" },
-    gallery: ["Fundraising events", "Logistics planning", "Handmade products", "Y Ty School distribution"],
-    palette: "emerald",
-  },
-} as const;
+        /* Top Bar & Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--border-color);
+            padding: 12px 25px;
+            border-radius: 20px;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
 
-const experience = [
-  {
-    role: { en: "Project Team Intern", vi: "Thực tập Project Team" },
-    org: "VnF (Vietnam Food) - Ho Chi Minh, Vietnam",
-    period: "01/2026",
-    bullets: {
-      en: [
-        "Supported sustainability initiatives involving RetriV, VnF's nutrient recovery solution.",
-        "Assisted project teams in documentation, stakeholder communication, and sustainability project coordination.",
-        "Participated in industry conferences to research sustainability trends and support knowledge sharing.",
-      ],
-      vi: [
-        "Hỗ trợ các sáng kiến phát triển bền vững liên quan đến giải pháp thu hồi dưỡng chất RetriV của VnF.",
-        "Hỗ trợ đội ngũ dự án trong khâu tài liệu, giao tiếp stakeholder và điều phối dự án bền vững.",
-        "Tham gia hội thảo chuyên ngành để nghiên cứu xu hướng bền vững và chia sẻ tri thức.",
-      ],
-    },
-    icon: <Leaf className="h-5 w-5" />,
-  },
-  {
-    role: { en: "Business Analytics Intern", vi: "Thực tập Business Analytics" },
-    org: "FPT Digital - Hanoi, Vietnam",
-    period: "12/2024 – 02/2025",
-    bullets: {
-      en: [
-        "Conducted desk research on ESG frameworks including GRI Standards and international sustainability reporting practices.",
-        "Analysed ESG regulations and industry trends within Vietnam's pharmaceutical sector to support consulting recommendations.",
-        "Produced research findings and supported client deliverables through evidence-based analysis.",
-      ],
-      vi: [
-        "Thực hiện desk research về khung ESG gồm GRI Standards và thực tiễn báo cáo quốc tế.",
-        "Phân tích quy định ESG và xu hướng ngành Dược phẩm tại Việt Nam phục vụ tư vấn chiến lược.",
-        "Tổng hợp kết quả nghiên cứu và hỗ trợ các gói deliverables của khách hàng bằng phân tích dựa trên bằng chứng.",
-      ],
-    },
-    icon: <Briefcase className="h-5 w-5" />,
-  },
-  {
-    role: { en: "Logistics Team Leader", vi: "Trưởng nhóm Logistics" },
-    org: '"Share the Love, Send Warmth" Project - Ha Noi, Vietnam',
-    period: "12/2023 – 02/2024",
-    bullets: {
-      en: [
-        "Coordinated logistics operations and supplier communication for a volunteer project supporting remote schools in Y Ty, Lao Cai.",
-        "Supervised donation distribution to ensure timely delivery to students.",
-      ],
-      vi: [
-        "Điều phối hoạt động logistics và giao tiếp nhà cung cấp cho dự án tình nguyện hỗ trợ trường học tại Y Tý, Lào Cai.",
-        "Giám sát quá trình phân phát vật phẩm quyên góp đảm bảo đến tay học sinh đúng hạn.",
-      ],
-    },
-    icon: <ClipboardList className="h-5 w-5" />,
-  },
-] as const;
+        .logo {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--accent-rose);
+            text-decoration: none;
+        }
 
-const skills = [
-  "Python",
-  "TensorFlow & Keras",
-  "Pandas & NumPy",
-  "NLTK & Scikit-Learn",
-  "SQL (Basic)",
-  "Power BI (Basic)",
-  "Business Analysis",
-  "ESG Frameworks (GRI)",
-  "Requirement Gathering",
-  "Process Modelling (BPMN, EER)",
-  "Agile & Scrum",
-  "Stakeholder Communication",
-  "Project Coordination",
-  "Problem Solving",
-];
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            align-items: center;
+        }
 
-const achievements = [
-  { label: { en: "Hackathon Result", vi: "Kết quả Hackathon" }, value: "Top 8 / 210 (Merit)", icon: <Brain className="h-5 w-5" /> },
-  { label: { en: "NLP Text Mining", vi: "Khai phá văn bản NLP" }, value: "129,510 sentences", icon: <Database className="h-5 w-5" /> },
-  { label: { en: "Deep Learning Reg.", vi: "Hồi quy Deep Learning" }, value: "8 ANN Models (R² 0.845)", icon: <LineChart className="h-5 w-5" /> },
-  { label: { en: "Computer Vision", vi: "Thị giác máy tính CNN" }, value: "69.5% Accuracy", icon: <BarChart3 className="h-5 w-5" /> },
-];
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
 
-const projectEvidence = {
-  aftercare: [
-    { label: "Role & Contribution", value: "Led business analysis and product strategy; conducted market research and defined MVP user flows." },
-    { label: "Recognition", value: "Top 8 out of 210 teams (Merit Prize) at Vietnamese Students HackAIthon 2026." },
-    { label: "Tech Stack & Tools", value: "VNPT Cloud, SmartBot, Figma, Agile/Scrum requirement frameworks." },
-  ],
-  esg: [
-    { label: "Role & Contribution", value: "Researched GRI Standards and developed 8 strategic pharma recommendations." },
-    { label: "Key Focus", value: "Balancing pharmaceutical profitability with environmental and social accountability." },
-    { label: "Deliverables", value: "Structured research reports and consulting framework documentation." },
-  ],
-  house: [
-    { label: "Role & Contribution", value: "Executed data preprocessing, outlier removal (99%), and trained 8 ANN architectures." },
-    { label: "Evaluation", value: "Evaluated models using 6 metrics: MSE, MAE, MAPE, RMSE, Correlation, and R²." },
-    { label: "Tech Stack & Tools", value: "Python, TensorFlow, Keras, Pandas, NumPy, Adam Optimizer." },
-  ],
-  airbnb: [
-    { label: "Role & Contribution", value: "Performed text cleaning, sentence-level tokenisation, VADER sentiment, and LDA modelling." },
-    { label: "Dataset Scale", value: "85,155 reviews mapped into 129,510 sentences for granular NLP insights." },
-    { label: "Tech Stack & Tools", value: "Python, NLTK, PorterStemmer, VADER, Scikit-Learn LDA." },
-  ],
-  waste: [
-    { label: "Role & Contribution", value: "Designed and benchmarked 10 neural network architectures (ANN vs. CNN) on image data." },
-    { label: "Performance", value: "Achieved 69.53% validation accuracy and 0.631 Cohen's Kappa score." },
-    { label: "Tech Stack & Tools", value: "Python, TensorFlow, Keras, Conv2D, MaxPooling2D, ConfusionMatrix." },
-  ],
-  sharethelove: [
-    { label: "Role & Contribution", value: "Planned budget and marketing for 3 fundraising events, raising 60+ million VND." },
-    { label: "Impact", value: "Successfully delivered winter warmth and educational supplies to Y Ty School students." },
-    { label: "Skills Applied", value: "Logistics Coordination, Supplier Communication, Budget Planning." },
-  ],
-} as const;
+        .nav-links a:hover {
+            color: var(--accent-rose);
+        }
 
-const publicLinks = {
-  cv: "",
-  github: "",
-};
+        .lang-btn {
+            background: #ffffff;
+            border: 2px solid var(--accent-rose);
+            color: var(--accent-rose);
+            padding: 6px 14px;
+            border-radius: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
 
-const paletteClasses: Record<string, { accent: string; bg: string; border: string }> = {
-  emerald: { accent: "text-emerald-500", bg: "bg-emerald-50", border: "border-emerald-200" },
-  orange: { accent: "text-orange-500", bg: "bg-orange-50", border: "border-orange-200" },
-  violet: { accent: "text-violet-500", bg: "bg-violet-50", border: "border-violet-200" },
-  green: { accent: "text-green-500", bg: "bg-green-50", border: "border-green-200" },
-};
+        .lang-btn:hover {
+            background: var(--accent-rose);
+            color: #fff;
+        }
 
-function CuteBlob({ className }: { className: string }) {
-  return <div className={`pointer-events-none absolute rounded-full blur-3xl ${className}`} />;
-}
+        /* Hero Section */
+        header {
+            margin: 50px 0;
+            text-align: center;
+        }
 
-function SectionTitle({ title, subtitle }: { title: string; subtitle: string }) {
-  return (
-    <div className="mb-6 text-center">
-      <h3 className="text-3xl font-semibold text-zinc-800">{title}</h3>
-      <p className="mt-2 text-sm text-zinc-500">{subtitle}</p>
-    </div>
-  );
-}
+        .badge {
+            display: inline-block;
+            background: #fde7ed;
+            border: 2px solid var(--primary-pink);
+            color: var(--accent-rose);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
 
-function DetailCard({ title, body }: { title: string; body: string }) {
-  return (
-    <Card className="overflow-hidden border-pink-100 bg-white/90 shadow-sm">
-      <div className="h-1 bg-gradient-to-r from-pink-300 via-amber-200 to-purple-300" />
-      <CardContent className="p-6">
-        <h3 className="text-xl font-semibold text-zinc-800">{title}</h3>
-        <p className="mt-3 leading-7 text-zinc-600">{body}</p>
-      </CardContent>
-    </Card>
-  );
-}
+        h1 {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 3rem;
+            color: #3e2e31;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
 
-function Pill({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="rounded-full border border-pink-200 bg-pink-50 px-3 py-1 text-xs font-medium text-zinc-700 shadow-sm">
-      {children}
-    </span>
-  );
-}
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-rose);
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+        }
 
-function EvidenceCard({ label, value, index }: { label: string; value: string; index: number }) {
-  const icons = [Database, LineChart, Target];
-  const Icon = icons[index % icons.length];
+        .bio {
+            max-width: 650px;
+            margin: 0 auto 30px auto;
+            color: #6b5a57;
+            font-size: 1.05rem;
+        }
 
-  return (
-    <div className="rounded-2xl border border-pink-100 bg-pink-50/60 p-4 shadow-sm">
-      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-pink-400">
-        <Icon className="h-4 w-4" aria-hidden="true" />
-        evidence
-      </div>
-      <h4 className="mt-3 text-base font-semibold text-zinc-800">{label}</h4>
-      <p className="mt-2 text-sm leading-6 text-zinc-600">{value}</p>
-    </div>
-  );
-}
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #6b5a57;
+            margin-bottom: 40px;
+        }
 
-function getPageFromHash(): PageKey {
-  if (typeof window === "undefined") return "home";
+        /* Cards & Sections */
+        section {
+            background: var(--card-bg);
+            border: 3px solid var(--border-color);
+            padding: 35px 30px;
+            border-radius: 28px;
+            box-shadow: var(--glow);
+            margin-bottom: 30px;
+        }
 
-  const key = window.location.hash.replace("#project/", "") as ProjectKey;
-  return key in projects ? key : "home";
-}
+        h2 {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 1.6rem;
+            color: #3e2e31;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px dashed var(--border-color);
+            padding-bottom: 10px;
+        }
 
-export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [lang, setLang] = useState<Lang>("en");
-  const [page, setPage] = useState<PageKey>(getPageFromHash);
+        p {
+            margin-bottom: 14px;
+        }
 
-  const t = texts[lang];
-  const project = page === "home" ? null : projects[page];
+        /* Project Grid / Cards */
+        .project-card {
+            background: #ffffff;
+            border: 2px solid var(--border-color);
+            padding: 25px;
+            border-radius: 22px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
 
-  const navItems = useMemo(
-    () => [
-      { label: t.nav.about, href: "#about" },
-      { label: t.nav.experience, href: "#experience" },
-      { label: t.nav.projects, href: "#projects" },
-      { label: t.nav.skills, href: "#skills" },
-      { label: t.nav.contact, href: "#contact" },
-    ],
-    [t.nav.about, t.nav.experience, t.nav.projects, t.nav.skills, t.nav.contact]
-  );
+        .project-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-rose);
+        }
 
-  useEffect(() => {
-    const syncRoute = () => setPage(getPageFromHash());
-    window.addEventListener("popstate", syncRoute);
-    window.addEventListener("hashchange", syncRoute);
-    return () => {
-      window.removeEventListener("popstate", syncRoute);
-      window.removeEventListener("hashchange", syncRoute);
-    };
-  }, []);
+        .project-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
 
-  const navigateTo = (nextPage: PageKey) => {
-    const hash = nextPage === "home" ? "#top" : `#project/${nextPage}`;
-    window.history.pushState(null, "", hash);
-    setPage(nextPage);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+        .tag-health { background: #e7f5fa; color: var(--accent-blue); }
+        .tag-esg { background: #e4f6ee; color: var(--accent-green); }
+        .tag-ai { background: #f1eafb; color: var(--accent-purple); }
+        .tag-nlp { background: #ffeee0; color: #e07a3f; }
 
-  const openProject = (key: ProjectKey) => {
-    navigateTo(key);
-  };
+        .project-title {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #3e2e31;
+            margin-bottom: 8px;
+        }
 
-  const backHome = () => {
-    navigateTo("home");
-  };
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--dark-text);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            transition: background 0.2s;
+        }
 
-  if (page !== "home" && project) {
-    const colors = paletteClasses[project.palette];
-    const resourceLinks = page === "sharethelove" ? [
-      { label: t.projectButtons.gallery, href: project.links.demo, primary: true }
-    ] : [
-      { label: t.projectButtons.demo, href: project.links.demo, primary: true },
-      { label: t.projectButtons.github, href: project.links.github, primary: false },
-    ].filter((link) => link.href);
+        .btn:hover {
+            background: var(--accent-rose);
+        }
 
-    return (
-      <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,#fff1f2,transparent_35%),radial-gradient(circle_at_top_right,#f5f3ff,transparent_28%),linear-gradient(180deg,#fffaf7_0%,#fffdfd_100%)] text-zinc-800">
-        <div className="mx-auto max-w-5xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
-          <header className="sticky top-4 z-30 mb-8 rounded-[1.75rem] border border-pink-100 bg-white/85 px-4 py-3 shadow-sm backdrop-blur">
-            <div className="flex items-center justify-between gap-4">
-              <button onClick={backHome} className="inline-flex items-center gap-2 text-sm font-medium text-zinc-700 hover:text-zinc-900">
-                <ArrowLeft className="h-4 w-4" /> {t.projectButtons.back}
-              </button>
-              <Button size="sm" variant="outline" className="rounded-full border-pink-200 bg-white text-zinc-700 hover:bg-pink-50" onClick={() => setLang(lang === "en" ? "vi" : "en")}>{lang === "en" ? "VI" : "EN"}</Button>
-            </div>
-          </header>
+        /* Skills Pills */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
 
-          <section className={`rounded-[2.25rem] border ${colors.border} ${colors.bg} p-6 shadow-lg sm:p-8 relative overflow-hidden`}>
-            <CuteBlob className="-left-10 -top-10 h-40 w-40 bg-pink-200/50" />
-            <CuteBlob className="right-0 top-10 h-32 w-32 bg-purple-200/50" />
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-zinc-900 shadow-sm">{project.tag}</span>
-              <span className="rounded-full border border-white/40 bg-white/70 px-3 py-1 text-xs text-zinc-700 shadow-sm">
-                {lang === "en" ? "Detailed Case Study" : "Case study chi tiết"}
-              </span>
-            </div>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">{project.title}</h1>
-            <p className="mt-4 max-w-3xl text-base leading-7 text-zinc-600">{project.subtitle[lang]}</p>
+        .skill-pill {
+            background: #fde7ed;
+            color: var(--accent-rose);
+            border: 1px solid rgba(244, 166, 188, 0.4);
+            padding: 6px 14px;
+            border-radius: 14px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
 
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
-              <DetailCard title={t.labels.problem} body={project.cards.problem[lang]} />
-              <DetailCard title={t.labels.approach} body={project.cards.approach[lang]} />
-              <DetailCard title={t.labels.contribution} body={project.cards.contribution[lang]} />
-              <DetailCard title={t.labels.result} body={project.cards.result[lang]} />
-            </div>
-          </section>
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #8c7b78;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
 
-          <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-            <Card className="overflow-hidden border-pink-100 bg-white/90 shadow-sm">
-              <div className="h-1 bg-gradient-to-r from-pink-300 via-amber-200 to-purple-300" />
-              <CardContent className="p-6 sm:p-8">
-                <h2 className="text-2xl font-semibold text-zinc-800">{t.labels.role}</h2>
-                <p className="mt-3 leading-7 text-zinc-600">{project.role[lang]}</p>
+<div class="container">
 
-                <h3 className="mt-8 text-lg font-semibold text-zinc-800">{t.labels.gallery}</h3>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {projectEvidence[page].map((item, index) => (
-                    <EvidenceCard key={item.label} label={item.label} value={item.value} index={index} />
-                  ))}
-                </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo">🐾 Huong Linh Vu</a>
+        <ul class="nav-links">
+            <li><a href="#about" data-vi="Về mình" data-en="About">About</a></li>
+            <li><a href="#experience" data-vi="Kinh nghiệm" data-en="Experience">Experience</a></li>
+            <li><a href="#projects" data-vi="Dự án" data-en="Projects">Projects</a></li>
+            <li><a href="#skills" data-vi="Kỹ năng" data-en="Skills">Skills</a></li>
+            <li><button class="lang-btn" onclick="toggleLanguage()">🌐 <span id="lang-btn-text">VIE</span></button></li>
+        </ul>
+    </nav>
 
-                <h3 className="mt-8 text-lg font-semibold text-zinc-800">{t.labels.reflection}</h3>
-                <p className="mt-3 leading-7 text-zinc-600">{project.cards.reflection[lang]}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden border-pink-100 bg-white/90 shadow-sm">
-              <div className="h-1 bg-gradient-to-r from-emerald-200 via-sky-200 to-purple-200" />
-              <CardContent className="p-6 sm:p-8">
-                <h2 className="text-2xl font-semibold text-zinc-800">Links & Resources</h2>
-                <div className="mt-5 grid gap-3">
-                  {resourceLinks.length > 0 ? (
-                    resourceLinks.map((link) => (
-                      <Button
-                        key={link.label}
-                        asChild
-                        variant={link.primary ? "default" : "outline"}
-                        className={link.primary ? "rounded-full bg-zinc-800 text-white hover:bg-zinc-700" : "rounded-full border-pink-200 bg-white text-zinc-700 hover:bg-pink-50"}
-                      >
-                        <a href={link.href} target="_blank" rel="noreferrer">
-                          {link.label} {link.primary && <ArrowUpRight className="ml-2 h-4 w-4" />}
-                        </a>
-                      </Button>
-                    ))
-                  ) : (
-                    <p className="rounded-2xl border border-dashed border-pink-200 bg-pink-50 p-4 text-sm leading-6 text-zinc-600">
-                      {lang === "en" ? "Detailed reports and source notebooks are protected to maintain academic integrity; available on request." : "Báo cáo chi tiết và notebook nguồn được bảo mật để đảm bảo liêm chính học thuật; có thể cung cấp khi có yêu cầu."}
-                    </p>
-                  )}
-                </div>
-
-                <div className="mt-8 rounded-3xl border border-dashed border-pink-200 bg-pink-50 p-5">
-                  <p className="text-sm uppercase tracking-[0.25em] text-pink-400">{t.labels.result}</p>
-                  <p className="mt-2 text-zinc-700">{project.cards.result[lang]}</p>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
+    <!-- Hero Section -->
+    <header>
+        <span class="badge" data-vi="Business Analytics & Data Storyteller" data-en="Business Analytics & Data Storyteller">Business Analytics & Data Storyteller</span>
+        <h1 data-vi="Vũ Hương Linh" data-en="Huong Linh Vu (Harlin Vu)">Huong Linh Vu (Harlin Vu)</h1>
+        <div class="subtitle" data-vi="Biến dữ liệu phức tạp thành quyết định chiến lược kinh doanh" data-en="Turning complex data into clear business strategies">Turning complex data into clear business strategies</div>
+        <p class="bio" data-vi="Sinh viên năm 3 ngành Business Analytics tại Deakin University. Kinh nghiệm thực chiến từ tư vấn ESG tại FPT Digital, kinh tế tuần hoàn tại VnF đến các đồ án AI & Khoa học dữ liệu xuất sắc."
+           data-en="Third-year Business Analytics student at Deakin University with hands-on internship experience in sustainability consulting, business research, and applied AI.">
+           Third-year Business Analytics student at Deakin University with hands-on internship experience in sustainability consulting, business research, and applied AI.
+        </p>
+        <div class="contact-bar">
+            <span>✉️ vuhuonglinh17@gmail.com</span>
+            <span>📞 (+61) 450 660 222</span>
+            <span>📍 Box Hill, VIC, Australia</span>
         </div>
-      </div>
-    );
-  }
+    </header>
 
-  return (
-    <div className="min-h-screen text-zinc-800 bg-[radial-gradient(circle_at_top_left,#fff1f2,transparent_35%),radial-gradient(circle_at_top_right,#f5f3ff,transparent_28%),linear-gradient(180deg,#fffaf7_0%,#fffdfd_100%)]">
-      <div className="mx-auto max-w-6xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
-        <header className="sticky top-4 z-30 mb-8 rounded-[1.75rem] border border-pink-100 bg-white/85 px-4 py-3 shadow-sm backdrop-blur">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-pink-400">Portfolio</p>
-              <h1 className="text-lg font-semibold text-zinc-800">Huong Linh Vu</h1>
-            </div>
+    <!-- About Me Section -->
+    <section id="about">
+        <h2 data-vi="✨ About Me" data-en="✨ About Me">✨ About Me</h2>
+        <p data-vi="Mình tin rằng giá trị tuyệt vời nhất của dữ liệu không chỉ nằm ở việc tối ưu hóa hiệu suất kinh doanh, mà còn là tạo ra những thay đổi tích cực cho con người và cộng đồng."
+           data-en="I believe the best use of data is not simply to optimise business performance, but to create positive change for people and communities.">
+           I believe the best use of data is not simply to optimise business performance, but to create positive change for people and communities.
+        </p>
+        <p data-vi="Là một sinh viên chuyên ngành Business Analytics tại Deakin University, mình có niềm đam mê sâu sắc với việc ứng dụng phân tích dữ liệu, trí tuệ nhân tạo (AI) và chiến lược kinh doanh để giải quyết những bài toán thực tế có ý nghĩa. Niềm đam mê này đã định hình các dự án và trải nghiệm mà mình lựa chọn – từ tư vấn phát triển bền vững và nghiên cứu ESG, đến việc phát triển giải pháp AI chăm sóc sức khỏe hậu phẫu hay khám phá các phương pháp hướng tới sự bền vững môi trường nhờ công nghệ."
+           data-en="As a Business Analytics student at Deakin University, I am passionate about applying analytics, AI, and business strategy to solve challenges that matter. This passion has guided the projects and experiences I choose - from sustainability consulting and ESG research, to developing AI solutions for post-discharge healthcare and exploring technology-driven approaches to environmental sustainability.">
+           As a Business Analytics student at Deakin University, I am passionate about applying analytics, AI, and business strategy to solve challenges that matter. This passion has guided the projects and experiences I choose - from sustainability consulting and ESG research, to developing AI solutions for post-discharge healthcare and exploring technology-driven approaches to environmental sustainability.
+        </p>
+        <p data-vi="Những trải nghiệm đó không chỉ củng cố năng lực phân tích của bản thân, mà còn củng cố niềm tin rằng sự đổi mới phải luôn xoay quanh con người, mang tính đạo đức và có ý nghĩa xã hội. Mình yêu thích việc làm việc trong các đội ngũ đa lĩnh vực, chuyển đổi các vấn đề phức tạp thành những insights hành động được, và thiết kế các giải pháp cân bằng giữa giá trị kinh doanh với tác động lâu dài cho cộng đồng. Mình hướng tới việc xây dựng sự nghiệp nơi Business Analytics trở thành công cụ không chỉ cho những quyết định thông minh hơn, mà còn để kiến tạo những cộng đồng khỏe mạnh hơn và một thế giới bền vững hơn."
+           data-en="These experiences have strengthened both my analytical capabilities and my belief that innovation should be human-centred, ethical, and socially meaningful. I enjoy working with multidisciplinary teams, turning complex problems into actionable insights, and designing solutions that balance business value with long-term community impact. I aspire to build a career where business analytics becomes a tool not only for smarter decisions, but also for creating healthier communities and a more sustainable world.">
+           These experiences have strengthened both my analytical capabilities and my belief that innovation should be human-centred, ethical, and socially meaningful. I enjoy working with multidisciplinary teams, turning complex problems into actionable insights, and designing solutions that balance business value with long-term community impact. I aspire to build a career where business analytics becomes a tool not only for smarter decisions, but also for creating healthier communities and a more sustainable world.
+        </p>
+    </section>
 
-            <nav className="hidden items-center gap-6 md:flex">
-              {navItems.map((item) => (
-                <a key={item.label} href={item.href} className="text-sm text-zinc-600 transition hover:text-zinc-900">
-                  {item.label}
-                </a>
-              ))}
-            </nav>
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 data-vi="💼 Kinh nghiệm làm việc" data-en="💼 Experience">💼 Experience</h2>
+        
+        <div class="project-card">
+            <span class="project-tag" style="background:#fde7ed; color:var(--accent-rose);">01/2026</span>
+            <h3 class="project-title" data-vi="Project Team Intern - VnF (Vietnam Food)" data-en="Project Team Intern - VnF (Vietnam Food)">Project Team Intern - VnF (Vietnam Food) - Ho Chi Minh, Vietnam</h3>
+            <p data-vi="• Hỗ trợ các sáng kiến phát triển bền vững liên quan đến giải pháp thu hồi dưỡng chất RetriV.<br>• Chuẩn hóa tài liệu dự án, hỗ trợ giao tiếp và điều phối các bên liên quan."
+               data-en="• Supported sustainability initiatives involving RetriV, VnF's nutrient recovery solution.<br>• Assisted project teams in documentation, stakeholder communication, and sustainability project coordination.">
+               • Supported sustainability initiatives involving RetriV, VnF's nutrient recovery solution.<br>• Assisted project teams in documentation, stakeholder communication, and sustainability project coordination.
+            </p>
+        </div>
 
-            <div className="flex items-center gap-2">
-              <Button size="sm" variant="outline" className="rounded-full border-pink-200 bg-white text-zinc-700 hover:bg-pink-50" onClick={() => setLang(lang === "en" ? "vi" : "en")}>{lang === "en" ? "VI" : "EN"}</Button>
-              <button className="inline-flex items-center justify-center rounded-xl border border-pink-100 p-2 text-zinc-700 md:hidden" onClick={() => setMenuOpen((v) => !v)} aria-label="Toggle menu">
-                {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </button>
-            </div>
-          </div>
+        <div class="project-card">
+            <span class="project-tag" style="background:#fde7ed; color:var(--accent-rose);">12/2024 – 02/2025</span>
+            <h3 class="project-title" data-vi="Business Analytics Intern - FPT Digital" data-en="Business Analytics Intern - FPT Digital">Business Analytics Intern - FPT Digital - Hanoi, Vietnam</h3>
+            <p data-vi="• Nghiên cứu tiêu chuẩn ESG (GRI Standards) và thực tiễn báo cáo phát triển bền vững quốc tế.<br>• Phân tích quy định ESG và xu hướng ngành Dược phẩm tại Việt Nam phục vụ tư vấn chiến lược."
+               data-en="• Conducted desk research on ESG frameworks including GRI Standards and international sustainability reporting practices.<br>• Analysed ESG regulations and industry trends within Vietnam's pharmaceutical sector.">
+               • Conducted desk research on ESG frameworks including GRI Standards and international sustainability reporting practices.<br>• Analysed ESG regulations and industry trends within Vietnam's pharmaceutical sector.
+            </p>
+        </div>
 
-          {menuOpen && (
-            <div className="mt-4 grid gap-2 rounded-2xl border border-pink-100 bg-white p-3 md:hidden">
-              {navItems.map((item) => (
-                <a key={item.label} href={item.href} className="rounded-xl px-3 py-2 text-sm text-zinc-600 hover:bg-pink-50 hover:text-zinc-900" onClick={() => setMenuOpen(false)}>
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          )}
-        </header>
+        <div class="project-card">
+            <span class="project-tag" style="background:#fde7ed; color:var(--accent-rose);">12/2023 – 02/2024</span>
+            <h3 class="project-title" data-vi="Logistics Team Leader - Dự án 'Share the Love, Send Warmth'" data-en="Logistics Team Leader - 'Share the Love, Send Warmth' Project">Logistics Team Leader - 'Share the Love, Send Warmth' Project</h3>
+            <p data-vi="• Điều phối logistics và giao tiếp nhà cung cấp hỗ trợ trường học tại Y Tý, Lào Cai.<br>• Gây quỹ hơn 60 triệu VNĐ trao tặng quà ấm cho học sinh vùng cao."
+               data-en="• Coordinated logistics operations and supplier communication for a volunteer project supporting remote schools in Y Ty, Lao Cai.<br>• Raised 60+ million VND to deliver winter supplies.">
+               • Coordinated logistics operations and supplier communication for a volunteer project supporting remote schools in Y Ty, Lao Cai.<br>• Raised 60+ million VND to deliver winter supplies.
+            </p>
+        </div>
+    </section>
 
-        <main className="space-y-20">
-          <section className="grid items-center gap-10 lg:grid-cols-2 relative">
-            <CuteBlob className="-left-8 top-6 h-36 w-36 bg-pink-200/60" />
-            <CuteBlob className="right-0 top-0 h-48 w-48 bg-purple-200/60" />
-            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="relative z-10">
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-pink-200 bg-white px-3 py-1 text-sm text-pink-500 shadow-sm">
-                <Sparkles className="h-4 w-4" />
-                {t.heroBadge}
-              </div>
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 data-vi="🚀 Dự án nổi bật & Case Studies" data-en="🚀 Featured Projects & Case Studies">🚀 Featured Projects & Case Studies</h2>
 
-              <h2 className="max-w-2xl text-4xl font-semibold tracking-tight sm:text-5xl text-zinc-800">{t.heroTitle}</h2>
+        <!-- AfterCare -->
+        <div class="project-card">
+            <span class="project-tag tag-health">Hackathon Top 8 / 210 (Merit Prize)</span>
+            <h3 class="project-title">AfterCare App: AI Post-Discharge Care Assistant 🏥</h3>
+            <p data-vi="Nền tảng trợ lý giọng nói AI kết nối bệnh nhân và cơ sở y tế sau xuất viện, tích hợp Bảng điều phối y tế thời gian thực."
+               data-en="AI-driven post-discharge care platform for hospitals, built around voice follow-up, risk screening, and doctor dashboards.">
+               AI-driven post-discharge care platform for hospitals, built around voice follow-up, risk screening, and doctor dashboards.
+            </p>
+            <a href="https://mvp-aftercare.onrender.com/index.html" target="_blank" class="btn" data-vi="Xem Web Demo thực tế ↗" data-en="View Live Demo ↗">View Live Demo ↗</a>
+        </div>
 
-              <p className="mt-5 max-w-xl text-base leading-7 text-zinc-600">{t.heroBody}</p>
+        <!-- Pharma ESG -->
+        <div class="project-card">
+            <span class="project-tag tag-esg">FPT Digital Work</span>
+            <h3 class="project-title">Pharma ESG Strategy & Framework 🍃</h3>
+            <p data-vi="Nghiên cứu tiêu chuẩn GRI Standards toàn cầu và tổng hợp 8 giải pháp chiến lược phát triển bền vững cho ngành Dược Việt Nam."
+               data-en="Comprehensive sustainability research report applying GRI Standards and global best practices to Vietnam's pharmaceutical sector.">
+               Comprehensive sustainability research report applying GRI Standards and global best practices to Vietnam's pharmaceutical sector.
+            </p>
+        </div>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild className="rounded-full bg-zinc-800 text-white hover:bg-zinc-700">
-                  <a href="#projects">
-                    {t.viewProjects} <ArrowUpRight className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-                <Button asChild variant="outline" className="rounded-full border-pink-200 bg-white text-zinc-700 hover:bg-pink-50">
-                  <a href="#contact">{t.contact}</a>
-                </Button>
-              </div>
+        <!-- House Price Prediction -->
+        <div class="project-card">
+            <span class="project-tag tag-ai">Deep Learning</span>
+            <h3 class="project-title">House Price Prediction Model (ANN) 📊</h3>
+            <p data-vi="Tiền xử lý 20,000 bản ghi bất động sản, xây dựng và so sánh 8 mô hình mạng Neural tối ưu bằng Adam Optimizer."
+               data-en="End-to-end deep learning regression study using ~20,000 property records and 8 neural network architectures.">
+               End-to-end deep learning regression study using ~20,000 property records and 8 neural network architectures.
+            </p>
+            <a href="https://github.com/harlin-vu/houseprice_prediction" target="_blank" class="btn" data-vi="Mã nguồn GitHub ↗" data-en="GitHub Repository ↗">GitHub Repository ↗</a>
+        </div>
 
-              <div className="mt-8 flex flex-wrap gap-4 text-sm text-zinc-500">
-                <span className="inline-flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-pink-400" /> Melbourne, Australia
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <Briefcase className="h-4 w-4 text-purple-400" /> Available for analyst opportunities
-                </span>
-              </div>
-            </motion.div>
+        <!-- Airbnb NLP -->
+        <div class="project-card">
+            <span class="project-tag tag-nlp">Python & NLP</span>
+            <h3 class="project-title">Airbnb Victoria: Guest Satisfaction & LDA 🏡</h3>
+            <p data-vi="Phân tích 129,510 câu đánh giá (VADER Sentiment) và mô hình hóa LDA xác định kỳ vọng khách hàng theo loại phòng."
+               data-en="Natural language processing and topic modelling study on 129,510 review sentences across Victorian Airbnb listings.">
+               Natural language processing and topic modelling study on 129,510 review sentences across Victorian Airbnb listings.
+            </p>
+            <a href="https://github.com/harlin-vu/airbnb-victoria-sentiment-analysis" target="_blank" class="btn" data-vi="Mã nguồn GitHub ↗" data-en="GitHub Repository ↗">GitHub Repository ↗</a>
+        </div>
 
-            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="relative z-10">
-              <Card className="overflow-hidden border-pink-100 bg-white/90 shadow-lg">
-                <div className="h-2 bg-gradient-to-r from-pink-300 via-amber-200 to-purple-300" />
-                <CardContent className="p-6 sm:p-8">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {achievements.map((item) => (
-                      <div key={item.label.en} className="rounded-3xl border border-pink-100 bg-pink-50/70 p-4 shadow-sm">
-                        <div className="mb-3 inline-flex rounded-2xl bg-white p-2 text-pink-400 shadow-sm">{item.icon}</div>
-                        <p className="text-sm text-zinc-500">{item.label[lang]}</p>
-                        <p className="mt-1 font-medium text-zinc-800">{typeof item.value === "string" ? item.value : item.value[lang]}</p>
-                      </div>
-                    ))}
-                  </div>
+        <!-- Waste Classification -->
+        <div class="project-card">
+            <span class="project-tag tag-esg">Computer Vision</span>
+            <h3 class="project-title">Waste Image Classification (CNN) ♻️</h3>
+            <p data-vi="So sánh hiệu suất 10 mô hình ANN & CNN trên ~2,900 ảnh rác, đạt độ chính xác 69.5% và Cohen's Kappa 0.631."
+               data-en="Image classification study comparing traditional ANN and 6 CNN architectures on ~2,900 waste images.">
+               Image classification study comparing traditional ANN and 6 CNN architectures on ~2,900 waste images.
+            </p>
+            <a href="https://github.com/harlin-vu/waste_classification" target="_blank" class="btn" data-vi="Mã nguồn GitHub ↗" data-en="GitHub Repository ↗">GitHub Repository ↗</a>
+        </div>
 
-                  <div className="mt-5 rounded-3xl border border-dashed border-pink-200 bg-white p-5">
-                    <p className="text-sm uppercase tracking-[0.25em] text-pink-400">{lang === "en" ? "Focus" : "Trọng tâm"}</p>
-                    <p className="mt-2 text-lg font-medium text-zinc-800">{t.focus}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </section>
+        <!-- Share the Love -->
+        <div class="project-card">
+            <span class="project-tag" style="background:#e4f6ee; color:var(--accent-green);">Volunteering & Leadership</span>
+            <h3 class="project-title">"Share the Love, Send Warmth" Project ❤️</h3>
+            <p data-vi="Lập kế hoạch ngân sách và điều phối logistics gây quỹ hơn 60 triệu VNĐ hỗ trợ học sinh vùng cao Y Tý, Lào Cai."
+               data-en="Charity fundraising and logistics coordination initiative supporting kindergarten students in remote mountainous areas of Y Ty, Lao Cai.">
+               Charity fundraising and logistics coordination initiative supporting kindergarten students in remote mountainous areas of Y Ty, Lao Cai.
+            </p>
+            <a href="https://drive.google.com/drive/folders/1glsoQjJaocc8EY7Y96roef9Bvtzhqh8A" target="_blank" class="btn" data-vi="Hình ảnh & Tài liệu dự án ↗" data-en="Project Image & Drive Folder ↗">Project Image & Drive Folder ↗</a>
+        </div>
+    </section>
 
-          {/* Sửa phần About Me hiển thị đủ 3 đoạn văn bản đầy cảm hứng của bạn */}
-          <section id="about">
-            <Card className="overflow-hidden border-pink-100 bg-white/90 shadow-sm">
-              <div className="h-2 bg-gradient-to-r from-pink-300 to-purple-300" />
-              <CardContent className="p-6 sm:p-8">
-                <h3 className="text-2xl font-semibold text-zinc-800">{t.aboutTitle}</h3>
-                <div className="mt-4 space-y-4 leading-7 text-zinc-600">
-                  <p>{t.aboutBody.p1}</p>
-                  <p>{t.aboutBody.p2}</p>
-                  <p>{t.aboutBody.p3}</p>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 data-vi="🛠️ Kỹ năng chuyên môn" data-en="🛠️ Technical & Professional Skills">🛠️ Technical & Professional Skills</h2>
+        <div class="skills-grid">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">TensorFlow & Keras</span>
+            <span class="skill-pill">Pandas & NumPy</span>
+            <span class="skill-pill">NLTK & Scikit-Learn</span>
+            <span class="skill-pill">SQL (Basic)</span>
+            <span class="skill-pill">Power BI (Basic)</span>
+            <span class="skill-pill">Business Analysis</span>
+            <span class="skill-pill">ESG Frameworks (GRI)</span>
+            <span class="skill-pill">Requirement Gathering</span>
+            <span class="skill-pill">Process Modelling (BPMN, EER)</span>
+            <span class="skill-pill">Agile & Scrum</span>
+            <span class="skill-pill">Stakeholder Communication</span>
+            <span class="skill-pill">Project Coordination</span>
+            <span class="skill-pill">Problem Solving</span>
+        </div>
+    </section>
 
-          <section id="experience">
-            <SectionTitle title={t.experienceTitle} subtitle={t.experienceIntro} />
-            <div className="grid gap-5 md:grid-cols-3">
-              {experience.map((item) => (
-                <Card key={item.org + item.period} className="overflow-hidden border-pink-100 bg-white/90 shadow-sm">
-                  <div className="h-2 bg-gradient-to-r from-pink-300 via-amber-200 to-purple-300" />
-                  <CardContent className="p-6">
-                    <div className="mb-4 inline-flex rounded-2xl bg-pink-50 p-2 text-pink-500">{item.icon}</div>
-                    <p className="text-sm text-zinc-500">{item.period}</p>
-                    <h4 className="mt-1 text-xl font-semibold text-zinc-800">{item.role[lang]}</h4>
-                    <p className="mt-1 text-sm text-zinc-500">{item.org}</p>
-                    <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-600">
-                      {item.bullets[lang].map((bullet) => (
-                        <li key={bullet}>• {bullet}</li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
+    <footer>
+        <p data-vi="Made with 🩷 by Vũ Hương Linh" data-en="Made with 🩷 by Huong Linh Vu (Harlin Vu)">Made with 🩷 by Huong Linh Vu (Harlin Vu)</p>
+    </footer>
 
-          <section id="projects">
-            <SectionTitle title={t.projectsTitle} subtitle={t.projectsIntro} />
-            <div className="grid gap-5 md:grid-cols-2">
-              {(Object.entries(projects) as [ProjectKey, (typeof projects)[ProjectKey]][]).map(([key, project]) => {
-                const colors = paletteClasses[project.palette];
-                return (
-                  <motion.div key={project.title} whileHover={{ y: -6, rotate: -0.2 }} transition={{ duration: 0.2 }}>
-                    <Card className="overflow-hidden border-pink-100 bg-white/90 shadow-sm">
-                      <div className={`h-2 ${project.palette === "emerald" ? "bg-gradient-to-r from-emerald-200 to-pink-200" : project.palette === "orange" ? "bg-gradient-to-r from-orange-200 to-pink-200" : project.palette === "violet" ? "bg-gradient-to-r from-violet-200 to-pink-200" : project.palette === "green" ? "bg-gradient-to-r from-green-200 to-pink-200" : "bg-gradient-to-r from-emerald-200 to-amber-200"}`} />
-                      <CardContent className="p-6">
-                        <div className="flex items-start justify-between gap-4">
-                          <div>
-                            <p className={`text-sm font-semibold ${colors.accent}`}>{project.tag}</p>
-                            <h4 className="mt-1 text-2xl font-semibold text-zinc-800">{project.title}</h4>
-                          </div>
-                          <ArrowUpRight className="mt-1 h-5 w-5 text-zinc-400" />
-                        </div>
+</div>
 
-                        <p className="mt-4 leading-7 text-zinc-600">{project.subtitle[lang]}</p>
+<!-- Script chuyển đổi ngôn ngữ -->
+<script>
+    let currentLang = 'en';
 
-                        <div className="mt-5 flex flex-wrap gap-2">
-                          {project.highlights[lang].slice(0, 2).map((item) => (
-                            <Pill key={item}>{item}</Pill>
-                          ))}
-                        </div>
+    function toggleLanguage() {
+        currentLang = currentLang === 'vi' ? 'en' : 'vi';
+        document.getElementById('lang-btn-text').innerText = currentLang === 'vi' ? 'ENG' : 'VIE';
+        
+        const elements = document.querySelectorAll('[data-vi][data-en]');
+        elements.forEach(el => {
+            const translatedText = el.getAttribute(`data-${currentLang}`);
+            if (translatedText) {
+                el.innerHTML = translatedText;
+            }
+        });
+    }
+</script>
 
-                        <div className="mt-6 flex flex-wrap gap-2">
-                          <Button onClick={() => openProject(key)} className="rounded-full bg-zinc-800 text-white hover:bg-zinc-700">
-                            {t.projectButtons.open} <ChevronRight className="ml-2 h-4 w-4" />
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </section>
-
-          <section id="skills">
-            <Card className="overflow-hidden border-pink-100 bg-white/90 shadow-sm">
-              <div className="h-2 bg-gradient-to-r from-pink-300 via-amber-200 to-purple-300" />
-              <CardContent className="p-6 sm:p-8">
-                <h3 className="text-3xl font-semibold text-zinc-800">{t.skillsTitle}</h3>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  {skills.specialize?.map ? null : null}
-                  {skills.map((skill) => (
-                    <span key={skill} className="rounded-full border border-pink-100 bg-pink-50 px-4 py-2 text-sm text-zinc-700 shadow-sm">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-
-          <section id="contact">
-            <Card className="overflow-hidden border-pink-100 bg-white/90 shadow-sm">
-              <div className="h-2 bg-gradient-to-r from-emerald-200 via-sky-200 to-purple-200" />
-              <CardContent className="flex flex-col gap-5 p-6 sm:p-8 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <h3 className="text-3xl font-semibold text-zinc-800">{t.contactTitle}</h3>
-                  <p className="mt-2 text-zinc-600">{t.contactIntro}</p>
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  <Button asChild className="rounded-full bg-zinc-800 text-white hover:bg-zinc-700">
-                    <a href="mailto:vuhuonglinh17@gmail.com">
-                      <Mail className="mr-2 h-4 w-4" /> Email
-                    </a>
-                  </Button>
-                  {publicLinks.cv && (
-                    <Button asChild variant="outline" className="rounded-full border-pink-200 bg-white text-zinc-700 hover:bg-pink-50">
-                      <a href={publicLinks.cv} target="_blank" rel="noreferrer">
-                        <FileText className="mr-2 h-4 w-4" /> CV
-                      </a>
-                    </Button>
-                  )}
-                  {publicLinks.github && (
-                    <Button asChild variant="outline" className="rounded-full border-pink-200 bg-white text-zinc-700 hover:bg-pink-50">
-                      <a href={publicLinks.github} target="_blank" rel="noreferrer">
-                        GitHub
-                      </a>
-                    </Button>
-                  )}
-                  <Button asChild variant="outline" className="rounded-full border-pink-200 bg-white text-zinc-700 hover:bg-pink-50">
-                    <a href="https://www.linkedin.com/in/huong-linh-vu/?skipRedirect=true" target="_blank" rel="noreferrer">
-                      LinkedIn
-                    </a>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-        </main>
-      </div>
-    </div>
-  );
-}
+</body>
+</html>
