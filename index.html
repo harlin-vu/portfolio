@@ -4,448 +4,1340 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-vi="Vũ Hương Linh | Business Analyst & Data Storyteller 🌿" data-en="Huong Linh Vu (Harlin Vu) | Business Analyst & Data Storyteller 🌿">Huong Linh Vu (Harlin Vu) | Business Analyst & Data Storyteller 🌿</title>
-    <!-- Google Font M PLUS Rounded 1c & Nunito -->
+    <!-- Google Font DM Sans & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Inter:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    
+<style>
         :root {
-            --bg-color: #fffaf7;
-            --card-bg: #ffffff;
-            --border-color: #f3e3d8;
-            --primary-pink: #f4a6bc;
-            --dark-text: #4a3b3e;
-            --accent-rose: #d9647e;
-            --accent-purple: #8767c9;
-            --accent-green: #3f9a78;
-            --accent-blue: #3a93b8;
-            --glow: 0 8px 20px rgba(217, 100, 126, 0.08);
+            --bg-color: #f8f6f2;
+            --surface: rgba(255, 255, 255, 0.52);
+            --surface-strong: rgba(255, 255, 255, 0.72);
+            --border-color: rgba(4, 63, 52, 0.10);
+            --primary: #043f34;
+            --secondary: #71967d;
+            --surface-accent: #afcab8;
+            --accent: #b6e5d2;
+            --accent-soft: rgba(182, 229, 210, 0.36);
+            --text: #17352d;
+            --muted: rgba(23, 53, 45, 0.72);
+            --shadow: 0 18px 45px rgba(4, 63, 52, 0.10);
+            --shadow-strong: 0 22px 60px rgba(4, 63, 52, 0.16);
+            --glow: 0 0 0 1px rgba(255,255,255,0.55), 0 20px 45px rgba(4,63,52,.12);
+ 
+            /* Jelly gloss tokens — same palette, new finish */
+            --jelly-bounce: cubic-bezier(.34, 1.56, .64, 1);
+            --jelly-shine: radial-gradient(120px 70px at 24% 14%, rgba(255,255,255,.85), rgba(255,255,255,0) 70%);
+            --jelly-shadow: 0 16px 0 -6px rgba(4,63,52,.06), 0 24px 40px -12px rgba(4,63,52,.22), inset 0 1px 0 rgba(255,255,255,.6);
+            --jelly-shadow-hover: 0 22px 0 -8px rgba(4,63,52,.05), 0 30px 50px -14px rgba(4,63,52,.28), inset 0 1px 0 rgba(255,255,255,.7);
         }
-
+ 
+        @keyframes jelly-float {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-14px) rotate(2deg); }
+        }
+ 
+        @keyframes jelly-pop {
+            0% { transform: scale(.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+ 
+        /* NÚNG NÍNH — squash & stretch wobble, like poking real jelly */
+        @keyframes jelly-wobble {
+            0%   { transform: scale(1, 1); }
+            15%  { transform: scale(1.14, 0.86) translateY(-2px); }
+            30%  { transform: scale(0.9, 1.12) translateY(-8px); }
+            45%  { transform: scale(1.08, 0.93) translateY(-4px); }
+            60%  { transform: scale(0.96, 1.05) translateY(-7px); }
+            75%  { transform: scale(1.03, 0.98) translateY(-5px); }
+            100% { transform: scale(1, 1) translateY(-6px); }
+        }
+ 
+        @keyframes jelly-wobble-tap {
+            0%   { transform: scale(1); }
+            30%  { transform: scale(0.86, 1.16); }
+            55%  { transform: scale(1.1, 0.88); }
+            75%  { transform: scale(0.95, 1.05); }
+            100% { transform: scale(1); }
+        }
+ 
+        @keyframes jelly-idle {
+            0%, 100% { transform: translateY(0) rotate(-3deg) scale(1); }
+            30% { transform: translateY(-10px) rotate(1deg) scale(1.03, 0.97); }
+            50% { transform: translateY(-16px) rotate(3deg) scale(0.98, 1.02); }
+            75% { transform: translateY(-8px) rotate(-1deg) scale(1.01, 0.99); }
+        }
+ 
+        .jiggle:hover { animation: jelly-wobble 0.7s var(--jelly-bounce); }
+        .jiggle:active { animation: jelly-wobble-tap 0.45s var(--jelly-bounce); }
+ 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             scroll-behavior: smooth;
         }
-
+ 
+        html {
+            scroll-behavior: smooth;
+        }
+ 
         body {
             font-family: 'Nunito', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--dark-text);
-            line-height: 1.7;
+            background:
+                radial-gradient(circle at 15% 15%, rgba(182, 229, 210, 0.55), transparent 30%),
+                radial-gradient(circle at 85% 10%, rgba(175, 202, 184, 0.45), transparent 26%),
+                radial-gradient(circle at 85% 85%, rgba(113, 150, 125, 0.20), transparent 28%),
+                linear-gradient(180deg, #f8f6f2 0%, #f4f1eb 100%);
+            color: var(--text);
+            line-height: 1.75;
             padding: 0;
+            min-height: 100vh;
         }
-
+ 
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(rgba(4,63,52,.04) 1px, transparent 1px);
+            background-size: 18px 18px;
+            opacity: 0.22;
+            mix-blend-mode: multiply;
+        }
+ 
+        /* TOOLTIP PREVIEW CSS */
+        [data-tooltip] {
+            position: relative;
+        }
+ 
+        [data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            background: var(--primary);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+            pointer-events: none;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(4,63,52,0.25);
+        }
+ 
+        [data-tooltip]::before {
+            content: "";
+            position: absolute;
+            bottom: calc(100% + 2px);
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--primary) transparent transparent transparent;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+            pointer-events: none;
+            z-index: 1000;
+        }
+ 
+        [data-tooltip]:hover::after,
+        [data-tooltip]:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+ 
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 36px 20px 60px;
+            position: relative;
+            z-index: 1;
         }
-
-        /* Top Bar & Navigation */
+ 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--border-color);
-            padding: 12px 25px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(4, 63, 52, 0.10);
+            padding: 14px 26px;
+            border-radius: 999px;
             position: sticky;
-            top: 20px;
+            top: 18px;
             z-index: 100;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            box-shadow: var(--jelly-shadow);
         }
-
+ 
         .logo {
-            font-family: 'M PLUS Rounded 1c', sans-serif;
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--accent-rose);
+            font-family: 'Fredoka', 'M PLUS Rounded 1c', sans-serif;
+            font-weight: 700;
+            font-size: 1.12rem;
+            color: var(--primary);
             text-decoration: none;
+            cursor: pointer;
+            letter-spacing: 0.01em;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-
+ 
+        .logo::before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+            background: linear-gradient(155deg, var(--accent), var(--surface-accent));
+            box-shadow: inset -2px -3px 4px rgba(4,63,52,.18), inset 2px 2px 3px rgba(255,255,255,.7);
+        }
+ 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 18px;
             list-style: none;
             align-items: center;
+            flex-wrap: wrap;
         }
-
+ 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark-text);
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: color 0.2s;
+            color: var(--muted);
+            font-weight: 800;
+            font-size: 0.92rem;
+            transition: all 0.22s ease;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 999px;
         }
-
+ 
         .nav-links a:hover {
-            color: var(--accent-rose);
+            color: var(--primary);
+            background: rgba(182,229,210,.36);
+            transform: translateY(-2px) scale(1.04);
         }
-
+ 
         .lang-btn {
-            background: #ffffff;
-            border: 2px solid var(--accent-rose);
-            color: var(--accent-rose);
-            padding: 6px 14px;
-            border-radius: 14px;
+            background: linear-gradient(160deg, rgba(255,255,255,.85), rgba(255,255,255,.55));
+            border: 1px solid rgba(4,63,52,.12);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 999px;
             font-weight: 800;
             cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.2s;
+            font-size: 0.82rem;
+            transition: transform 0.25s var(--jelly-bounce), background 0.2s ease, box-shadow 0.25s ease;
+            box-shadow: var(--jelly-shadow);
         }
-
+ 
         .lang-btn:hover {
-            background: var(--accent-rose);
-            color: #fff;
+            transform: translateY(-3px) scale(1.05);
+            background: rgba(182,229,210,.5);
         }
-
-        /* Hero Section */
+ 
+        .lang-btn:active {
+            transform: translateY(0) scale(0.94);
+        }
+ 
         header {
-            margin: 50px 0;
+            margin: 54px 0 36px;
             text-align: center;
+            position: relative;
         }
-
+ 
+        header { overflow: visible; }
+ 
         .badge {
-            display: inline-block;
-            background: #fde7ed;
-            border: 2px solid var(--primary-pink);
-            color: var(--accent-rose);
-            padding: 6px 16px;
-            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(160deg, rgba(255,255,255,.7), rgba(182,229,210,.55));
+            border: 1px solid rgba(4,63,52,.10);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 999px;
             font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-family: 'M PLUS Rounded 1c', sans-serif;
-            font-size: 3rem;
-            color: #3e2e31;
-            margin-bottom: 10px;
             font-weight: 800;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--accent-rose);
-            font-weight: 700;
             margin-bottom: 20px;
-            font-family: 'M PLUS Rounded 1c', sans-serif;
+            box-shadow: var(--jelly-shadow);
+            animation: jelly-pop 0.5s var(--jelly-bounce);
         }
-
+ 
+        h1 {
+            font-family: 'Fredoka', 'M PLUS Rounded 1c', sans-serif;
+            font-size: clamp(2.4rem, 4vw, 4rem);
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+ 
+        .subtitle {
+            font-size: clamp(1.02rem, 1.5vw, 1.22rem);
+            color: var(--secondary);
+            font-weight: 800;
+            margin-bottom: 18px;
+            font-family: 'Fredoka', 'M PLUS Rounded 1c', sans-serif;
+        }
+ 
+        /* Cute floating jelly blob mascots (decorative, same palette) */
+        .jelly-mascot {
+            position: absolute;
+            border-radius: 58% 42% 46% 54% / 52% 48% 52% 48%;
+            pointer-events: none;
+            z-index: 0;
+            box-shadow: inset -6px -8px 14px rgba(4,63,52,.16), inset 6px 8px 10px rgba(255,255,255,.55), 0 20px 40px rgba(4,63,52,.14);
+            animation: jelly-idle 5.5s ease-in-out infinite;
+        }
+ 
+        .jelly-mascot::after {
+            content: "";
+            position: absolute;
+            top: 30%; left: 25%;
+            width: 28%; height: 28%;
+            border-radius: 50%;
+            background: rgba(255,255,255,.75);
+            filter: blur(1px);
+        }
+ 
+        .jelly-mascot .eyes {
+            position: absolute;
+            top: 42%;
+            left: 30%;
+            width: 38%;
+            display: flex;
+            justify-content: space-between;
+        }
+ 
+        .jelly-mascot .eyes span {
+            width: 14%;
+            aspect-ratio: 1;
+            background: var(--primary);
+            border-radius: 50%;
+            display: block;
+        }
+ 
+        .jelly-mascot .smile {
+            position: absolute;
+            top: 58%;
+            left: 41%;
+            width: 18%;
+            height: 10%;
+            border-radius: 0 0 999px 999px;
+            border-bottom: 2.5px solid var(--primary);
+            border-left: 2.5px solid transparent;
+            border-right: 2.5px solid transparent;
+        }
+ 
+        .jelly-mascot .cheek {
+            position: absolute;
+            top: 54%;
+            width: 12%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(255, 154, 158, .45);
+        }
+ 
+        .jelly-mascot .cheek.l { left: 16%; }
+        .jelly-mascot .cheek.r { right: 16%; }
+ 
+        .jelly-mascot.m1 {
+            width: 86px; height: 78px;
+            top: -30px; right: 6%;
+            background: linear-gradient(155deg, var(--accent), var(--surface-accent));
+            animation-delay: .3s;
+        }
+ 
+        .jelly-mascot.m2 {
+            width: 54px; height: 50px;
+            top: 60px; left: 2%;
+            background: linear-gradient(155deg, #ffffff, var(--accent-soft));
+            animation-delay: 1.4s;
+            animation-duration: 6.5s;
+        }
+ 
+        .jelly-mascot.m3 {
+            width: 46px; height: 42px;
+            top: 6px; right: 22%;
+            background: linear-gradient(155deg, var(--surface-accent), var(--secondary));
+            animation-delay: 2.2s;
+            animation-duration: 5s;
+            opacity: .9;
+        }
+ 
+        .jelly-mascot.corner {
+            width: 44px; height: 40px;
+            top: -14px;
+            background: linear-gradient(155deg, var(--accent), var(--surface-accent));
+        }
+        .jelly-mascot.corner.right { right: 18px; }
+        .jelly-mascot.corner.left { left: 18px; animation-delay: 1s; animation-duration: 6s; }
+ 
+        @media (max-width: 720px) {
+            .jelly-mascot { display: none; }
+        }
+ 
         .bio {
-            max-width: 650px;
-            margin: 0 auto 30px auto;
-            color: #6b5a57;
-            font-size: 1.05rem;
+            max-width: 760px;
+            margin: 0 auto 28px auto;
+            color: var(--muted);
+            font-size: 1.02rem;
         }
-
+ 
+        /* HÀNG NGANG CHỨA LOGO TRẮNG */
         .contact-bar {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #6b5a57;
-            margin-bottom: 40px;
-        }
-
-        /* Cards & Sections */
-        section {
-            background: var(--card-bg);
-            border: 3px solid var(--border-color);
-            padding: 35px 30px;
-            border-radius: 28px;
-            box-shadow: var(--glow);
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            font-family: 'M PLUS Rounded 1c', sans-serif;
-            font-size: 1.6rem;
-            color: #3e2e31;
-            margin-bottom: 20px;
-            display: flex;
             align-items: center;
-            gap: 10px;
-            border-bottom: 2px dashed var(--border-color);
-            padding-bottom: 10px;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
         }
-
+ 
+        .contact-bar a {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(155deg, #0a5b4b, var(--primary) 60%);
+            color: #ffffff;
+            width: 54px;
+            height: 54px;
+            border-radius: 58% 42% 48% 52% / 52% 46% 54% 48%;
+            text-decoration: none;
+            box-shadow: inset -3px -4px 8px rgba(0,0,0,.20), inset 3px 4px 6px rgba(255,255,255,.18), 0 12px 22px rgba(4,63,52,.28);
+            transition: transform 0.3s var(--jelly-bounce), box-shadow 0.3s ease, border-radius 0.3s ease;
+            overflow: hidden;
+        }
+ 
+        .contact-bar a::before {
+            content: "";
+            position: absolute;
+            inset: 6px 6px auto auto;
+            top: 8px; left: 12px;
+            width: 16px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.45);
+            filter: blur(1.5px);
+        }
+ 
+        .contact-bar a:hover {
+            animation: jelly-wobble 0.7s var(--jelly-bounce);
+            box-shadow: inset -3px -4px 8px rgba(0,0,0,.18), inset 3px 4px 6px rgba(255,255,255,.24), 0 18px 30px rgba(4,63,52,.34);
+            border-radius: 50%;
+        }
+ 
+        .contact-bar a:active {
+            animation: jelly-wobble-tap 0.45s var(--jelly-bounce);
+        }
+ 
+        .contact-bar svg {
+            width: 22px;
+            height: 22px;
+            stroke: #ffffff;
+            stroke-width: 2.2;
+            fill: none;
+            transition: transform 0.2s ease;
+            position: relative;
+            z-index: 1;
+        }
+ 
+        .contact-bar a:hover svg {
+            transform: scale(1.12);
+        }
+ 
+        section {
+            position: relative;
+            background: var(--surface);
+            border: 1px solid rgba(4,63,52,.10);
+            padding: 34px 32px;
+            border-radius: 46px 38px 44px 40px;
+            box-shadow: var(--jelly-shadow);
+            margin-bottom: 28px;
+            transition: transform 0.3s var(--jelly-bounce), box-shadow 0.3s ease, border-radius 0.3s ease;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            overflow: hidden;
+        }
+ 
+        section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--jelly-shine);
+            pointer-events: none;
+        }
+ 
+        section:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--jelly-shadow-hover);
+            border-radius: 38px 46px 40px 44px;
+        }
+ 
+        h2 {
+            font-family: 'Fredoka', 'M PLUS Rounded 1c', sans-serif;
+            font-size: 1.55rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            border-bottom: 2px dashed rgba(4,63,52,.14);
+            padding-bottom: 12px;
+            font-weight: 700;
+            position: relative;
+        }
+ 
+        h3 {
+            color: var(--primary);
+            font-family: 'Fredoka', 'M PLUS Rounded 1c', sans-serif;
+            letter-spacing: -0.01em;
+        }
+ 
         p {
             margin-bottom: 14px;
+            color: var(--text);
         }
-
-        /* Project Grid / Cards */
+ 
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+ 
+        li { margin-bottom: 8px; }
+ 
         .project-card {
-            background: #ffffff;
-            border: 2px solid var(--border-color);
-            padding: 25px;
-            border-radius: 22px;
-            margin-bottom: 20px;
-            transition: transform 0.2s, border-color 0.2s;
+            position: relative;
+            background: linear-gradient(165deg, rgba(255,255,255,.85), rgba(182,229,210,.45));
+            border: 1px solid rgba(4,63,52,.10);
+            padding: 28px;
+            border-radius: 22px 40px 26px 40px;
+            margin-bottom: 22px;
+            box-shadow: var(--jelly-shadow);
+            transition: box-shadow 0.3s ease, border-radius 0.3s ease, border-color .25s ease;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            overflow: hidden;
+            transform-origin: center bottom;
         }
-
+ 
+        .project-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(90px 55px at 12% 10%, rgba(255,255,255,.9), rgba(255,255,255,0) 70%);
+            pointer-events: none;
+        }
+ 
         .project-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-rose);
+            animation: jelly-wobble 0.75s var(--jelly-bounce);
+            border-color: rgba(4,63,52,.18);
+            box-shadow: var(--jelly-shadow-hover);
+            border-radius: 40px 22px 40px 26px;
         }
-
+ 
         .project-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.78rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .tag-health { background: #e7f5fa; color: var(--accent-blue); }
-        .tag-esg { background: #e4f6ee; color: var(--accent-green); }
-        .tag-ai { background: #f1eafb; color: var(--accent-purple); }
-        .tag-nlp { background: #ffeee0; color: #e07a3f; }
-
-        .project-title {
-            font-family: 'M PLUS Rounded 1c', sans-serif;
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: #3e2e31;
-            margin-bottom: 8px;
-        }
-
-        .btn {
+            position: relative;
+            z-index: 1;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: var(--dark-text);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            border: 1px solid transparent;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 6px 14px rgba(4,63,52,.08);
+        }
+ 
+        .project-title, .project-card p, .project-card .btn { position: relative; z-index: 1; }
+ 
+        .tag-health { background: rgba(182,229,210,.38); color: var(--primary); border-color: rgba(4,63,52,.10); }
+        .tag-esg { background: rgba(175,202,184,.38); color: var(--primary); border-color: rgba(4,63,52,.10); }
+        .tag-ai { background: rgba(113,150,125,.18); color: var(--primary); border-color: rgba(4,63,52,.10); }
+        .tag-nlp { background: rgba(182,229,210,.22); color: var(--primary); border-color: rgba(4,63,52,.10); }
+ 
+        .project-title {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 1.38rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+ 
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(160deg, #0a5b4b, var(--primary) 65%);
             color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 16px;
+            padding: 12px 22px;
+            border-radius: 999px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 0.9rem;
-            margin-top: 15px;
-            transition: background 0.2s;
+            margin-top: 18px;
+            transition: transform 0.28s var(--jelly-bounce), box-shadow 0.28s ease;
+            cursor: pointer;
+            border: none;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 14px 30px rgba(4,63,52,.22);
+            overflow: hidden;
         }
-
+ 
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 3px; left: 14%;
+            width: 40%; height: 38%;
+            border-radius: 999px;
+            background: rgba(255,255,255,.28);
+            filter: blur(2px);
+            pointer-events: none;
+        }
+ 
         .btn:hover {
-            background: var(--accent-rose);
+            animation: jelly-wobble 0.65s var(--jelly-bounce);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 20px 38px rgba(4,63,52,.28);
         }
-
-        /* Skills Pills */
+ 
+        .btn:active {
+            animation: jelly-wobble-tap 0.4s var(--jelly-bounce);
+        }
+ 
+        .btn-secondary {
+            background: rgba(255,255,255,.62);
+            color: var(--primary);
+            border: 1px solid rgba(4,63,52,.12);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 10px 25px rgba(4,63,52,.08);
+        }
+ 
+        .btn-secondary:hover {
+            background: rgba(182,229,210,.42);
+            color: var(--primary);
+        }
+ 
         .skills-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: 18px;
         }
-
+ 
         .skill-pill {
-            background: #fde7ed;
-            color: var(--accent-rose);
-            border: 1px solid rgba(244, 166, 188, 0.4);
-            padding: 6px 14px;
-            border-radius: 14px;
-            font-size: 0.85rem;
-            font-weight: 700;
+            background: linear-gradient(160deg, rgba(255,255,255,.65), rgba(182,229,210,.62));
+            color: var(--primary);
+            border: 1px solid rgba(4,63,52,.10);
+            padding: 9px 15px;
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 10px 22px rgba(4,63,52,.07);
+            transition: box-shadow 0.25s ease, background 0.25s ease;
+            display: inline-block;
         }
-
+ 
+        .skill-pill:hover {
+            animation: jelly-wobble 0.6s var(--jelly-bounce);
+            background: linear-gradient(160deg, rgba(255,255,255,.75), rgba(182,229,210,.78));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 14px 26px rgba(4,63,52,.14);
+        }
+ 
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+ 
         footer {
             text-align: center;
-            padding: 30px;
-            color: #8c7b78;
-            font-weight: 700;
+            padding: 28px;
+            color: var(--muted);
+            font-weight: 800;
             font-size: 0.9rem;
         }
-    </style>
+ 
+        /* Jelly bubble helpers */
+        .jelly-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+        }
+ 
+        .jelly-bubble {
+            position: relative;
+            background: linear-gradient(165deg, rgba(255,255,255,.9), rgba(182,229,210,.55));
+            border: 1px solid rgba(4,63,52,.10);
+            border-radius: 30px 40px 32px 42px;
+            padding: 18px 16px;
+            box-shadow: var(--jelly-shadow);
+            overflow: hidden;
+            min-height: 112px;
+            transition: box-shadow .3s ease, border-radius .3s ease;
+        }
+ 
+        .jelly-bubble::before {
+            content: "";
+            position: absolute;
+            inset: 10px 14px auto auto;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.65);
+            filter: blur(2px);
+        }
+ 
+        .jelly-grid .jelly-bubble:nth-child(4n+2) { background: linear-gradient(165deg, rgba(255,255,255,.9), rgba(175,202,184,.6)); }
+        .jelly-grid .jelly-bubble:nth-child(4n+3) { background: linear-gradient(165deg, rgba(255,255,255,.92), rgba(182,229,210,.4)); }
+        .jelly-grid .jelly-bubble:nth-child(4n+4) { background: linear-gradient(165deg, rgba(255,255,255,.88), rgba(113,150,125,.28)); }
+ 
+        .jelly-bubble:hover {
+            animation: jelly-wobble 0.7s var(--jelly-bounce);
+            box-shadow: var(--jelly-shadow-hover);
+            border-radius: 40px 30px 42px 32px;
+        }
+ 
+        .bubble-kicker {
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 6px;
+        }
+ 
+        .bubble-value {
+            font-family: 'Fredoka', 'M PLUS Rounded 1c', sans-serif;
+            font-size: 1.15rem;
+            line-height: 1.15;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.01em;
+        }
+ 
+        .bubble-note {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 0.88rem;
+            line-height: 1.45;
+        }
+ 
+        .metric-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-top: 18px;
+        }
+ 
+        .metric-card {
+            position: relative;
+            padding: 20px 10px;
+            border-radius: 30px 40px 32px 42px;
+            background: linear-gradient(165deg, rgba(255,255,255,.85), rgba(182,229,210,.5));
+            border: 1px solid rgba(4,63,52,.10);
+            box-shadow: var(--jelly-shadow);
+            text-align: center;
+            overflow: hidden;
+            transition: box-shadow .3s ease;
+        }
+ 
+        .metric-row .metric-card:nth-child(4n+2) { background: linear-gradient(165deg, rgba(255,255,255,.85), rgba(175,202,184,.55)); }
+        .metric-row .metric-card:nth-child(4n+3) { background: linear-gradient(165deg, rgba(255,255,255,.88), rgba(182,229,210,.35)); }
+        .metric-row .metric-card:nth-child(4n+4) { background: linear-gradient(165deg, rgba(255,255,255,.8), rgba(113,150,125,.32)); }
+ 
+        .metric-card::before {
+            content: "";
+            position: absolute;
+            top: 8px; left: 14px;
+            width: 26px; height: 16px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.6);
+            filter: blur(1px);
+        }
+ 
+        .metric-card:hover {
+            animation: jelly-wobble 0.65s var(--jelly-bounce);
+            box-shadow: var(--jelly-shadow-hover);
+        }
+ 
+        .metric-card strong {
+            display: block;
+            color: var(--primary);
+            font-family: 'Fredoka', 'M PLUS Rounded 1c', sans-serif;
+            font-size: 1.45rem;
+            line-height: 1.1;
+        }
+ 
+        .metric-card span {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-weight: 700;
+        }
+ 
+        @media (max-width: 720px) {
+            .navbar {
+                gap: 10px;
+                padding: 14px 16px;
+                border-radius: 24px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                gap: 8px;
+            }
+            section {
+                padding: 26px 18px;
+                border-radius: 28px;
+            }
+            .project-card {
+                padding: 22px 18px;
+            }
+            .contact-bar {
+                gap: 12px;
+            }
+            .metric-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+</style>
+ 
 </head>
 <body>
-
+ 
 <div class="container">
-
+ 
     <!-- Navigation -->
     <nav class="navbar">
-        <a href="#" class="logo">🐾 Huong Linh Vu</a>
+        <a onclick="showHome()" class="logo" data-tooltip="Home / Trang chủ">Huong Linh Vu</a>
         <ul class="nav-links">
-            <li><a href="#about" data-vi="Về mình" data-en="About">About</a></li>
-            <li><a href="#experience" data-vi="Kinh nghiệm" data-en="Experience">Experience</a></li>
-            <li><a href="#projects" data-vi="Dự án" data-en="Projects">Projects</a></li>
-            <li><a href="#skills" data-vi="Kỹ năng" data-en="Skills">Skills</a></li>
-            <li><button class="lang-btn" onclick="toggleLanguage()">🌐 <span id="lang-btn-text">VIE</span></button></li>
+            <li><a onclick="showHome('#about')" data-tooltip="Take a closer look about me" data-vi="Về mình" data-en="About">About</a></li>
+            <li><a onclick="showHome('#experience')" data-tooltip="All of my recent experience" data-vi="Kinh nghiệm" data-en="Experience">Experience</a></li>
+            <li><a onclick="showHome('#projects')" data-tooltip="These are my projects with all of my fellow teammate" data-vi="Dự án" data-en="Projects">Projects</a></li>
+            <li><a onclick="showHome('#skills')" data-tooltip="After learning 3 years in Deakin University, there are all of my skills that I have gained" data-vi="Kỹ năng" data-en="Skills">Skills</a></li>
+            <li><button class="lang-btn" onclick="toggleLanguage()" data-tooltip="Đổi Tiếng Anh / Tiếng Việt"><span id="lang-btn-text">VIE</span></button></li>
         </ul>
     </nav>
-
-    <!-- Hero Section -->
-    <header>
-        <span class="badge" data-vi="Business Analytics & Data Storyteller" data-en="Business Analytics & Data Storyteller">Business Analytics & Data Storyteller</span>
-        <h1 data-vi="Vũ Hương Linh" data-en="Huong Linh Vu (Harlin Vu)">Huong Linh Vu (Harlin Vu)</h1>
-        <div class="subtitle" data-vi="Biến dữ liệu phức tạp thành quyết định chiến lược kinh doanh" data-en="Turning complex data into clear business strategies">Turning complex data into clear business strategies</div>
-        <p class="bio" data-vi="Sinh viên năm 3 ngành Business Analytics tại Deakin University. Kinh nghiệm thực chiến từ tư vấn ESG tại FPT Digital, kinh tế tuần hoàn tại VnF đến các đồ án AI & Khoa học dữ liệu xuất sắc."
-           data-en="Third-year Business Analytics student at Deakin University with hands-on internship experience in sustainability consulting, business research, and applied AI.">
-           Third-year Business Analytics student at Deakin University with hands-on internship experience in sustainability consulting, business research, and applied AI.
-        </p>
-        <div class="contact-bar">
-            <span>✉️ vuhuonglinh17@gmail.com</span>
-            <span>📞 (+61) 450 660 222</span>
-            <span>📍 Box Hill, VIC, Australia</span>
-        </div>
-    </header>
-
-    <!-- About Me Section -->
-    <section id="about">
-        <h2 data-vi="✨ About Me" data-en="✨ About Me">✨ About Me</h2>
-        <p data-vi="Mình tin rằng giá trị tuyệt vời nhất của dữ liệu không chỉ nằm ở việc tối ưu hóa hiệu suất kinh doanh, mà còn là tạo ra những thay đổi tích cực cho con người và cộng đồng."
-           data-en="I believe the best use of data is not simply to optimise business performance, but to create positive change for people and communities.">
-           I believe the best use of data is not simply to optimise business performance, but to create positive change for people and communities.
-        </p>
-        <p data-vi="Là một sinh viên chuyên ngành Business Analytics tại Deakin University, mình có niềm đam mê sâu sắc với việc ứng dụng phân tích dữ liệu, trí tuệ nhân tạo (AI) và chiến lược kinh doanh để giải quyết những bài toán thực tế có ý nghĩa. Niềm đam mê này đã định hình các dự án và trải nghiệm mà mình lựa chọn – từ tư vấn phát triển bền vững và nghiên cứu ESG, đến việc phát triển giải pháp AI chăm sóc sức khỏe hậu phẫu hay khám phá các phương pháp hướng tới sự bền vững môi trường nhờ công nghệ."
-           data-en="As a Business Analytics student at Deakin University, I am passionate about applying analytics, AI, and business strategy to solve challenges that matter. This passion has guided the projects and experiences I choose - from sustainability consulting and ESG research, to developing AI solutions for post-discharge healthcare and exploring technology-driven approaches to environmental sustainability.">
-           As a Business Analytics student at Deakin University, I am passionate about applying analytics, AI, and business strategy to solve challenges that matter. This passion has guided the projects and experiences I choose - from sustainability consulting and ESG research, to developing AI solutions for post-discharge healthcare and exploring technology-driven approaches to environmental sustainability.
-        </p>
-        <p data-vi="Những trải nghiệm đó không chỉ củng cố năng lực phân tích của bản thân, mà còn củng cố niềm tin rằng sự đổi mới phải luôn xoay quanh con người, mang tính đạo đức và có ý nghĩa xã hội. Mình yêu thích việc làm việc trong các đội ngũ đa lĩnh vực, chuyển đổi các vấn đề phức tạp thành những insights hành động được, và thiết kế các giải pháp cân bằng giữa giá trị kinh doanh với tác động lâu dài cho cộng đồng. Mình hướng tới việc xây dựng sự nghiệp nơi Business Analytics trở thành công cụ không chỉ cho những quyết định thông minh hơn, mà còn để kiến tạo những cộng đồng khỏe mạnh hơn và một thế giới bền vững hơn."
-           data-en="These experiences have strengthened both my analytical capabilities and my belief that innovation should be human-centred, ethical, and socially meaningful. I enjoy working with multidisciplinary teams, turning complex problems into actionable insights, and designing solutions that balance business value with long-term community impact. I aspire to build a career where business analytics becomes a tool not only for smarter decisions, but also for creating healthier communities and a more sustainable world.">
-           These experiences have strengthened both my analytical capabilities and my belief that innovation should be human-centred, ethical, and socially meaningful. I enjoy working with multidisciplinary teams, turning complex problems into actionable insights, and designing solutions that balance business value with long-term community impact. I aspire to build a career where business analytics becomes a tool not only for smarter decisions, but also for creating healthier communities and a more sustainable world.
-        </p>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-        <h2 data-vi="💼 Kinh nghiệm làm việc" data-en="💼 Experience">💼 Experience</h2>
-        
-        <div class="project-card">
-            <span class="project-tag" style="background:#fde7ed; color:var(--accent-rose);">01/2026</span>
-            <h3 class="project-title" data-vi="Project Team Intern - VnF (Vietnam Food)" data-en="Project Team Intern - VnF (Vietnam Food)">Project Team Intern - VnF (Vietnam Food) - Ho Chi Minh, Vietnam</h3>
-            <p data-vi="• Hỗ trợ các sáng kiến phát triển bền vững liên quan đến giải pháp thu hồi dưỡng chất RetriV.<br>• Chuẩn hóa tài liệu dự án, hỗ trợ giao tiếp và điều phối các bên liên quan."
-               data-en="• Supported sustainability initiatives involving RetriV, VnF's nutrient recovery solution.<br>• Assisted project teams in documentation, stakeholder communication, and sustainability project coordination.">
-               • Supported sustainability initiatives involving RetriV, VnF's nutrient recovery solution.<br>• Assisted project teams in documentation, stakeholder communication, and sustainability project coordination.
+ 
+    <!-- MAIN PORTFOLIO VIEW -->
+    <div id="home-view" class="view-section active">
+        <!-- Hero Section -->
+        <header>
+            <div class="jelly-mascot m1" aria-hidden="true"><div class="eyes"><span></span><span></span></div><div class="cheek l"></div><div class="cheek r"></div><div class="smile"></div></div>
+            <div class="jelly-mascot m2" aria-hidden="true"><div class="eyes"><span></span><span></span></div><div class="cheek l"></div><div class="cheek r"></div><div class="smile"></div></div>
+            <div class="jelly-mascot m3" aria-hidden="true"><div class="eyes"><span></span><span></span></div><div class="smile"></div></div>
+            <span class="badge" data-vi="Business Analytics & Data Storyteller" data-en="Business Analytics & Data Storyteller">Business Analytics & Data Storyteller</span>
+            <h1 data-vi="Vũ Hương Linh" data-en="Huong Linh Vu (Harlin Vu)">Huong Linh Vu (Harlin Vu)</h1>
+            <div class="subtitle" data-vi="Biến dữ liệu phức tạp thành quyết định chiến lược kinh doanh" data-en="Turning complex data into clear business strategies">Turning complex data into clear business strategies</div>
+            <p class="bio" data-vi="Sinh viên năm 3 ngành Business Analytics tại Deakin University. Kinh nghiệm thực chiến từ tư vấn ESG tại FPT Digital, kinh tế tuần hoàn tại VnF đến các đồ án AI & Khoa học dữ liệu xuất sắc."
+               data-en="Third-year Business Analytics student at Deakin University with hands-on internship experience in sustainability consulting, business research, and applied AI.">
+               Third-year Business Analytics student at Deakin University with hands-on internship experience in sustainability consulting, business research, and applied AI.
             </p>
-        </div>
-
-        <div class="project-card">
-            <span class="project-tag" style="background:#fde7ed; color:var(--accent-rose);">12/2024 – 02/2025</span>
-            <h3 class="project-title" data-vi="Business Analytics Intern - FPT Digital" data-en="Business Analytics Intern - FPT Digital">Business Analytics Intern - FPT Digital - Hanoi, Vietnam</h3>
-            <p data-vi="• Nghiên cứu tiêu chuẩn ESG (GRI Standards) và thực tiễn báo cáo phát triển bền vững quốc tế.<br>• Phân tích quy định ESG và xu hướng ngành Dược phẩm tại Việt Nam phục vụ tư vấn chiến lược."
-               data-en="• Conducted desk research on ESG frameworks including GRI Standards and international sustainability reporting practices.<br>• Analysed ESG regulations and industry trends within Vietnam's pharmaceutical sector.">
-               • Conducted desk research on ESG frameworks including GRI Standards and international sustainability reporting practices.<br>• Analysed ESG regulations and industry trends within Vietnam's pharmaceutical sector.
+            
+            <!-- THANH LIÊN HỆ DÀN NGANG, CHỈ CÓ LOGO TRẮNG VÀ GẮN MAILTO CHUẨN XÁC -->
+            <div class="contact-bar">
+                <a href="mailto:vuhuonglinh17@gmail.com" data-tooltip="Email: vuhuonglinh17@gmail.com">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </a>
+                <a href="tel:+61450660222" data-tooltip="Call: (+61) 450 660 222">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </a>
+                <a href="https://maps.google.com/?q=Box+Hill,+VIC,+Australia" target="_blank" rel="noopener" data-tooltip="Maps: Box Hill, VIC, Australia">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/huong-linh-vu/" target="_blank" rel="noopener" data-tooltip="LinkedIn Profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+            </div>
+        </header>
+ 
+        <!-- About Me Section -->
+        <section id="about">
+            <div class="jelly-mascot corner right" aria-hidden="true"><div class="eyes"><span></span><span></span></div><div class="smile"></div></div>
+            <h2 data-vi="About Me" data-en="About Me">About Me</h2>
+            <p data-vi="Mình tin rằng giá trị tuyệt vời nhất của dữ liệu không chỉ nằm ở việc tối ưu hóa hiệu suất kinh doanh, mà còn là tạo ra những thay đổi tích cực cho con người và cộng đồng."
+               data-en="I believe the best use of data is not simply to optimise business performance, but to create positive change for people and communities.">
+               I believe the best use of data is not simply to optimise business performance, but to create positive change for people and communities.
             </p>
-        </div>
-
-        <div class="project-card">
-            <span class="project-tag" style="background:#fde7ed; color:var(--accent-rose);">12/2023 – 02/2024</span>
-            <h3 class="project-title" data-vi="Logistics Team Leader - Dự án 'Share the Love, Send Warmth'" data-en="Logistics Team Leader - 'Share the Love, Send Warmth' Project">Logistics Team Leader - 'Share the Love, Send Warmth' Project</h3>
-            <p data-vi="• Điều phối logistics và giao tiếp nhà cung cấp hỗ trợ trường học tại Y Tý, Lào Cai.<br>• Gây quỹ hơn 60 triệu VNĐ trao tặng quà ấm cho học sinh vùng cao."
-               data-en="• Coordinated logistics operations and supplier communication for a volunteer project supporting remote schools in Y Ty, Lao Cai.<br>• Raised 60+ million VND to deliver winter supplies.">
-               • Coordinated logistics operations and supplier communication for a volunteer project supporting remote schools in Y Ty, Lao Cai.<br>• Raised 60+ million VND to deliver winter supplies.
+            <p data-vi="Là một sinh viên chuyên ngành Business Analytics tại Deakin University, mình có niềm đam mê sâu sắc với việc ứng dụng phân tích dữ liệu, trí tuệ nhân tạo (AI) và chiến lược kinh doanh để giải quyết những bài toán thực tế có ý nghĩa. Niềm đam mê này đã định hình các dự án và trải nghiệm mà mình lựa chọn – từ tư vấn phát triển bền vững và nghiên cứu ESG, đến việc phát triển giải pháp AI chăm sóc sức khỏe hậu phẫu hay khám phá các phương pháp hướng tới sự bền vững môi trường nhờ công nghệ."
+               data-en="As a Business Analytics student at Deakin University, I am passionate about applying analytics, AI, and business strategy to solve challenges that matter. This passion has guided the projects and experiences I choose - from sustainability consulting and ESG research, to developing AI solutions for post-discharge healthcare and exploring technology-driven approaches to environmental sustainability.">
+               As a Business Analytics student at Deakin University, I am passionate about applying analytics, AI, and business strategy to solve challenges that matter. This passion has guided the projects and experiences I choose - from sustainability consulting and ESG research, to developing AI solutions for post-discharge healthcare and exploring technology-driven approaches to environmental sustainability.
             </p>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2 data-vi="🚀 Dự án nổi bật & Case Studies" data-en="🚀 Featured Projects & Case Studies">🚀 Featured Projects & Case Studies</h2>
-
-        <!-- AfterCare -->
-        <div class="project-card">
-            <span class="project-tag tag-health">Hackathon Top 8 / 210 (Merit Prize)</span>
-            <h3 class="project-title">AfterCare App: AI Post-Discharge Care Assistant 🏥</h3>
-            <p data-vi="Nền tảng trợ lý giọng nói AI kết nối bệnh nhân và cơ sở y tế sau xuất viện, tích hợp Bảng điều phối y tế thời gian thực."
-               data-en="AI-driven post-discharge care platform for hospitals, built around voice follow-up, risk screening, and doctor dashboards.">
-               AI-driven post-discharge care platform for hospitals, built around voice follow-up, risk screening, and doctor dashboards.
+            <p data-vi="Những trải nghiệm đó không chỉ củng cố năng lực phân tích của bản thân, mà còn củng cố niềm tin rằng sự đổi mới phải luôn xoay quanh con người, mang tính đạo đức và có ý nghĩa xã hội. Mình yêu thích việc làm việc trong các đội ngũ đa lĩnh vực, chuyển đổi các vấn đề phức tạp thành những insights hành động được, và thiết kế các giải pháp cân bằng giữa giá trị kinh doanh với tác động lâu dài cho cộng đồng. Mình hướng tới việc xây dựng sự nghiệp nơi Business Analytics trở thành công cụ không chỉ cho những quyết định thông minh hơn, mà còn để kiến tạo những cộng đồng khỏe mạnh hơn và một thế giới bền vững hơn."
+               data-en="These experiences have strengthened both my analytical capabilities and my belief that innovation should be human-centred, ethical, and socially meaningful. I enjoy working with multidisciplinary teams, turning complex problems into actionable insights, and designing solutions that balance business value with long-term community impact. I aspire to build a career where business analytics becomes a tool not only for smarter decisions, but also for creating healthier communities and a more sustainable world.">
+               These experiences have strengthened both my analytical capabilities and my belief that innovation should be human-centred, ethical, and socially meaningful. I enjoy working with multidisciplinary teams, turning complex problems into actionable insights, and designing solutions that balance business value with long-term community impact. I aspire to build a career where business analytics becomes a tool not only for smarter decisions, but also for creating healthier communities and a more sustainable world.
             </p>
-            <a href="https://mvp-aftercare.onrender.com/index.html" target="_blank" class="btn" data-vi="Xem Web Demo thực tế ↗" data-en="View Live Demo ↗">View Live Demo ↗</a>
-        </div>
-
-        <!-- Pharma ESG -->
-        <div class="project-card">
-            <span class="project-tag tag-esg">FPT Digital Work</span>
-            <h3 class="project-title">Pharma ESG Strategy & Framework 🍃</h3>
-            <p data-vi="Nghiên cứu tiêu chuẩn GRI Standards toàn cầu và tổng hợp 8 giải pháp chiến lược phát triển bền vững cho ngành Dược Việt Nam."
-               data-en="Comprehensive sustainability research report applying GRI Standards and global best practices to Vietnam's pharmaceutical sector.">
-               Comprehensive sustainability research report applying GRI Standards and global best practices to Vietnam's pharmaceutical sector.
-            </p>
-        </div>
-
-        <!-- House Price Prediction -->
-        <div class="project-card">
+        </section>
+ 
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2 data-vi="Experience" data-en="Experience">Experience</h2>
+            
+            <div class="project-card">
+                <span class="project-tag" style="background: linear-gradient(135deg, rgba(182,229,210,0.55), rgba(175,202,184,0.38)); color: var(--primary-mint); border: 1px solid rgba(4,63,52,0.10);">01/2026</span>
+                <h3 class="project-title" data-vi="Project Team Intern - VnF (Vietnam Food)" data-en="Project Team Intern - VnF (Vietnam Food)">Project Team Intern - VnF (Vietnam Food) - Ho Chi Minh, Vietnam</h3>
+                <p data-vi="• Hỗ trợ các sáng kiến phát triển bền vững liên quan đến giải pháp thu hồi dưỡng chất RetriV.<br>• Chuẩn hóa tài liệu dự án, hỗ trợ giao tiếp và điều phối các bên liên quan."
+                   data-en="• Supported sustainability initiatives involving RetriV, VnF's nutrient recovery solution.<br>• Assisted project teams in documentation, stakeholder communication, and sustainability project coordination.">
+                   • Supported sustainability initiatives involving RetriV, VnF's nutrient recovery solution.<br>• Assisted project teams in documentation, stakeholder communication, and sustainability project coordination.
+                </p>
+            </div>
+ 
+            <div class="project-card">
+                <span class="project-tag" style="background: linear-gradient(135deg, rgba(182,229,210,0.55), rgba(175,202,184,0.38)); color: var(--primary-mint); border: 1px solid rgba(4,63,52,0.10);">12/2024 – 02/2025</span>
+                <h3 class="project-title" data-vi="Business Analytics Intern - FPT Digital" data-en="Business Analytics Intern - FPT Digital">Business Analytics Intern - FPT Digital - Hanoi, Vietnam</h3>
+                <p data-vi="• Nghiên cứu tiêu chuẩn ESG (GRI Standards) và thực tiễn báo cáo phát triển bền vững quốc tế.<br>• Phân tích quy định ESG và xu hướng ngành Dược phẩm tại Việt Nam phục vụ tư vấn chiến lược."
+                   data-en="• Conducted desk research on ESG frameworks including GRI Standards and international sustainability reporting practices.<br>• Analysed ESG regulations and industry trends within Vietnam's pharmaceutical sector.">
+                   • Conducted desk research on ESG frameworks including GRI Standards and international sustainability reporting practices.<br>• Analysed ESG regulations and industry trends within Vietnam's pharmaceutical sector.
+                </p>
+            </div>
+ 
+            <div class="project-card">
+                <span class="project-tag" style="background: linear-gradient(135deg, rgba(182,229,210,0.55), rgba(175,202,184,0.38)); color: var(--primary-mint); border: 1px solid rgba(4,63,52,0.10);">12/2023 – 02/2024</span>
+                <h3 class="project-title" data-vi="Logistics Team Leader - Dự án 'Share the Love, Send Warmth'" data-en="Logistics Team Leader - 'Share the Love, Send Warmth' Project">Logistics Team Leader - 'Share the Love, Send Warmth' Project</h3>
+                <p data-vi="• Điều phối logistics và giao tiếp nhà cung cấp hỗ trợ trường học tại Y Tý, Lào Cai.<br>• Gây quỹ hơn 60 triệu VNĐ trao tặng quà ấm cho học sinh vùng cao."
+                   data-en="• Coordinated logistics operations and supplier communication for a volunteer project supporting remote schools in Y Ty, Lao Cai.<br>• Raised 60+ million VND to deliver winter supplies.">
+                   • Coordinated logistics operations and supplier communication for a volunteer project supporting remote schools in Y Ty, Lao Cai.<br>• Raised 60+ million VND to deliver winter supplies.
+                </p>
+            </div>
+        </section>
+ 
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="jelly-mascot corner left" aria-hidden="true"><div class="eyes"><span></span><span></span></div><div class="smile"></div></div>
+            <h2 data-vi="Featured Projects" data-en="Featured Projects">Featured Projects</h2>
+ 
+            <div class="project-card">
+                <span class="project-tag tag-health">Hackathon Top 8 / 210 (Merit Prize)</span>
+                <h3 class="project-title">AfterCare App: AI Post-Discharge Care Assistant</h3>
+                <p data-vi="Nền tảng trợ lý giọng nói AI kết nối bệnh nhân và cơ sở y tế sau xuất viện, tích hợp Bảng điều phối y tế thời gian thực."
+                   data-en="AI-driven post-discharge care platform for hospitals, built around voice follow-up, risk screening, and doctor dashboards.">
+                   AI-driven post-discharge care platform for hospitals, built around voice follow-up, risk screening, and doctor dashboards.
+                </p>
+                <button class="btn" onclick="showProject('aftercare')" data-tooltip="Click to view details" data-vi="Xem chi tiết dự án ↗" data-en="View Project Details ↗">View Project Details ↗</button>
+            </div>
+ 
+            <div class="project-card">
+                <span class="project-tag tag-esg">FPT Digital Work</span>
+                <h3 class="project-title">Pharma ESG Strategy & Framework</h3>
+                <p data-vi="Nghiên cứu tiêu chuẩn GRI Standards toàn cầu và tổng hợp 8 giải pháp chiến lược phát triển bền vững cho ngành Dược Việt Nam."
+                   data-en="Comprehensive sustainability research report applying GRI Standards and global best practices to Vietnam's pharmaceutical sector.">
+                   Comprehensive sustainability research report applying GRI Standards and global best practices to Vietnam's pharmaceutical sector.
+                </p>
+                <button class="btn" onclick="showProject('esg')" data-tooltip="Click to view details" data-vi="Xem chi tiết dự án ↗" data-en="View Project Details ↗">View Project Details ↗</button>
+            </div>
+ 
+            <div class="project-card">
+                <span class="project-tag" style="background: linear-gradient(135deg, rgba(182,229,210,0.52), rgba(175,202,184,0.32)); color: var(--primary-mint); border: 1px solid rgba(4,63,52,0.10);">Volunteering & Leadership</span>
+                <h3 class="project-title">"Share the Love, Send Warmth" Project</h3>
+                <p data-vi="Lập kế hoạch ngân sách và điều phối logistics gây quỹ hơn 60 triệu VNĐ hỗ trợ học sinh vùng cao Y Tý, Lào Cai."
+                   data-en="Charity fundraising and logistics coordination initiative supporting kindergarten students in remote mountainous areas of Y Ty, Lao Cai.">
+                   Charity fundraising and logistics coordination initiative supporting kindergarten students in remote mountainous areas of Y Ty, Lao Cai.
+                </p>
+                <button class="btn" onclick="showProject('sharethelove')" data-tooltip="Click to view details" data-vi="Xem chi tiết dự án ↗" data-en="View Project Details ↗">View Project Details ↗</button>
+            </div>
+ 
+            <h2 data-vi="Academic Works" data-en="Academic Works">Academic Works</h2>
+            <p style="margin-top:-6px; margin-bottom:22px; color: var(--muted);" data-vi="Selected university projects demonstrating applied AI, machine learning, analytics and data science." data-en="Selected university projects demonstrating applied AI, machine learning, analytics and data science.">Selected university projects demonstrating applied AI, machine learning, analytics and data science.</p>
+ 
+            <div class="project-card">
+                <span class="project-tag tag-ai">Machine Learning</span>
+                <h3 class="project-title">House Price Prediction using Deep Learning</h3>
+                <p data-vi="Tiền xử lý khoảng 20,000 bản ghi bất động sản, thử nghiệm 8 mô hình mạng Neural và chọn NN4 là mô hình tốt nhất."
+                   data-en="End-to-end regression study using approximately 20,000 property records and 8 neural network architectures.">
+                   End-to-end regression study using approximately 20,000 property records and 8 neural network architectures.
+                </p>
+                <button class="btn" onclick="showProject('house')" data-tooltip="Read Academic Study" data-vi="Xem chi tiết học thuật ↗" data-en="View Academic Work ↗">View Academic Work ↗</button>
+            </div>
+ 
+            <div class="project-card">
+                <span class="project-tag tag-nlp">Python & NLP</span>
+                <h3 class="project-title">Airbnb Victoria Review Analytics using NLP</h3>
+                <p data-vi="Phân tích review Airbnb bằng VADER và LDA để tìm yếu tố ảnh hưởng đến sự hài lòng của khách."
+                   data-en="NLP analysis of Airbnb reviews using VADER sentiment and LDA topic modelling.">
+                   NLP analysis of Airbnb reviews using VADER sentiment and LDA topic modelling.
+                </p>
+                <button class="btn" onclick="showProject('airbnb')" data-tooltip="Read Academic Study" data-vi="Xem chi tiết học thuật ↗" data-en="View Academic Work ↗">View Academic Work ↗</button>
+            </div>
+ 
+            <div class="project-card">
+                <span class="project-tag tag-esg">Computer Vision</span>
+                <h3 class="project-title">Waste Image Classification (CNN)</h3>
+                <p data-vi="So sánh ANN và CNN trên 2,864 ảnh rác với CNN4 đạt độ chính xác kiểm định 69.53%."
+                   data-en="Comparison of ANN and CNN models on 2,864 waste images, with CNN4 achieving 69.53% test accuracy.">
+                   Comparison of ANN and CNN models on 2,864 waste images, with CNN4 achieving 69.53% test accuracy.
+                </p>
+                <button class="btn" onclick="showProject('waste')" data-tooltip="Read Academic Study" data-vi="Xem chi tiết học thuật ↗" data-en="View Academic Work ↗">View Academic Work ↗</button>
+            </div>
+        </section>
+ 
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="jelly-mascot corner right" aria-hidden="true"><div class="eyes"><span></span><span></span></div><div class="smile"></div></div>
+            <h2 data-vi="Technical & Professional Skills" data-en="Technical & Professional Skills">Technical & Professional Skills</h2>
+            <div class="skills-grid">
+                <span class="skill-pill" data-tooltip="Programming Language">Python</span>
+                <span class="skill-pill" data-tooltip="Deep Learning Framework">TensorFlow & Keras</span>
+                <span class="skill-pill" data-tooltip="Data Manipulation">Pandas & NumPy</span>
+                <span class="skill-pill" data-tooltip="Natural Language Processing">NLTK & Scikit-Learn</span>
+                <span class="skill-pill" data-tooltip="Database Queries">SQL (Basic)</span>
+                <span class="skill-pill" data-tooltip="Data Visualisation">Power BI (Basic)</span>
+                <span class="skill-pill" data-tooltip="Business Strategy & Ops">Business Analysis</span>
+                <span class="skill-pill" data-tooltip="Sustainability Reporting">ESG Frameworks (GRI)</span>
+                <span class="skill-pill" data-tooltip="Eliciting Stakeholder Needs">Requirement Gathering</span>
+                <span class="skill-pill" data-tooltip="Workflow & Data Mapping">Process Modelling (BPMN, EER)</span>
+                <span class="skill-pill" data-tooltip="Project Management">Agile & Scrum</span>
+                <span class="skill-pill" data-tooltip="Client & Team Interaction">Stakeholder Communication</span>
+                <span class="skill-pill" data-tooltip="Logistics & Event Planning">Project Coordination</span>
+                <span class="skill-pill" data-tooltip="Analytical Thinking">Problem Solving</span>
+            </div>
+        </section>
+    </div>
+ 
+    <!-- PROJECT DETAIL VIEWS -->
+    
+    <!-- AfterCare Detail -->
+    <div id="project-aftercare" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" data-tooltip="Return to main page" style="margin-bottom: 20px;">← <span data-vi="Quay lại Portfolio" data-en="Back to Portfolio">Back to Portfolio</span></button>
+        <section>
+            <span class="project-tag tag-health">AI / Healthtech</span>
+            <h2 style="border:none; margin-top:10px;">AfterCare – AI-powered Post-discharge Patient Monitoring Platform</h2>
+            <p style="font-weight: 800; color: var(--secondary);" data-vi="Top 8 / 210 tại Vietnamese Students HackAIthon 2026 (Giải Khuyến Khích)" data-en="Top 8 out of 210 at Vietnamese Students HackAIthon 2026 (Merit Prize)">Top 8 out of 210 at Vietnamese Students HackAIthon 2026 (Merit Prize)</p>
+ 
+            <div class="metric-row">
+                <div class="metric-card"><strong>Top 8</strong><span>out of 210</span></div>
+                <div class="metric-card"><strong>3</strong><span>team members</span></div>
+                <div class="metric-card"><strong>B2B</strong><span>SaaS concept</span></div>
+                <div class="metric-card"><strong>VNPT</strong><span>Smartbot + SmartVoice</span></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Overview</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble" style="min-height: 170px;">
+                    <div class="bubble-kicker">Overview</div>
+                    <div class="bubble-value">AI-powered post-discharge monitoring</div>
+                    <div class="bubble-note">Automates follow-up calls, collects recovery information, identifies risk, and highlights cases for clinicians.</div>
+                </div>
+                <div class="jelly-bubble" style="min-height: 170px;">
+                    <div class="bubble-kicker">Why it matters</div>
+                    <div class="bubble-value">Scale care without extra workload</div>
+                    <div class="bubble-note">Designed for Vietnamese hospitals where nursing shortage and readmission risk create a gap after discharge.</div>
+                </div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">My Role</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Market Research</div>
+                    <div class="bubble-value">Problem validation</div>
+                    <div class="bubble-note">Validated the need for post-discharge care through market and customer analysis.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">GTM</div>
+                    <div class="bubble-value">Go-to-market strategy</div>
+                    <div class="bubble-note">Defined customer segments, value proposition, and market entry direction.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Cost Model</div>
+                    <div class="bubble-value">SaaS feasibility</div>
+                    <div class="bubble-note">Estimated infrastructure and deployment cost to assess commercial viability.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Technical Support</div>
+                    <div class="bubble-value">VNPT research</div>
+                    <div class="bubble-note">Researched Smartbot, SmartVoice, APIs, and integration workflow for the dev team.</div>
+                </div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Solution</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble"><div class="bubble-kicker">Voice AI</div><div class="bubble-value">Automated calls</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">LLMs</div><div class="bubble-value">Personalised conversations</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Clinical screening</div><div class="bubble-value">Risk prioritisation</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Dashboard</div><div class="bubble-value">Clinician overview</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Support</div><div class="bubble-value">SMS + reminders</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Care continuity</div><div class="bubble-value">Caregiver notifications</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Technologies</h3>
+            <div class="skills-grid">
+                <span class="skill-pill">Voice AI</span><span class="skill-pill">LLMs</span><span class="skill-pill">RAG</span><span class="skill-pill">VNPT Smartbot</span><span class="skill-pill">VNPT SmartVoice</span><span class="skill-pill">STT</span><span class="skill-pill">TTS</span><span class="skill-pill">Rule-based Screening</span><span class="skill-pill">SaaS Architecture</span><span class="skill-pill">Healthcare AI</span><span class="skill-pill">Product Strategy</span><span class="skill-pill">GTM</span><span class="skill-pill">Business Model Design</span>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Outcome</h3>
+            <div class="jelly-bubble" style="min-height: 150px;">
+                <div class="bubble-kicker">Outcome</div>
+                <div class="bubble-value">Scalable, proactive post-discharge care</div>
+                <div class="bubble-note">AfterCare shows how AI can support hospitals without increasing clinical workload, using a human-in-the-loop approach for decisions.</div>
+            </div>
+            <a href="https://mvp-aftercare.onrender.com/index.html" target="_blank" class="btn" data-tooltip="Open external demo" data-vi="Xem Web Demo thực tế ↗" data-en="View Live Demo ↗">View Live Demo ↗</a>
+        </section>
+    </div>
+ 
+    <!-- ESG Detail -->
+    <div id="project-esg" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" data-tooltip="Return to main page" style="margin-bottom: 20px;">← <span data-vi="Quay lại Portfolio" data-en="Back to Portfolio">Back to Portfolio</span></button>
+        <section>
+            <span class="project-tag tag-esg">ESG Consulting</span>
+            <h2 style="border:none; margin-top:10px;">ESG Strategy Research for Vietnam's Pharmaceutical Industry</h2>
+            <p style="font-weight: 800; color: var(--secondary);">Confidential FPT Digital research</p>
+ 
+            <div class="metric-row">
+                <div class="metric-card"><strong>ESG</strong><span>strategy research</span></div>
+                <div class="metric-card"><strong>Pharma</strong><span>industry focus</span></div>
+                <div class="metric-card"><strong>VN</strong><span>Vietnam context</span></div>
+                <div class="metric-card"><strong>Confidential</strong><span>client work</span></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Overview</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble" style="min-height: 170px;">
+                    <div class="bubble-kicker">Overview</div>
+                    <div class="bubble-value">Sustainability research for pharma</div>
+                    <div class="bubble-note">Explored how ESG is shaping the pharmaceutical industry, with a focus on sustainability, access to medicines, and responsible business practices.</div>
+                </div>
+                <div class="jelly-bubble" style="min-height: 170px;">
+                    <div class="bubble-kicker">Global context</div>
+                    <div class="bubble-value">Industry-wide ESG shift</div>
+                    <div class="bubble-note">The deck highlights global pressure on pharma to balance access, pricing, environmental responsibility, and business performance.</div>
+                </div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">My Role</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble"><div class="bubble-kicker">Research</div><div class="bubble-value">Secondary research</div><div class="bubble-note">Synthesised information from ESG-related materials, industry sources, and policy-oriented references.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Benchmarking</div><div class="bubble-value">Global & Vietnam</div><div class="bubble-note">Compared global pharmaceutical ESG practices with the Vietnamese market context.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Strategy</div><div class="bubble-value">Recommendations</div><div class="bubble-note">Supported the development of strategic directions and presentation materials for the consulting work.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Confidentiality</div><div class="bubble-value">Client-owned material</div><div class="bubble-note">The original deck cannot be publicly shared because it belongs to FPT.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Solution</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble"><div class="bubble-kicker">Environmental</div><div class="bubble-value">Cleaner production</div><div class="bubble-note">The deck discusses greener manufacturing, lower emissions, and more sustainable resource use.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Social</div><div class="bubble-value">Access to medicine</div><div class="bubble-note">It examines access, affordability, community support, and public health responsibility.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Governance</div><div class="bubble-value">Transparent controls</div><div class="bubble-note">The material covers reporting, supply chain transparency, compliance, and ethical business conduct.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Technologies</h3>
+            <div class="skills-grid">
+                <span class="skill-pill">ESG Analysis</span><span class="skill-pill">Industry Research</span><span class="skill-pill">Benchmarking</span><span class="skill-pill">Policy Research</span><span class="skill-pill">Healthcare Strategy</span><span class="skill-pill">Consulting</span><span class="skill-pill">Presentation Development</span>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Outcome</h3>
+            <div class="jelly-bubble" style="min-height: 150px;">
+                <div class="bubble-kicker">Outcome</div>
+                <div class="bubble-value">Strategy insights for pharma ESG</div>
+                <div class="bubble-note">The research provided a structured overview of ESG opportunities, implementation challenges, and strategic directions for Vietnam's pharmaceutical industry.</div>
+            </div>
+        </section>
+    </div>
+ 
+    <!-- House Price Detail -->
+    <div id="project-house" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" data-tooltip="Return to main page" style="margin-bottom: 20px;">← <span data-vi="Quay lại Portfolio" data-en="Back to Portfolio">Back to Portfolio</span></button>
+        <section>
             <span class="project-tag tag-ai">Deep Learning</span>
-            <h3 class="project-title">House Price Prediction Model (ANN) 📊</h3>
-            <p data-vi="Tiền xử lý 20,000 bản ghi bất động sản, xây dựng và so sánh 8 mô hình mạng Neural tối ưu bằng Adam Optimizer."
-               data-en="End-to-end deep learning regression study using ~20,000 property records and 8 neural network architectures.">
-               End-to-end deep learning regression study using ~20,000 property records and 8 neural network architectures.
-            </p>
-            <a href="https://github.com/harlin-vu/houseprice_prediction" target="_blank" class="btn" data-vi="Mã nguồn GitHub ↗" data-en="GitHub Repository ↗">GitHub Repository ↗</a>
-        </div>
-
-        <!-- Airbnb NLP -->
-        <div class="project-card">
+            <h2 style="border:none; margin-top:10px;">House Price Prediction using Deep Learning</h2>
+            <p style="font-weight: 800; color: var(--secondary);">Academic project • MIS373</p>
+ 
+            <div class="metric-row">
+                <div class="metric-card"><strong>20,000</strong><span>observations</span></div>
+                <div class="metric-card"><strong>8</strong><span>neural models</span></div>
+                <div class="metric-card"><strong>0.8445</strong><span>best R²</span></div>
+                <div class="metric-card"><strong>0.9193</strong><span>best correlation</span></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Overview</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble" style="min-height: 170px;"><div class="bubble-kicker">Overview</div><div class="bubble-value">House price prediction</div><div class="bubble-note">The project analysed approximately 20,000 observations to understand which features influence property prices.</div></div>
+                <div class="jelly-bubble" style="min-height: 170px;"><div class="bubble-kicker">Core finding</div><div class="bubble-value">Size and quality matter</div><div class="bubble-note">The report found that sqft_living and grade have the strongest positive relationships with price.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Data Exploration & Pre-processing</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble"><div class="bubble-kicker">Data quality</div><div class="bubble-value">No missing values</div><div class="bubble-note">The dataset contained no missing values, and the date variable was removed because it was not necessary for model input.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Correlation</div><div class="bubble-value">sqft_living 0.70</div><div class="bubble-note">grade also showed a strong correlation with price at 0.67, while zipcode (-0.04) and long (0.01) were close to zero.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Outliers</div><div class="bubble-value">Top 1% removed</div><div class="bubble-note">A 99th percentile threshold of about $1,950,000 was used to remove extreme price values and reduce skewness.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Final dataset</div><div class="bubble-value">19,801 rows</div><div class="bubble-note">After removing nearly 200 rows, the refined dataset contained 19,801 observations.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Model Pipeline</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble"><div class="bubble-kicker">1</div><div class="bubble-value">Train / validation split</div><div class="bubble-note">The processed data was split 70/30 for training and validation.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">2</div><div class="bubble-value">Min-Max normalisation</div><div class="bubble-note">All input variables were scaled to the range 0–1.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">3</div><div class="bubble-value">Linear baseline</div><div class="bubble-note">Multi-linear regression was used as the baseline before neural networks.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">4</div><div class="bubble-value">8 neural models</div><div class="bubble-note">The report compared 8 neural network configurations, from one-layer to four-layer models.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Model Comparison</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble"><div class="bubble-kicker">Best model</div><div class="bubble-value">NN4</div><div class="bubble-note">NN4 achieved the best overall performance with R² = 0.8445 and correlation = 0.9193.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Worst models</div><div class="bubble-value">NN2 & NN5</div><div class="bubble-note">NN2 and NN5 performed the worst, with negative R² values of -3.2948 and -3.2201.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Generalisation</div><div class="bubble-value">3-layer balance</div><div class="bubble-note">The report concluded that the three-layer network balanced accuracy and generalisation best.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Risk</div><div class="bubble-value">Luxury bias</div><div class="bubble-note">Removing high-price outliers improved stability but limited the model's ability to predict luxury properties.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Technologies</h3>
+            <div class="skills-grid">
+                <span class="skill-pill">Python</span><span class="skill-pill">Neural Networks</span><span class="skill-pill">Regression</span><span class="skill-pill">Adam</span><span class="skill-pill">Min-Max Scaling</span><span class="skill-pill">EDA</span><span class="skill-pill">Model Evaluation</span>
+            </div>
+            
+            <a href="https://github.com/harlin-vu/houseprice_prediction" target="_blank" class="btn" data-tooltip="View on GitHub" style="margin-top:24px;" data-vi="Mã nguồn GitHub ↗" data-en="GitHub Repository ↗">GitHub Repository ↗</a>
+        </section>
+    </div>
+ 
+    <!-- Airbnb Detail -->
+    <div id="project-airbnb" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" data-tooltip="Return to main page" style="margin-bottom: 20px;">← <span data-vi="Quay lại Portfolio" data-en="Back to Portfolio">Back to Portfolio</span></button>
+        <section>
             <span class="project-tag tag-nlp">Python & NLP</span>
-            <h3 class="project-title">Airbnb Victoria: Guest Satisfaction & LDA 🏡</h3>
-            <p data-vi="Phân tích 129,510 câu đánh giá (VADER Sentiment) và mô hình hóa LDA xác định kỳ vọng khách hàng theo loại phòng."
-               data-en="Natural language processing and topic modelling study on 129,510 review sentences across Victorian Airbnb listings.">
-               Natural language processing and topic modelling study on 129,510 review sentences across Victorian Airbnb listings.
-            </p>
-            <a href="https://github.com/harlin-vu/airbnb-victoria-sentiment-analysis" target="_blank" class="btn" data-vi="Mã nguồn GitHub ↗" data-en="GitHub Repository ↗">GitHub Repository ↗</a>
-        </div>
-
-        <!-- Waste Classification -->
-        <div class="project-card">
+            <h2 style="border:none; margin-top:10px;">Airbnb Victoria Review Analytics using NLP</h2>
+            <p style="font-weight: 800; color: var(--secondary);">Academic project • MIS373</p>
+ 
+            <div class="metric-row">
+                <div class="metric-card"><strong>82,787</strong><span>positive reviews</span></div>
+                <div class="metric-card"><strong>2,368</strong><span>negative reviews</span></div>
+                <div class="metric-card"><strong>10</strong><span>LDA topics</span></div>
+                <div class="metric-card"><strong>Top 10</strong><span>neighbourhoods analysed</span></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Overview</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble" style="min-height: 170px;"><div class="bubble-kicker">Overview</div><div class="bubble-value">Guest satisfaction analytics</div><div class="bubble-note">This project analysed Airbnb guest reviews across Victoria to understand what drives satisfaction and dissatisfaction.</div></div>
+                <div class="jelly-bubble" style="min-height: 170px;"><div class="bubble-kicker">Business goal</div><div class="bubble-value">Improve host performance</div><div class="bubble-note">The report turns review data into business insights and practical recommendations for hosts and Airbnb.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">My Role</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble"><div class="bubble-kicker">Data prep</div><div class="bubble-value">Cleaning & aggregation</div><div class="bubble-note">Prepared review data for analysis and linked listing-level information to neighbourhood-level insights.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Sentiment</div><div class="bubble-value">VADER analysis</div><div class="bubble-note">Measured guest satisfaction using sentence-level sentiment scoring with VADER.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Topics</div><div class="bubble-value">LDA modelling</div><div class="bubble-note">Identified recurring topics and compared review themes across room types.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Insights</div><div class="bubble-value">Business recommendations</div><div class="bubble-note">Translated the analytical findings into recommendations for hosts and Airbnb.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Solution</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble"><div class="bubble-kicker">Market activity</div><div class="bubble-value">Neighbourhood listing counts</div><div class="bubble-note">Melbourne had the highest number of listings, indicating strong market activity in the city.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Sentiment</div><div class="bubble-value">Guest satisfaction score</div><div class="bubble-note">Yarra Ranges recorded the highest average sentiment score, while Monash was the lowest among the top 10.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Negative aspects</div><div class="bubble-value">Bathroom, host, clean</div><div class="bubble-note">The strongest dissatisfaction drivers were bathroom cleanliness, host responsiveness, and cleanliness.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Room types</div><div class="bubble-value">Private room vs entire home</div><div class="bubble-note">Private-room guests focused more on host interaction, while entire-home guests cared more about convenience and privacy.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Technologies</h3>
+            <div class="skills-grid">
+                <span class="skill-pill">Python</span><span class="skill-pill">Pandas</span><span class="skill-pill">VADER</span><span class="skill-pill">LDA</span><span class="skill-pill">NLP</span><span class="skill-pill">Sentence Tokenisation</span><span class="skill-pill">Business Analytics</span>
+            </div>
+ 
+            <a href="https://github.com/harlin-vu/airbnb-victoria-sentiment-analysis" target="_blank" class="btn" data-tooltip="View on GitHub" style="margin-top:24px;" data-vi="Mã nguồn GitHub ↗" data-en="GitHub Repository ↗">GitHub Repository ↗</a>
+        </section>
+    </div>
+ 
+    <!-- Waste Detail -->
+    <div id="project-waste" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" data-tooltip="Return to main page" style="margin-bottom: 20px;">← <span data-vi="Quay lại Portfolio" data-en="Back to Portfolio">Back to Portfolio</span></button>
+        <section>
             <span class="project-tag tag-esg">Computer Vision</span>
-            <h3 class="project-title">Waste Image Classification (CNN) ♻️</h3>
-            <p data-vi="So sánh hiệu suất 10 mô hình ANN & CNN trên ~2,900 ảnh rác, đạt độ chính xác 69.5% và Cohen's Kappa 0.631."
-               data-en="Image classification study comparing traditional ANN and 6 CNN architectures on ~2,900 waste images.">
-               Image classification study comparing traditional ANN and 6 CNN architectures on ~2,900 waste images.
-            </p>
-            <a href="https://github.com/harlin-vu/waste_classification" target="_blank" class="btn" data-vi="Mã nguồn GitHub ↗" data-en="GitHub Repository ↗">GitHub Repository ↗</a>
-        </div>
-
-        <!-- Share the Love -->
-        <div class="project-card">
-            <span class="project-tag" style="background:#e4f6ee; color:var(--accent-green);">Volunteering & Leadership</span>
-            <h3 class="project-title">"Share the Love, Send Warmth" Project ❤️</h3>
-            <p data-vi="Lập kế hoạch ngân sách và điều phối logistics gây quỹ hơn 60 triệu VNĐ hỗ trợ học sinh vùng cao Y Tý, Lào Cai."
-               data-en="Charity fundraising and logistics coordination initiative supporting kindergarten students in remote mountainous areas of Y Ty, Lao Cai.">
-               Charity fundraising and logistics coordination initiative supporting kindergarten students in remote mountainous areas of Y Ty, Lao Cai.
-            </p>
-            <a href="https://drive.google.com/drive/folders/1glsoQjJaocc8EY7Y96roef9Bvtzhqh8A" target="_blank" class="btn" data-vi="Hình ảnh & Tài liệu dự án ↗" data-en="Project Image & Drive Folder ↗">Project Image & Drive Folder ↗</a>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2 data-vi="🛠️ Kỹ năng chuyên môn" data-en="🛠️ Technical & Professional Skills">🛠️ Technical & Professional Skills</h2>
-        <div class="skills-grid">
-            <span class="skill-pill">Python</span>
-            <span class="skill-pill">TensorFlow & Keras</span>
-            <span class="skill-pill">Pandas & NumPy</span>
-            <span class="skill-pill">NLTK & Scikit-Learn</span>
-            <span class="skill-pill">SQL (Basic)</span>
-            <span class="skill-pill">Power BI (Basic)</span>
-            <span class="skill-pill">Business Analysis</span>
-            <span class="skill-pill">ESG Frameworks (GRI)</span>
-            <span class="skill-pill">Requirement Gathering</span>
-            <span class="skill-pill">Process Modelling (BPMN, EER)</span>
-            <span class="skill-pill">Agile & Scrum</span>
-            <span class="skill-pill">Stakeholder Communication</span>
-            <span class="skill-pill">Project Coordination</span>
-            <span class="skill-pill">Problem Solving</span>
-        </div>
-    </section>
-
+            <h2 style="border:none; margin-top:10px;">Waste Image Classification (CNN)</h2>
+            <p style="font-weight: 800; color: var(--secondary);">Academic project • MIS373</p>
+ 
+            <div class="metric-row">
+                <div class="metric-card"><strong>2,864</strong><span>images</span></div>
+                <div class="metric-card"><strong>6</strong><span>waste classes</span></div>
+                <div class="metric-card"><strong>69.53%</strong><span>best test accuracy</span></div>
+                <div class="metric-card"><strong>0.631</strong><span>Cohen's Kappa</span></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Overview</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble" style="min-height: 170px;"><div class="bubble-kicker">Overview</div><div class="bubble-value">Image classification for waste sorting</div><div class="bubble-note">The project analysed 2,864 waste images across six categories to compare ANN and CNN models.</div></div>
+                <div class="jelly-bubble" style="min-height: 170px;"><div class="bubble-kicker">Objective</div><div class="bubble-value">Identify the best architecture</div><div class="bubble-note">The report evaluated which model design works best for waste image classification.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Data Exploration & Pre-processing</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble"><div class="bubble-kicker">Classes</div><div class="bubble-value">6 categories</div><div class="bubble-note">Cardboard, Glass, Metal, Paper, Plastic, Vegetation.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Resize</div><div class="bubble-value">100 × 100 pixels</div><div class="bubble-note">All images were resized to a uniform shape for batch processing.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Encoding</div><div class="bubble-value">Label + one-hot</div><div class="bubble-note">Labels were converted to integers and then one-hot encoded for softmax output.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Split</div><div class="bubble-value">70 / 30</div><div class="bubble-note">The train-test split produced 2,004 training images and 860 test images.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Model Development & Comparison</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble"><div class="bubble-kicker">ANNs vs CNNs</div><div class="bubble-value">4 vs 6 models</div><div class="bubble-note">Four ANN models and six CNN models were evaluated with varying architectures.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Best model</div><div class="bubble-value">CNN4</div><div class="bubble-note">CNN4 achieved the best test accuracy at 69.53% and the highest Cohen's Kappa at 0.631.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Overfitting</div><div class="bubble-value">ANN4, CNN3, CNN5</div><div class="bubble-note">These models learned on training data but failed to generalise well on test data.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Best class</div><div class="bubble-value">Vegetation</div><div class="bubble-note">Vegetation had the best F1-score at 0.94 in the CNN4 classification report.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Technologies</h3>
+            <div class="skills-grid">
+                <span class="skill-pill">Python</span><span class="skill-pill">CNN</span><span class="skill-pill">ANN</span><span class="skill-pill">TensorFlow</span><span class="skill-pill">Keras</span><span class="skill-pill">Computer Vision</span>
+            </div>
+ 
+            <a href="https://github.com/harlin-vu/waste_classification" target="_blank" class="btn" data-tooltip="View on GitHub" style="margin-top:24px;" data-vi="Mã nguồn GitHub ↗" data-en="GitHub Repository ↗">GitHub Repository ↗</a>
+        </section>
+    </div>
+ 
+    <!-- Share the Love Detail -->
+    <div id="project-sharethelove" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" data-tooltip="Return to main page" style="margin-bottom: 20px;">← <span data-vi="Quay lại Portfolio" data-en="Back to Portfolio">Back to Portfolio</span></button>
+        <section>
+            <span class="project-tag" style="background:#e4f6ee; color:var(--accent-green); border: 2px solid #b8eade;">Volunteering & Leadership</span>
+            <h2 style="border:none; margin-top:10px;">"Share the Love, Send Warmth" Project</h2>
+            <p style="font-weight: 800; color: var(--secondary);">Community fundraising and logistics</p>
+ 
+            <div class="metric-row">
+                <div class="metric-card"><strong>60M+</strong><span>VND raised</span></div>
+                <div class="metric-card"><strong>Y Tý</strong><span>Lào Cai</span></div>
+                <div class="metric-card"><strong>Logistics</strong><span>team leadership</span></div>
+                <div class="metric-card"><strong>Warmth</strong><span>for students</span></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Overview</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble" style="min-height: 170px;"><div class="bubble-kicker">Overview</div><div class="bubble-value">Fundraising for remote students</div><div class="bubble-note">The project supported kindergarten students in Y Tý, Lào Cai through fundraising and logistics coordination.</div></div>
+                <div class="jelly-bubble" style="min-height: 170px;"><div class="bubble-kicker">Focus</div><div class="bubble-value">Winter supplies and support</div><div class="bubble-note">The report highlights warm clothing, books, and essential supplies delivered to children in the mountainous area.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">My Role & Leadership</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble"><div class="bubble-kicker">Leadership</div><div class="bubble-value">Logistics Team Leader</div><div class="bubble-note">Managed budget planning, logistics coordination, and supplier communication.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Fundraising</div><div class="bubble-value">Campaign planning</div><div class="bubble-note">Organised fundraising activities, including handcrafted product sales.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Operations</div><div class="bubble-value">Distribution support</div><div class="bubble-note">Help supervise inventory and the distribution of donated items.</div></div>
+            </div>
+ 
+            <h3 style="margin-top:24px;font-size:1.1rem;">Outcome</h3>
+            <div class="jelly-bubble" style="min-height: 150px;">
+                <div class="bubble-kicker">Outcome</div>
+                <div class="bubble-value">60M+ VND raised</div>
+                <div class="bubble-note">The project successfully delivered winter support and school supplies to hundreds of children in Y Ty, Lao Cai.</div>
+            </div>
+ 
+            <a href="https://drive.google.com/drive/folders/1glsoQjJaocc8EY7Y96roef9Bvtzhqh8A" target="_blank" rel="noopener" class="btn" data-tooltip="Open project files" style="margin-top:24px;" data-vi="Tài liệu & Hình ảnh dự án ↗" data-en="Project Drive Folder ↗">Project Drive Folder ↗</a>
+        </section>
+    </div>
+ 
     <footer>
         <p data-vi="Made with 🩷 by Vũ Hương Linh" data-en="Made with 🩷 by Huong Linh Vu (Harlin Vu)">Made with 🩷 by Huong Linh Vu (Harlin Vu)</p>
     </footer>
-
+ 
 </div>
-
-<!-- Script chuyển đổi ngôn ngữ -->
+ 
+<!-- Script chuyển đổi ngôn ngữ & điều hướng trang -->
 <script>
     let currentLang = 'en';
-
+ 
     function toggleLanguage() {
         currentLang = currentLang === 'vi' ? 'en' : 'vi';
         document.getElementById('lang-btn-text').innerText = currentLang === 'vi' ? 'ENG' : 'VIE';
@@ -458,7 +1350,34 @@
             }
         });
     }
+ 
+    function showProject(projectId) {
+        const sections = document.querySelectorAll('.view-section');
+        sections.forEach(sec => sec.classList.remove('active'));
+        
+        const target = document.getElementById(`project-${projectId}`);
+        if (target) {
+            target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+ 
+    function showHome(targetAnchor) {
+        const sections = document.querySelectorAll('.view-section');
+        sections.forEach(sec => sec.classList.remove('active'));
+        
+        document.getElementById('home-view').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+ 
+        if (targetAnchor) {
+            setTimeout(() => {
+                const el = document.querySelector(targetAnchor);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+    }
 </script>
-
+ 
 </body>
 </html>
+
