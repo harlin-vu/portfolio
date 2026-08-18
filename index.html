@@ -11,27 +11,27 @@
     
 <style>
         :root {
-            --bg-color: #f9f8f2;
+            --bg-color: #FBF8E0;
             --surface: rgba(255, 255, 255, 0.58);
             --surface-strong: rgba(255, 255, 255, 0.76);
-            --border-color: rgba(96, 125, 81, 0.14);
-            --primary: #4b6a3e;
-            --primary-deep: #3a5230;
-            --secondary: #849c7d;
-            --surface-accent: #c9bf97;
-            --accent: #d3dcba;
-            --accent-soft: rgba(211, 220, 186, 0.42);
-            --text: #33452b;
-            --muted: rgba(51, 69, 43, 0.72);
-            --shadow: 0 18px 45px rgba(96, 125, 81, 0.14);
-            --shadow-strong: 0 22px 60px rgba(96, 125, 81, 0.20);
-            --glow: 0 0 0 1px rgba(255,255,255,0.55), 0 20px 45px rgba(96,125,81,.16);
+            --border-color: rgba(213, 117, 48, 0.14);
+            --primary: #D57530;
+            --primary-deep: #A8591F;
+            --secondary: #9FB768;
+            --surface-accent: #FFBC92;
+            --accent: #EEE47D;
+            --accent-soft: rgba(238, 228, 125, 0.42);
+            --text: #5C3319;
+            --muted: rgba(92, 51, 25, 0.72);
+            --shadow: 0 18px 45px rgba(213, 117, 48, 0.14);
+            --shadow-strong: 0 22px 60px rgba(213, 117, 48, 0.20);
+            --glow: 0 0 0 1px rgba(255,255,255,0.55), 0 20px 45px rgba(213, 117, 48,.16);
  
             /* Jelly gloss tokens */
             --jelly-bounce: cubic-bezier(.34, 1.2, .64, 1);
             --jelly-shine: radial-gradient(120px 70px at 24% 14%, rgba(255,255,255,.85), rgba(255,255,255,0) 70%);
-            --jelly-shadow: 0 16px 0 -6px rgba(96,125,81,.08), 0 24px 40px -12px rgba(96,125,81,.26), inset 0 1px 0 rgba(255,255,255,.6);
-            --jelly-shadow-hover: 0 20px 0 -8px rgba(96,125,81,.07), 0 28px 46px -14px rgba(96,125,81,.32), inset 0 1px 0 rgba(255,255,255,.7);
+            --jelly-shadow: 0 16px 0 -6px rgba(213, 117, 48,.08), 0 24px 40px -12px rgba(213, 117, 48,.26), inset 0 1px 0 rgba(255,255,255,.6);
+            --jelly-shadow-hover: 0 20px 0 -8px rgba(213, 117, 48,.07), 0 28px 46px -14px rgba(213, 117, 48,.32), inset 0 1px 0 rgba(255,255,255,.7);
         }
  
         @keyframes jelly-float {
@@ -58,10 +58,10 @@
         body {
             font-family: 'Nunito', sans-serif;
             background:
-                radial-gradient(circle at 15% 15%, rgba(211,220,186, 0.55), transparent 30%),
-                radial-gradient(circle at 85% 10%, rgba(201,191,151, 0.45), transparent 26%),
-                radial-gradient(circle at 85% 85%, rgba(96,125,81, 0.20), transparent 28%),
-                linear-gradient(180deg, #f8f6f2 0%, #f3f1e6 100%);
+                radial-gradient(circle at 15% 15%, rgba(238, 228, 125, 0.55), transparent 30%),
+                radial-gradient(circle at 85% 10%, rgba(255, 188, 146, 0.45), transparent 26%),
+                radial-gradient(circle at 85% 85%, rgba(213, 117, 48, 0.20), transparent 28%),
+                linear-gradient(180deg, #FDFBEC 0%, #F8EFCB 100%);
             color: var(--text);
             line-height: 1.75;
             padding: 0;
@@ -74,7 +74,7 @@
             inset: 0;
             pointer-events: none;
             background-image:
-                radial-gradient(rgba(96,125,81,.04) 1px, transparent 1px);
+                radial-gradient(rgba(213, 117, 48,.04) 1px, transparent 1px);
             background-size: 18px 18px;
             opacity: 0.22;
             mix-blend-mode: multiply;
@@ -104,7 +104,7 @@
             transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
             pointer-events: none;
             z-index: 1000;
-            box-shadow: 0 8px 25px rgba(96,125,81,0.25);
+            box-shadow: 0 8px 25px rgba(213, 117, 48,0.25);
         }
  
         [data-tooltip]::before {
@@ -145,7 +145,7 @@
             background: rgba(255, 255, 255, 0.55);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(96,125,81, 0.10);
+            border: 1px solid rgba(213, 117, 48, 0.10);
             padding: 14px 26px;
             border-radius: 999px;
             position: sticky;
@@ -174,7 +174,7 @@
             height: 20px;
             border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
             background: linear-gradient(155deg, var(--accent), var(--surface-accent));
-            box-shadow: inset -2px -3px 4px rgba(96,125,81,.18), inset 2px 2px 3px rgba(255,255,255,.7);
+            box-shadow: inset -2px -3px 4px rgba(213, 117, 48,.18), inset 2px 2px 3px rgba(255,255,255,.7);
         }
  
         .nav-links {
@@ -198,13 +198,13 @@
  
         .nav-links a:hover {
             color: var(--primary);
-            background: rgba(211,220,186,.36);
+            background: rgba(238, 228, 125,.36);
             transform: translateY(-2px) scale(1.04);
         }
  
         .lang-btn {
             background: linear-gradient(160deg, rgba(255,255,255,.85), rgba(255,255,255,.55));
-            border: 1px solid rgba(96,125,81,.12);
+            border: 1px solid rgba(213, 117, 48,.12);
             color: var(--primary);
             padding: 8px 16px;
             border-radius: 999px;
@@ -217,7 +217,7 @@
  
         .lang-btn:hover {
             transform: translateY(-3px) scale(1.05);
-            background: rgba(211,220,186,.5);
+            background: rgba(238, 228, 125,.5);
         }
  
         .lang-btn:active {
@@ -236,8 +236,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: linear-gradient(160deg, rgba(255,255,255,.7), rgba(211,220,186,.55));
-            border: 1px solid rgba(96,125,81,.10);
+            background: linear-gradient(160deg, rgba(255,255,255,.7), rgba(238, 228, 125,.55));
+            border: 1px solid rgba(213, 117, 48,.10);
             color: var(--primary);
             padding: 10px 20px;
             border-radius: 999px;
@@ -271,7 +271,7 @@
             border-radius: 58% 42% 46% 54% / 52% 48% 52% 48%;
             pointer-events: none;
             z-index: 0;
-            box-shadow: inset -6px -8px 14px rgba(96,125,81,.20), inset 6px 8px 10px rgba(255,255,255,.55), 0 20px 40px rgba(96,125,81,.18);
+            box-shadow: inset -6px -8px 14px rgba(213, 117, 48,.20), inset 6px 8px 10px rgba(255,255,255,.55), 0 20px 40px rgba(213, 117, 48,.18);
             animation: jelly-float 5.5s ease-in-out infinite;
         }
  
@@ -320,7 +320,7 @@
             width: 12%;
             aspect-ratio: 1;
             border-radius: 50%;
-            background: rgba(255, 154, 158, .45);
+            background: rgba(255, 150, 110, .45);
         }
  
         .jelly-mascot .cheek.l { left: 16%; }
@@ -390,7 +390,7 @@
             height: 54px;
             border-radius: 58% 42% 48% 52% / 52% 46% 54% 48%;
             text-decoration: none;
-            box-shadow: inset -3px -4px 8px rgba(0,0,0,.20), inset 3px 4px 6px rgba(255,255,255,.18), 0 12px 22px rgba(96,125,81,.28);
+            box-shadow: inset -3px -4px 8px rgba(0,0,0,.20), inset 3px 4px 6px rgba(255,255,255,.18), 0 12px 22px rgba(213, 117, 48,.28);
             transition: transform 0.3s var(--jelly-bounce), box-shadow 0.3s ease, border-radius 0.3s ease;
             overflow: hidden;
         }
@@ -413,7 +413,7 @@
  
         .contact-bar a:hover {
             transform: translateY(-4px) scale(1.06);
-            box-shadow: inset -3px -4px 8px rgba(0,0,0,.18), inset 3px 4px 6px rgba(255,255,255,.24), 0 18px 30px rgba(96,125,81,.34);
+            box-shadow: inset -3px -4px 8px rgba(0,0,0,.18), inset 3px 4px 6px rgba(255,255,255,.24), 0 18px 30px rgba(213, 117, 48,.34);
             border-radius: 50%;
         }
  
@@ -439,7 +439,7 @@
         section {
             position: relative;
             background: var(--surface);
-            border: 1px solid rgba(96,125,81,.10);
+            border: 1px solid rgba(213, 117, 48,.10);
             padding: 34px 32px;
             border-radius: 46px 38px 44px 40px;
             box-shadow: var(--jelly-shadow);
@@ -469,7 +469,7 @@
             font-size: 1.55rem;
             color: var(--primary);
             margin-bottom: 20px;
-            border-bottom: 2px dashed rgba(96,125,81,.14);
+            border-bottom: 2px dashed rgba(213, 117, 48,.14);
             padding-bottom: 12px;
             font-weight: 700;
             position: relative;
@@ -495,8 +495,8 @@
  
         .project-card {
             position: relative;
-            background: linear-gradient(165deg, rgba(255,255,255,.88), rgba(211,220,186,.55));
-            border: 1px solid rgba(96,125,81,.14);
+            background: linear-gradient(165deg, rgba(255,255,255,.88), rgba(238, 228, 125,.55));
+            border: 1px solid rgba(213, 117, 48,.14);
             padding: 28px;
             border-radius: 22px 40px 26px 40px;
             margin-bottom: 22px;
@@ -518,7 +518,7 @@
  
         .project-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(96,125,81,.22);
+            border-color: rgba(213, 117, 48,.22);
             box-shadow: var(--jelly-shadow-hover);
             border-radius: 40px 22px 40px 26px;
         }
@@ -535,15 +535,15 @@
             font-weight: 800;
             margin-bottom: 14px;
             border: 1px solid transparent;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 6px 14px rgba(96,125,81,.08);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 6px 14px rgba(213, 117, 48,.08);
         }
  
         .project-title, .project-card p, .project-card .btn { position: relative; z-index: 1; }
  
-        .tag-health { background: rgba(211,220,186,.38); color: var(--primary); border-color: rgba(96,125,81,.10); }
-        .tag-esg { background: rgba(201,191,151,.38); color: var(--primary); border-color: rgba(96,125,81,.10); }
-        .tag-ai { background: rgba(96,125,81,.18); color: var(--primary); border-color: rgba(96,125,81,.10); }
-        .tag-nlp { background: rgba(211,220,186,.22); color: var(--primary); border-color: rgba(96,125,81,.10); }
+        .tag-health { background: rgba(238, 228, 125,.38); color: var(--primary); border-color: rgba(213, 117, 48,.10); }
+        .tag-esg { background: rgba(255, 188, 146,.38); color: var(--primary); border-color: rgba(213, 117, 48,.10); }
+        .tag-ai { background: rgba(213, 117, 48,.18); color: var(--primary); border-color: rgba(213, 117, 48,.10); }
+        .tag-nlp { background: rgba(238, 228, 125,.22); color: var(--primary); border-color: rgba(213, 117, 48,.10); }
  
         .project-title {
             font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -570,7 +570,7 @@
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             cursor: pointer;
             border: none;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 14px 30px rgba(96,125,81,.28);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 14px 30px rgba(213, 117, 48,.28);
             overflow: hidden;
         }
  
@@ -587,7 +587,7 @@
  
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 18px 34px rgba(96,125,81,.34);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 18px 34px rgba(213, 117, 48,.34);
         }
  
         .btn:active {
@@ -597,12 +597,12 @@
         .btn-secondary {
             background: rgba(255,255,255,.62);
             color: var(--primary);
-            border: 1px solid rgba(96,125,81,.16);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 10px 25px rgba(96,125,81,.08);
+            border: 1px solid rgba(213, 117, 48,.16);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 10px 25px rgba(213, 117, 48,.08);
         }
  
         .btn-secondary:hover {
-            background: rgba(211,220,186,.42);
+            background: rgba(238, 228, 125,.42);
             color: var(--primary);
         }
  
@@ -614,22 +614,22 @@
         }
  
         .skill-pill {
-            background: linear-gradient(160deg, rgba(255,255,255,.7), rgba(211,220,186,.7));
+            background: linear-gradient(160deg, rgba(255,255,255,.7), rgba(238, 228, 125,.7));
             color: var(--primary);
-            border: 1px solid rgba(96,125,81,.14);
+            border: 1px solid rgba(213, 117, 48,.14);
             padding: 9px 15px;
             border-radius: 999px;
             font-size: 0.88rem;
             font-weight: 800;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 10px 22px rgba(96,125,81,.10);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 10px 22px rgba(213, 117, 48,.10);
             transition: transform 0.22s ease, box-shadow 0.25s ease, background 0.25s ease;
             display: inline-block;
         }
  
         .skill-pill:hover {
             transform: translateY(-3px);
-            background: linear-gradient(160deg, rgba(255,255,255,.8), rgba(201,191,151,.65));
-            box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 14px 26px rgba(96,125,81,.18);
+            background: linear-gradient(160deg, rgba(255,255,255,.8), rgba(255, 188, 146,.65));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 14px 26px rgba(213, 117, 48,.18);
         }
  
         .view-section { display: none; }
@@ -653,8 +653,8 @@
  
         .jelly-bubble {
             position: relative;
-            background: linear-gradient(165deg, rgba(255,255,255,.9), rgba(211,220,186,.6));
-            border: 1px solid rgba(96,125,81,.14);
+            background: linear-gradient(165deg, rgba(255,255,255,.9), rgba(238, 228, 125,.6));
+            border: 1px solid rgba(213, 117, 48,.14);
             border-radius: 30px 40px 32px 42px;
             padding: 18px 16px;
             box-shadow: var(--jelly-shadow);
@@ -674,10 +674,10 @@
             filter: blur(2px);
         }
  
-        .jelly-grid .jelly-bubble:nth-child(4n+1) { background: linear-gradient(165deg, rgba(255,255,255,.9), rgba(96,125,81,.28)); }
-        .jelly-grid .jelly-bubble:nth-child(4n+2) { background: linear-gradient(165deg, rgba(255,255,255,.9), rgba(132,156,125,.42)); }
-        .jelly-grid .jelly-bubble:nth-child(4n+3) { background: linear-gradient(165deg, rgba(255,255,255,.92), rgba(211,220,186,.65)); }
-        .jelly-grid .jelly-bubble:nth-child(4n+4) { background: linear-gradient(165deg, rgba(255,255,255,.88), rgba(201,191,151,.5)); }
+        .jelly-grid .jelly-bubble:nth-child(4n+1) { background: linear-gradient(165deg, rgba(255,255,255,.9), rgba(213, 117, 48,.28)); }
+        .jelly-grid .jelly-bubble:nth-child(4n+2) { background: linear-gradient(165deg, rgba(255,255,255,.9), rgba(159, 183, 104,.42)); }
+        .jelly-grid .jelly-bubble:nth-child(4n+3) { background: linear-gradient(165deg, rgba(255,255,255,.92), rgba(238, 228, 125,.65)); }
+        .jelly-grid .jelly-bubble:nth-child(4n+4) { background: linear-gradient(165deg, rgba(255,255,255,.88), rgba(255, 188, 146,.5)); }
  
         .jelly-bubble:hover {
             transform: translateY(-4px);
@@ -721,18 +721,18 @@
             position: relative;
             padding: 20px 10px;
             border-radius: 30px 40px 32px 42px;
-            background: linear-gradient(165deg, rgba(255,255,255,.85), rgba(211,220,186,.55));
-            border: 1px solid rgba(96,125,81,.14);
+            background: linear-gradient(165deg, rgba(255,255,255,.85), rgba(238, 228, 125,.55));
+            border: 1px solid rgba(213, 117, 48,.14);
             box-shadow: var(--jelly-shadow);
             text-align: center;
             overflow: hidden;
             transition: transform .25s ease, box-shadow .3s ease;
         }
  
-        .metric-row .metric-card:nth-child(4n+1) { background: linear-gradient(165deg, rgba(255,255,255,.85), rgba(96,125,81,.26)); }
-        .metric-row .metric-card:nth-child(4n+2) { background: linear-gradient(165deg, rgba(255,255,255,.85), rgba(132,156,125,.4)); }
-        .metric-row .metric-card:nth-child(4n+3) { background: linear-gradient(165deg, rgba(255,255,255,.88), rgba(211,220,186,.6)); }
-        .metric-row .metric-card:nth-child(4n+4) { background: linear-gradient(165deg, rgba(255,255,255,.82), rgba(201,191,151,.55)); }
+        .metric-row .metric-card:nth-child(4n+1) { background: linear-gradient(165deg, rgba(255,255,255,.85), rgba(213, 117, 48,.26)); }
+        .metric-row .metric-card:nth-child(4n+2) { background: linear-gradient(165deg, rgba(255,255,255,.85), rgba(159, 183, 104,.4)); }
+        .metric-row .metric-card:nth-child(4n+3) { background: linear-gradient(165deg, rgba(255,255,255,.88), rgba(238, 228, 125,.6)); }
+        .metric-row .metric-card:nth-child(4n+4) { background: linear-gradient(165deg, rgba(255,255,255,.82), rgba(255, 188, 146,.55)); }
  
         .metric-card::before {
             content: "";
@@ -765,6 +765,45 @@
             font-weight: 700;
         }
  
+        .cert-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+ 
+        .cert-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 14px;
+            background: linear-gradient(165deg, rgba(255,255,255,.85), rgba(238, 228, 125,.42));
+            border: 1px solid rgba(213, 117, 48,.12);
+            padding: 14px 18px;
+            border-radius: 20px 26px 20px 26px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 8px 18px rgba(213, 117, 48,.10);
+        }
+ 
+        .cert-item .cert-name {
+            font-weight: 800;
+            color: var(--primary);
+        }
+ 
+        .cert-item .cert-issuer {
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+ 
+        .cert-item .cert-date {
+            color: var(--secondary);
+            font-size: 0.85rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+ 
         @media (max-width: 720px) {
             .navbar {
                 gap: 10px;
@@ -789,6 +828,11 @@
             .metric-row {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .cert-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
         }
 </style>
  
@@ -805,6 +849,7 @@
             <li><a onclick="showHome('#experience')" data-tooltip="All of my recent experience" data-vi="Kinh nghiệm" data-en="Experience">Experience</a></li>
             <li><a onclick="showHome('#projects')" data-tooltip="These are my projects with all of my fellow teammate" data-vi="Dự án" data-en="Projects">Projects</a></li>
             <li><a onclick="showHome('#skills')" data-tooltip="After learning 3 years in Deakin University, there are all of my skills that I have gained" data-vi="Kỹ năng" data-en="Skills">Skills</a></li>
+            <li><a onclick="showHome('#certifications')" data-tooltip="Certifications and courses I've completed" data-vi="Chứng chỉ" data-en="Certs">Certs</a></li>
             <li><button class="lang-btn" onclick="toggleLanguage()" data-tooltip="Đổi Tiếng Anh / Tiếng Việt"><span id="lang-btn-text">VIE</span></button></li>
         </ul>
     </nav>
@@ -864,29 +909,38 @@
             <h2 data-vi="Experience" data-en="Experience">Experience</h2>
             
             <div class="project-card">
-                <span class="project-tag" style="background: linear-gradient(135deg, rgba(211,220,186,0.55), rgba(201,191,151,0.38)); color: var(--primary); border: 1px solid rgba(96,125,81,0.10);">01/2026</span>
+                <span class="project-tag" style="background: linear-gradient(135deg, rgba(238, 228, 125,0.55), rgba(255, 188, 146,0.38)); color: var(--primary); border: 1px solid rgba(213, 117, 48,0.10);">01/2026</span>
                 <h3 class="project-title" data-vi="Project Team Intern - VnF (Vietnam Food)" data-en="Project Team Intern - VnF (Vietnam Food)">Project Team Intern - VnF (Vietnam Food) - Ho Chi Minh, Vietnam</h3>
-                <p data-vi="• Hỗ trợ một số phần nhỏ trong tài liệu trình bày của RetriV - giải pháp thu hồi dinh dưỡng của VnF.<br>• Cùng team tham gia vào các hội nghị về sustainability và hỗ trợ các công tác chụp ảnh, viết bài đăng lên trang của công ty.<br> • Tham gia các cuộc họp nội bộ với khách hàng, qua đó cũng đã hiểu hơn về quy trình làm việc chuyên nghiệp và được tiếp xúc với các giải pháp mới lạ trong lĩnh vực sinh học nhằm bảo vệ môi trường."
-                   data-en="• Support some small parts in the presentation documents of RetriV - VnF's nutrient recovery solution. <br> • Join the team in sustainability conferences and help with tasks like taking photos and writing posts for the company's page. <br> • Participated in internal meetings with clients, through which I also gained a better understanding of professional work processes and got exposed to innovative solutions in the field of biology to protect the environment.">
-                   • Support some small parts in the presentation documents of RetriV - VnF's nutrient recovery solution. <br> • Join the team in sustainability conferences and help with tasks like taking photos and writing posts for the company's page. <br> • Participated in internal meetings with clients, through which I also gained a better understanding of professional work processes and got exposed to innovative solutions in the field of biology to protect the environment.
+                <p data-vi="• Hỗ trợ chuẩn bị các cuộc họp với khách hàng quốc tế thông qua nghiên cứu nền tảng chi tiết và các hoạt động bioscan.<br>• Tham gia các cuộc họp nội bộ, hội thảo ESG và một chuyến công tác đến Cần Thơ, qua đó hiểu rõ hơn cách các phòng ban giao tiếp và phối hợp.<br>• Tiếp cận trực tiếp với ngành thủy sản và các giải pháp thu hồi, xử lý phụ phẩm, hiểu sâu hơn về ý nghĩa thực tiễn của các sáng kiến bền vững.<br>• Được đào tạo sử dụng công cụ AI và kỹ thuật viết prompt (bao gồm NotebookLM) để hỗ trợ dịch thuật, tổng hợp và tạo nội dung hiệu quả."
+                   data-en="• Facilitated preparation for international client meetings through detailed background research and bioscan activities. <br> • Participated in internal meetings, an ESG seminar, and a business trip to Can Tho, gaining a clearer understanding of how departments communicate and coordinate. <br> • Gained first-hand exposure to the seafood industry and by-product collection/processing solutions, deepening understanding of sustainability initiatives in practice. <br> • Trained in using AI tools and prompt writing (including NotebookLM) for efficient translation, content creation, and information synthesis.">
+                   • Facilitated preparation for international client meetings through detailed background research and bioscan activities. <br> • Participated in internal meetings, an ESG seminar, and a business trip to Can Tho, gaining a clearer understanding of how departments communicate and coordinate. <br> • Gained first-hand exposure to the seafood industry and by-product collection/processing solutions, deepening understanding of sustainability initiatives in practice. <br> • Trained in using AI tools and prompt writing (including NotebookLM) for efficient translation, content creation, and information synthesis.
                 </p>
             </div>
  
             <div class="project-card">
-                <span class="project-tag" style="background: linear-gradient(135deg, rgba(211,220,186,0.55), rgba(201,191,151,0.38)); color: var(--primary); border: 1px solid rgba(96,125,81,0.10);">12/2024 – 02/2025</span>
+                <span class="project-tag" style="background: linear-gradient(135deg, rgba(238, 228, 125,0.55), rgba(255, 188, 146,0.38)); color: var(--primary); border: 1px solid rgba(213, 117, 48,0.10);">12/2024 – 02/2025</span>
                 <h3 class="project-title" data-vi="Business Analytics Intern - FPT Digital" data-en="Business Analytics Intern - FPT Digital">Business Analytics Intern - FPT Digital - Hanoi, Vietnam</h3>
-                <p data-vi="• Nghiên cứu tiêu chuẩn ESG (GRI Standards) và thực tiễn báo cáo phát triển bền vững quốc tế.<br>• Phân tích quy định ESG và xu hướng ngành Dược phẩm tại Việt Nam phục vụ tư vấn chiến lược."
-                   data-en="• Conducted desk research on ESG frameworks including GRI Standards and international sustainability reporting practices.<br>• Analysed ESG regulations and industry trends within Vietnam's pharmaceutical sector.">
-                   • Conducted desk research on ESG frameworks including GRI Standards and international sustainability reporting practices.<br>• Analysed ESG regulations and industry trends within Vietnam's pharmaceutical sector.
+                <p data-vi="• Đóng góp nội dung cho phần CSR (Trách nhiệm xã hội doanh nghiệp) trong Báo cáo Phát triển bền vững của khách hàng, tuân theo tiêu chuẩn tư vấn chuyên nghiệp.<br>• Thực hiện nghiên cứu độc lập về phát triển bền vững trong ngành Dược phẩm Việt Nam, tập trung vào thực tiễn, chính sách và xu hướng ESG.<br>• Hỗ trợ các dự án tư vấn bền vững thông qua việc tham gia họp khách hàng và quan sát phương pháp tư vấn chuyên nghiệp."
+                   data-en="• Contributed content to the CSR (Corporate Social Responsibility) section of a client's Sustainability Report, aligning with professional consulting standards.<br>• Conducted independent research on sustainable development within Vietnam's pharmaceutical industry, focusing on ESG practices, policies, and industry trends.<br>• Supported sustainability consulting projects by participating in client meetings and observing professional consulting methodologies.">
+                   • Contributed content to the CSR (Corporate Social Responsibility) section of a client's Sustainability Report, aligning with professional consulting standards.<br>• Conducted independent research on sustainable development within Vietnam's pharmaceutical industry, focusing on ESG practices, policies, and industry trends.<br>• Supported sustainability consulting projects by participating in client meetings and observing professional consulting methodologies.
                 </p>
             </div>
  
             <div class="project-card">
-                <span class="project-tag" style="background: linear-gradient(135deg, rgba(211,220,186,0.55), rgba(201,191,151,0.38)); color: var(--primary); border: 1px solid rgba(96,125,81,0.10);">12/2023 – 02/2024</span>
+                <span class="project-tag" style="background: linear-gradient(135deg, rgba(238, 228, 125,0.55), rgba(255, 188, 146,0.38)); color: var(--primary); border: 1px solid rgba(213, 117, 48,0.10);">12/2023 – 02/2024</span>
                 <h3 class="project-title" data-vi="Logistics Team Leader - Dự án 'Share the Love, Send Warmth'" data-en="Logistics Team Leader - 'Share the Love, Send Warmth' Project">Logistics Team Leader - 'Share the Love, Send Warmth' Project</h3>
-                <p data-vi="• Điều phối logistics và giao tiếp nhà cung cấp hỗ trợ trường học tại Y Tý, Lào Cai.<br>• Gây quỹ hơn 60 triệu VNĐ trao tặng quà ấm cho học sinh vùng cao."
-                   data-en="• Coordinated logistics operations and supplier communication for a volunteer project supporting remote schools in Y Ty, Lao Cai.<br>• Raised 60+ million VND to deliver winter supplies.">
-                   • Coordinated logistics operations and supplier communication for a volunteer project supporting remote schools in Y Ty, Lao Cai.<br>• Raised 60+ million VND to deliver winter supplies.
+                <p data-vi="• Điều phối logistics và giao tiếp nhà cung cấp hỗ trợ trường học tại Y Tý, Lào Cai.<br>• Giám sát việc tiếp nhận, lưu trữ và phân phối hàng quyên góp, đảm bảo giao hàng đúng thời gian và địa điểm.<br>• Gây quỹ hơn 60 triệu VNĐ trao tặng quà ấm cho học sinh vùng cao."
+                   data-en="• Coordinated logistics operations and supplier communication for a volunteer project supporting remote schools in Y Ty, Lao Cai.<br>• Supervised the reception, storage, and distribution of donated goods, ensuring accurate and timely delivery.<br>• Raised 60+ million VND to deliver winter supplies.">
+                   • Coordinated logistics operations and supplier communication for a volunteer project supporting remote schools in Y Ty, Lao Cai.<br>• Supervised the reception, storage, and distribution of donated goods, ensuring accurate and timely delivery.<br>• Raised 60+ million VND to deliver winter supplies.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <span class="project-tag" style="background: linear-gradient(135deg, rgba(238, 228, 125,0.55), rgba(255, 188, 146,0.38)); color: var(--primary); border: 1px solid rgba(213, 117, 48,0.10);">06/2025 – 12/2025</span>
+                <h3 class="project-title" data-vi="Nhân viên Fast Food - Roll'd Australia" data-en="Fast Food Team Member - Roll'd Australia">Fast Food Team Member - Roll'd Australia - Chadstone, VIC, Australia</h3>
+                <p data-vi="• Làm việc trong môi trường nhà hàng tốc độ cao, rèn luyện kỹ năng làm việc nhóm và giao tiếp với khách hàng.<br>• Phối hợp cùng đồng nghiệp để đảm bảo vận hành trơn tru trong giờ cao điểm."
+                   data-en="• Worked in a fast-paced restaurant environment, building strong teamwork and customer communication skills.<br>• Collaborated with colleagues to keep operations running smoothly during peak hours.">
+                   • Worked in a fast-paced restaurant environment, building strong teamwork and customer communication skills.<br>• Collaborated with colleagues to keep operations running smoothly during peak hours.
                 </p>
             </div>
         </section>
@@ -917,7 +971,7 @@
             </div>
  
             <div class="project-card">
-                <span class="project-tag" style="background: linear-gradient(135deg, rgba(211,220,186,0.52), rgba(201,191,151,0.32)); color: var(--primary); border: 1px solid rgba(96,125,81,0.10);">Volunteering & Leadership</span>
+                <span class="project-tag" style="background: linear-gradient(135deg, rgba(238, 228, 125,0.52), rgba(255, 188, 146,0.32)); color: var(--primary); border: 1px solid rgba(213, 117, 48,0.10);">Volunteering & Leadership</span>
                 <h3 class="project-title">"Share the Love, Send Warmth" Project</h3>
                 <p data-vi="Lập kế hoạch ngân sách và điều phối logistics gây quỹ hơn 60 triệu VNĐ hỗ trợ học sinh vùng cao Y Tý, Lào Cai."
                    data-en="Charity fundraising and logistics coordination initiative supporting kindergarten students in remote mountainous areas of Y Ty, Lao Cai.">
@@ -965,21 +1019,65 @@
             <div class="jelly-mascot corner right" aria-hidden="true"><div class="eyes"><span></span><span></span></div><div class="smile"></div></div>
             <h2 data-vi="Technical & Professional Skills" data-en="Technical & Professional Skills">Technical & Professional Skills</h2>
             <div class="skills-grid">
-                <span class="skill-pill" data-tooltip="Programming Language">Python</span>
+                <span class="skill-pill" data-tooltip="Programming Language">Python (Basic)</span>
                 <span class="skill-pill" data-tooltip="Deep Learning Framework">TensorFlow & Keras</span>
                 <span class="skill-pill" data-tooltip="Data Manipulation">Pandas & NumPy</span>
                 <span class="skill-pill" data-tooltip="Natural Language Processing">NLTK & Scikit-Learn</span>
                 <span class="skill-pill" data-tooltip="Database Queries">SQL (Basic)</span>
                 <span class="skill-pill" data-tooltip="Data Visualisation">Power BI (Basic)</span>
+                <span class="skill-pill" data-tooltip="Office Suite">Microsoft Excel</span>
+                <span class="skill-pill" data-tooltip="Office Suite">Microsoft PowerPoint</span>
+                <span class="skill-pill" data-tooltip="Office Suite">Microsoft Word</span>
+                <span class="skill-pill" data-tooltip="Collaboration & Whiteboarding">Miro</span>
+                <span class="skill-pill" data-tooltip="Design Tool">Canva</span>
                 <span class="skill-pill" data-tooltip="Business Strategy & Ops">Business Analysis</span>
                 <span class="skill-pill" data-tooltip="Sustainability Reporting">ESG Frameworks (GRI)</span>
                 <span class="skill-pill" data-tooltip="Eliciting Stakeholder Needs">Requirement Gathering</span>
                 <span class="skill-pill" data-tooltip="Workflow & Data Mapping">Process Modelling (BPMN, EER)</span>
+                <span class="skill-pill" data-tooltip="Wireframing & Mockups">Prototype Design</span>
                 <span class="skill-pill" data-tooltip="Project Management">Agile & Scrum</span>
                 <span class="skill-pill" data-tooltip="Client & Team Interaction">Stakeholder Communication</span>
                 <span class="skill-pill" data-tooltip="Logistics & Event Planning">Project Coordination</span>
                 <span class="skill-pill" data-tooltip="Analytical Thinking">Problem Solving</span>
+                <span class="skill-pill" data-tooltip="Analytical Thinking">Critical Thinking</span>
+                <span class="skill-pill" data-tooltip="Working Across Teams">Team Collaboration</span>
+                <span class="skill-pill" data-tooltip="Finding & Synthesising Information">Business & Market Research</span>
             </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <h2 data-vi="Certifications" data-en="Certifications">Certifications</h2>
+            <ul class="cert-list">
+                <li class="cert-item">
+                    <span>
+                        <span class="cert-name" data-vi="Phân tích Kinh doanh & Quản lý Quy trình" data-en="Business Analysis & Process Management">Business Analysis & Process Management</span>
+                        <span class="cert-issuer"> — Coursera Project Network</span>
+                    </span>
+                    <span class="cert-date">10/2023</span>
+                </li>
+                <li class="cert-item">
+                    <span>
+                        <span class="cert-name">ISO 22301:2019</span>
+                        <span class="cert-issuer" data-vi=" — Nền tảng Quản lý Liên tục Kinh doanh (BCMS), Alison" data-en=" — Essentials of Business Continuity Management Systems (BCMS), Alison"> — Essentials of Business Continuity Management Systems (BCMS), Alison</span>
+                    </span>
+                    <span class="cert-date">10/2023</span>
+                </li>
+                <li class="cert-item">
+                    <span>
+                        <span class="cert-name" data-vi="Nền tảng Marketing số & Thương mại điện tử" data-en="Foundations of Digital Marketing & E-Commerce">Foundations of Digital Marketing & E-Commerce</span>
+                        <span class="cert-issuer"> — Coursera</span>
+                    </span>
+                    <span class="cert-date">11/2023</span>
+                </li>
+                <li class="cert-item">
+                    <span>
+                        <span class="cert-name" data-vi="Khóa học Power BI Cơ bản" data-en="Power BI Essential Training">Power BI Essential Training</span>
+                        <span class="cert-issuer"> — LinkedIn Learning</span>
+                    </span>
+                    <span class="cert-date">04/2025</span>
+                </li>
+            </ul>
         </section>
     </div>
  
@@ -1017,24 +1115,24 @@
             <h3 style="margin-top:24px;font-size:1.1rem;">My Role</h3>
             <div class="jelly-grid">
                 <div class="jelly-bubble">
+                    <div class="bubble-kicker">Business Analysis</div>
+                    <div class="bubble-value">Product strategy lead</div>
+                    <div class="bubble-note">Took charge of business analysis and product strategy for the platform.</div>
+                </div>
+                <div class="jelly-bubble">
                     <div class="bubble-kicker">Market Research</div>
                     <div class="bubble-value">Problem validation</div>
-                    <div class="bubble-note">Validated the need for post-discharge care through market and customer analysis.</div>
+                    <div class="bubble-note">Conducted market research, competitor analysis, and requirement gathering to validate the need for post-discharge care.</div>
                 </div>
                 <div class="jelly-bubble">
-                    <div class="bubble-kicker">GTM</div>
-                    <div class="bubble-value">Go-to-market strategy</div>
-                    <div class="bubble-note">Defined customer segments, value proposition, and market entry direction.</div>
+                    <div class="bubble-kicker">Product Definition</div>
+                    <div class="bubble-value">Feature scoping</div>
+                    <div class="bubble-note">Defined product features and collaborated with developers to deliver an MVP.</div>
                 </div>
                 <div class="jelly-bubble">
-                    <div class="bubble-kicker">Cost Model</div>
-                    <div class="bubble-value">SaaS feasibility</div>
-                    <div class="bubble-note">Estimated infrastructure and deployment cost to assess commercial viability.</div>
-                </div>
-                <div class="jelly-bubble">
-                    <div class="bubble-kicker">Technical Support</div>
-                    <div class="bubble-value">VNPT research</div>
-                    <div class="bubble-note">Researched Smartbot, SmartVoice, APIs, and integration workflow for the dev team.</div>
+                    <div class="bubble-kicker">Pitch</div>
+                    <div class="bubble-value">Judge presentation</div>
+                    <div class="bubble-note">Presented the full solution to mentors and judges alongside teammates during Vietnamese Students HackAIthon 2026.</div>
                 </div>
             </div>
  
@@ -1094,9 +1192,9 @@
  
             <h3 style="margin-top:24px;font-size:1.1rem;">My Role</h3>
             <div class="jelly-grid">
+                <div class="jelly-bubble"><div class="bubble-kicker">CSR Writing</div><div class="bubble-value">Sustainability Report content</div><div class="bubble-note">Contributed content to the CSR section of a client's Sustainability Report, aligned with professional consulting standards.</div></div>
                 <div class="jelly-bubble"><div class="bubble-kicker">Research</div><div class="bubble-value">Secondary research</div><div class="bubble-note">Synthesised information from ESG-related materials, industry sources, and policy-oriented references.</div></div>
                 <div class="jelly-bubble"><div class="bubble-kicker">Benchmarking</div><div class="bubble-value">Global & Vietnam</div><div class="bubble-note">Compared global pharmaceutical ESG practices with the Vietnamese market context.</div></div>
-                <div class="jelly-bubble"><div class="bubble-kicker">Strategy</div><div class="bubble-value">Recommendations</div><div class="bubble-note">Supported the development of strategic directions and presentation materials for the consulting work.</div></div>
                 <div class="jelly-bubble"><div class="bubble-kicker">Confidentiality</div><div class="bubble-value">Client-owned material</div><div class="bubble-note">The original deck cannot be publicly shared because it belongs to FPT.</div></div>
             </div>
  
@@ -1271,7 +1369,7 @@
     <div id="project-sharethelove" class="view-section">
         <button class="btn btn-secondary" onclick="showHome('#projects')" data-tooltip="Return to main page" style="margin-bottom: 20px;">← <span data-vi="Quay lại Portfolio" data-en="Back to Portfolio">Back to Portfolio</span></button>
         <section>
-            <span class="project-tag" style="background:rgba(211,220,186,0.42); color:var(--primary); border: 2px solid rgba(96,125,81,0.18);">Volunteering & Leadership</span>
+            <span class="project-tag" style="background:rgba(238, 228, 125,0.42); color:var(--primary); border: 2px solid rgba(213, 117, 48,0.18);">Volunteering & Leadership</span>
             <h2 style="border:none; margin-top:10px;">"Share the Love, Send Warmth" Project</h2>
             <p style="font-weight: 800; color: var(--secondary);">Community fundraising and logistics</p>
  
@@ -1292,7 +1390,7 @@
             <div class="jelly-grid">
                 <div class="jelly-bubble"><div class="bubble-kicker">Leadership</div><div class="bubble-value">Logistics Team Leader</div><div class="bubble-note">Managed budget planning, logistics coordination, and supplier communication.</div></div>
                 <div class="jelly-bubble"><div class="bubble-kicker">Fundraising</div><div class="bubble-value">Campaign planning</div><div class="bubble-note">Organised fundraising activities, including handcrafted product sales.</div></div>
-                <div class="jelly-bubble"><div class="bubble-kicker">Operations</div><div class="bubble-value">Distribution support</div><div class="bubble-note">Help supervise inventory and the distribution of donated items.</div></div>
+                <div class="jelly-bubble"><div class="bubble-kicker">Operations</div><div class="bubble-value">Distribution support</div><div class="bubble-note">Supervised the reception, storage, and distribution of donated items.</div></div>
             </div>
  
             <h3 style="margin-top:24px;font-size:1.1rem;">Outcome</h3>
@@ -1358,4 +1456,3 @@
  
 </body>
 </html>
-
