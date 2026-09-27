@@ -19,3 +19,1146 @@
     </script>
     
     <!-- External Modular Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Toast Message Container -->
+<div id="toast" class="toast">Email copied to clipboard!</div>
+
+<!-- 3D Interactive Tooltip Tag -->
+<div id="oasis-3d-tooltip">Explore 3D Landmark</div>
+
+<!-- ==========================================================================
+     FULL-SCREEN 3D SPACE OASIS INTRO STAGE
+     ========================================================================== -->
+<div id="space-oasis-section">
+    <canvas id="oasis-webgl-canvas"></canvas>
+
+    <!-- 3D Overlay HUD Interface -->
+    <div class="oasis-hud">
+        <!-- Top Bar -->
+        <div class="oasis-top-bar">
+            <a href="#space-oasis-section" class="oasis-logo">
+                <div class="oasis-logo-badge">HV</div>
+                <span>Huong Linh Vu</span>
+            </a>
+            <div class="oasis-controls-group">
+                <button id="btn-oasis-tour" class="hud-btn" onclick="startCinematicTour()">🎬 360° Tour</button>
+                <button id="btn-oasis-mode" class="hud-btn" onclick="toggleCosmicMode()">🌌 Cosmic Starlight</button>
+                <button class="hud-btn" onclick="toggleLanguage()"><span id="lang-btn-text">VIE</span></button>
+            </div>
+        </div>
+
+        <!-- Center 3D Glass Hero Card -->
+        <div class="oasis-hero-card">
+            <div class="oasis-pill" data-vi="✨ Ốc Đảo Dữ Liệu 3D • Deakin University" data-en="✨ 3D Space Oasis • Deakin University">✨ 3D Space Oasis • Deakin University</div>
+            <h1 data-vi="Vũ Hương Linh (Harlin Vu)" data-en="Huong Linh Vu (Harlin Vu)">Huong Linh Vu (Harlin Vu)</h1>
+            <div class="subtitle" id="typing-role-text">Business Analyst & Data Storyteller</div>
+            <p class="bio" data-vi="Chào mừng bạn đến với Không Gian Triển Lãm & Hồ Sơ Năng Lực! Khám phá 10 dự án thực tế về AI Y Tế, Quản Trị Đa Dạng Sinh Học SDG, Tư Vấn Chiến Lược ESG Chuẩn GRI, Kiến Trúc Hệ Thống UML và Deep Learning."
+               data-en="Welcome to my Interactive Portfolio & Project Exhibition! Explore 10 master projects spanning Healthcare AI, SDG Biodiversity Governance, GRI-aligned ESG Strategy, UML Business Architecture, and Applied Deep Learning.">
+               Welcome to my Interactive Portfolio & Project Exhibition! Explore 10 master projects spanning Healthcare AI, SDG Biodiversity Governance, GRI-aligned ESG Strategy, UML Business Architecture, and Applied Deep Learning.
+            </p>
+            <div class="oasis-cta-row">
+                <button class="btn" onclick="enterPortfolio()" data-vi="🏛️ Xem Tất Cả Dự Án" data-en="🏛️ Explore All Projects">🏛️ Explore All Projects</button>
+                <button class="btn btn-secondary" onclick="startCinematicTour()" data-vi="🌌 Xoay 3D 360°" data-en="🌌 360° Rotate">🌌 360° Rotate</button>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="oasis-bottom-bar">
+            <div class="oasis-interaction-hint" data-vi="💡 Kéo chuột để xoay 3D • Nhấp vào các công trình trên đảo để mở dự án tương ứng" data-en="💡 Drag mouse to rotate 3D • Click island landmarks to inspect matching projects">
+                💡 Drag mouse to rotate 3D • Click island landmarks to inspect matching projects
+            </div>
+            <a href="#main-portfolio-content" class="scroll-down-btn" onclick="enterPortfolio()" title="Scroll to Content">↓</a>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     MAIN PORTFOLIO CONTENT CONTAINER
+     ========================================================================== -->
+<div class="container" id="main-portfolio-content">
+
+    <!-- Sticky Navigation -->
+    <nav class="navbar">
+        <a onclick="showHome()" class="logo">
+            <div class="oasis-logo-badge">HV</div>
+            <span>Huong Linh Vu</span>
+        </a>
+        <ul class="nav-links">
+            <li><a onclick="showHome('#about')" data-vi="Về mình" data-en="About">About</a></li>
+            <li><a onclick="showHome('#process')" data-vi="Quy trình" data-en="Process">Process</a></li>
+            <li><a onclick="showHome('#projects')" data-vi="Dự án (10)" data-en="Projects (10)">Projects (10)</a></li>
+            <li><a onclick="showHome('#experience')" data-vi="Kinh nghiệm" data-en="Experience">Experience</a></li>
+            <li><a onclick="showHome('#skills')" data-vi="Kỹ năng" data-en="Skills">Skills</a></li>
+            <li><a onclick="showHome('#certifications')" data-vi="Chứng chỉ" data-en="Certs">Certs</a></li>
+            <li><a href="#space-oasis-section" style="color:var(--ochre); font-weight:800;" data-vi="🏝️ Lên Ốc Đảo 3D" data-en="🏝️ 3D Oasis">🏝️ 3D Oasis</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN PORTFOLIO VIEW -->
+    <div id="home-view" class="view-section active">
+
+        <!-- ==========================================================================
+             HIGH-IMPACT NUMERICAL STATS BANNER
+             ========================================================================== -->
+        <div class="stats-strip">
+            <div class="stat-cell">
+                <div class="stat-number">10+</div>
+                <div class="stat-label" data-vi="Dự Án Nghiên Cứu & Đồ Án" data-en="Master Projects & Studies">Master Projects & Studies</div>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-number">02</div>
+                <div class="stat-label" data-vi="Cuộc Thi Quốc Tế (Top 8 & Vòng 2)" data-en="Global Competitions (Top 8 & R2)">Global Competitions (Top 8 & R2)</div>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-number">85K+</div>
+                <div class="stat-label" data-vi="Bản Ghi Dữ Liệu Được Khai Phá" data-en="Data Records Processed">Data Records Processed</div>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-number">60M+ ₫</div>
+                <div class="stat-label" data-vi="Ngân Sách Thiện Nguyện Điều Phối" data-en="Relief Funds Managed">Relief Funds Managed</div>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+             5-STEP STRATEGIC ANALYSIS PROCESS FLOWCHART
+             ========================================================================== -->
+        <section id="process">
+            <div class="section-title-wrap">
+                <span class="section-kicker" data-vi="PHƯƠNG PHÁP LUẬN & QUY TRÌNH" data-en="METHODOLOGY & WORKFLOW">METHODOLOGY & WORKFLOW</span>
+                <h2 data-vi="Quy Trình Phân Tích Chiến Lược 5 Bước" data-en="5-Step Strategic Analysis Process">5-Step Strategic Analysis Process</h2>
+                <p class="section-subtitle" data-vi="Khung phương pháp làm việc có hệ thống kết nối giữa bài toán kinh doanh, kiến trúc công nghệ và tác động thực tiễn." data-en="A rigorous end-to-end framework bridging business problem framing, technical modeling, and impactful execution.">A rigorous end-to-end framework bridging business problem framing, technical modeling, and impactful execution.</p>
+            </div>
+
+            <div class="process-flow">
+                <div class="process-card">
+                    <div class="process-step-num">01</div>
+                    <h3 class="process-title" data-vi="Khám Phá & Định Vị" data-en="Discover & Frame">Discover & Frame</h3>
+                    <p class="process-desc" data-vi="Thu thập yêu cầu thực tế, xác định các bên liên quan (11 Stakeholders Matrix) và định vị vấn đề cốt lõi." data-en="Stakeholder elicitation, context discovery, and framing core business/environmental bottlenecks."></p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step-num">02</div>
+                    <h3 class="process-title" data-vi="Định Nghĩa Chiến Lược" data-en="Define & Prioritize">Define & Prioritize</h3>
+                    <p class="process-desc" data-vi="Phân tích SWOT, xác định cặp chiến lược O4+S4, chuẩn hóa 5 yêu cầu chức năng và tiêu chuẩn GRI." data-en="SWOT strategic pairing (O4+S4), functional requirement specs, and GRI sustainability directives."></p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step-num">03</div>
+                    <h3 class="process-title" data-vi="Thiết Kế & Mô Hình" data-en="Architect & Model">Architect & Model</h3>
+                    <p class="process-desc" data-vi="Xây dựng Use Case, Sequence Diagram, 15-Class Domain Model và kiến trúc mạng nơ-ron sâu (ANN/CNN)." data-en="UML Use Case, Sequence flows, 15-class domain architectures, and neural network topologies."></p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step-num">04</div>
+                    <h3 class="process-title" data-vi="Phân Tích & Thử Nghiệm" data-en="Analyze & Benchmark">Analyze & Benchmark</h3>
+                    <p class="process-desc" data-vi="Khai phá cảm xúc VADER (85k review), 10-Topic LDA, tối ưu R² = 0.8445 và Cohen's Kappa = 0.631." data-en="Aspect VADER NLP, 10-Topic LDA, hyperparameter tuning (R²=0.8445), and empirical validation."></p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step-num">05</div>
+                    <h3 class="process-title" data-vi="Chuyển Giao & Tác Động" data-en="Deliver & Impact">Deliver & Impact</h3>
+                    <p class="process-desc" data-vi="Triển khai B2B SaaS Dashboard, tài liệu tư vấn cấp quản trị và báo cáo minh bạch cho cộng đồng." data-en="Executive B2B SaaS dashboards, policy directives, reproducible repos, and transparent operations."></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             FULL VISIBLE PROJECT EXHIBITION GALLERY (10 PROJECTS VISIBLE, ZERO HORIZONTAL SCROLL)
+             ========================================================================== -->
+        <section id="projects">
+            <div class="section-title-wrap">
+                <span class="section-kicker" data-vi="DANH MỤC CÁC CÔNG TRÌNH & ĐỒ ÁN" data-en="MASTER PROJECT CATALOG">MASTER PROJECT CATALOG</span>
+                <h2 data-vi="Bộ Sưu Tập 10 Dự Án Toàn Diện" data-en="Comprehensive 10-Project Portfolio">Comprehensive 10-Project Portfolio</h2>
+                <p class="section-subtitle" data-vi="Tất cả 10 dự án đều được hiển thị đầy đủ trực quan. Bạn có thể chọn danh mục để lọc hoặc nhấp vào từng thẻ để xem phân tích chi tiết." data-en="All 10 verified projects are visibly presented below. Use the filter tabs or click any card to inspect full deep-dive methodologies.">All 10 verified projects are visibly presented below. Use the filter tabs or click any card to inspect full deep-dive methodologies.</p>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="filter-tabs-container">
+                <button class="filter-pill active" onclick="filterProjects('all')" data-category="all" data-vi="Tất Cả Dự Án (10)" data-en="All Projects (10)">All Projects (10)</button>
+                <button class="filter-pill" onclick="filterProjects('ai')" data-category="ai" data-vi="AI & Phân Tích Dữ Liệu (4)" data-en="Applied AI & Analytics (4)">Applied AI & Analytics (4)</button>
+                <button class="filter-pill" onclick="filterProjects('esg')" data-category="esg" data-vi="Chính Sách ESG & SDG (3)" data-en="ESG & SDG Policy (3)">ESG & SDG Policy (3)</button>
+                <button class="filter-pill" onclick="filterProjects('ba')" data-category="ba" data-vi="Kiến Trúc Doanh Nghiệp & UML (2)" data-en="Business Architecture & UML (2)">Business Architecture & UML (2)</button>
+                <button class="filter-pill" onclick="filterProjects('lead')" data-category="lead" data-vi="Lãnh Đạo & Cộng Đồng (1)" data-en="Leadership & Social (1)">Leadership & Social (1)</button>
+            </div>
+
+            <!-- Visible Editorial Gallery Grid -->
+            <div class="editorial-gallery-grid" id="master-projects-grid">
+                
+                <!-- 01: AfterCare App -->
+                <div class="editorial-project-card" data-category="ai" onclick="showProject('aftercare')">
+                    <div class="project-card-badge-row">
+                        <span class="badge-num">PROJECT № 01</span>
+                        <span class="badge-tag tag-gold" data-vi="Giải Khuyến Khích HackAIthon (Top 8 / 210)" data-en="HackAIthon Merit Prize (Top 8 / 210)">HackAIthon Merit Prize (Top 8 / 210)</span>
+                    </div>
+                    <h3 class="project-card-title">AfterCare: Clinical Voice AI Platform</h3>
+                    <p class="project-card-subtitle" data-vi="Chăm sóc y tế thông minh từ viện về nhà • Team AIgnite" data-en="Virtual Care from Ward to Home • Team AIgnite">Virtual Care from Ward to Home • Team AIgnite</p>
+                    <p class="project-card-desc" data-vi="Nền tảng B2B SaaS ứng dụng AI trợ lý giọng nói VNPT SmartVoice tự động gọi điện thăm khám bệnh nhân sau xuất viện, tích hợp phân tầng nguy cơ 3 cấp độ (Low/Medium/High) trên Dashboard bác sĩ."
+                       data-en="B2B SaaS clinical voice AI platform automating post-discharge follow-ups via VNPT SmartVoice with 3-tier explainable risk triage on physician dashboards.">
+                       B2B SaaS clinical voice AI platform automating post-discharge follow-ups via VNPT SmartVoice with 3-tier explainable risk triage on physician dashboards.
+                    </p>
+                    <div class="project-card-metrics">
+                        <div class="metric-chip"><strong>Top 8 / 210</strong><span>Global Teams</span></div>
+                        <div class="metric-chip"><strong>3-Tier Triage</strong><span>Clinical Risk Matrix</span></div>
+                        <div class="metric-chip"><strong>VNPT Voice</strong><span>Vietnamese Telephony</span></div>
+                    </div>
+                    <div class="project-card-footer">
+                        <div class="tech-tags">
+                            <span class="tech-pill">B2B SaaS</span><span class="tech-pill">Voice AI</span><span class="tech-pill">Clinical Triage</span>
+                        </div>
+                        <button class="card-action-btn" onclick="event.stopPropagation(); showProject('aftercare')" data-vi="Xem Chi Tiết ↗" data-en="Deep Dive ↗">Deep Dive ↗</button>
+                    </div>
+                </div>
+
+                <!-- 02: Pilbara Biodiversity Governance -->
+                <div class="editorial-project-card" data-category="esg" onclick="showProject('tsinghua')">
+                    <div class="project-card-badge-row">
+                        <span class="badge-num">PROJECT № 02</span>
+                        <span class="badge-tag tag-matcha" data-vi="Tsinghua Global SDG Case (Vòng 2)" data-en="Tsinghua Global SDG Case (Round 2)">Tsinghua Global SDG Case (Round 2)</span>
+                    </div>
+                    <h3 class="project-card-title">Pilbara Subterranean Biodiversity Governance</h3>
+                    <p class="project-card-subtitle" data-vi="Cân bằng Khai khoáng 507.896 km² & Bảo tồn Sinh học Ngầm" data-en="Balancing A$140B Iron Ore Mining & 4,500 Subterranean Species">Balancing A$140B Iron Ore Mining & 4,500 Subterranean Species</p>
+                    <p class="project-card-desc" data-vi="Nghiên cứu chính sách giải quyết thế lưỡng nan giữa ngành khai khoáng 140 tỷ AUD (98% quặng sắt Úc) với 4.500 loài sinh vật ngầm đặc hữu và quyền quyết định của Thổ dân (SDG 15 & 13)."
+                       data-en="Strategic policy proposal resolving the governance tension between A$140B mining exports and protecting 4,500 subterranean endemic species and First Nations custodial rights.">
+                       Strategic policy proposal resolving the governance tension between A$140B mining exports and protecting 4,500 subterranean endemic species and First Nations custodial rights.
+                    </p>
+                    <div class="project-card-metrics">
+                        <div class="metric-chip"><strong>507,896 km²</strong><span>Scope Area</span></div>
+                        <div class="metric-chip"><strong>A$140B vs Bio</strong><span>Economic Dilemma</span></div>
+                        <div class="metric-chip"><strong>7 Directives</strong><span>Policy Framework</span></div>
+                    </div>
+                    <div class="project-card-footer">
+                        <div class="tech-tags">
+                            <span class="tech-pill">SDG 15 & 13</span><span class="tech-pill">Landscape Policy</span><span class="tech-pill">Indigenous Rights</span>
+                        </div>
+                        <button class="card-action-btn" onclick="event.stopPropagation(); showProject('tsinghua')" data-vi="Xem Chi Tiết ↗" data-en="Deep Dive ↗">Deep Dive ↗</button>
+                    </div>
+                </div>
+
+                <!-- 03: The Archivist -->
+                <div class="editorial-project-card" data-category="esg" onclick="showProject('archivist')">
+                    <div class="project-card-badge-row">
+                        <span class="badge-num">PROJECT № 03</span>
+                        <span class="badge-tag tag-slate" data-vi="UNESCO Youth Hackathon 2026 Project" data-en="UNESCO Youth Hackathon 2026 Project">UNESCO Youth Hackathon 2026 Project</span>
+                    </div>
+                    <h3 class="project-card-title">The Archivist: "Every Choice Becomes History"</h3>
+                    <p class="project-card-subtitle" data-vi="Game Chiến Lược Văn Minh MIL 5 Kỷ Nguyên • Team Time Travelers" data-en="5-Era Civilisation Strategy for Media Literacy">5-Era Civilisation Strategy for Media Literacy</p>
+                    <p class="project-card-desc" data-vi="Game chiến lược giáo dục rèn luyện năng lực Hiểu biết Truyền thông & Thông tin (MIL) qua 5 thời đại, đo lường xAPI telemetry, đạt điểm đánh giá thử nghiệm 4.0/5.0 và 70% chuyển đổi tư duy."
+                       data-en="Narrative educational strategy game cultivating Media & Information Literacy across 5 historical eras with xAPI telemetry, achieving 4.0/5.0 playtest rating and 70% mindset shift.">
+                       Narrative educational strategy game cultivating Media & Information Literacy across 5 historical eras with xAPI telemetry, achieving 4.0/5.0 playtest rating and 70% mindset shift.
+                    </p>
+                    <div class="project-card-metrics">
+                        <div class="metric-chip"><strong>4.0 / 5.0</strong><span>Playtest Experience</span></div>
+                        <div class="metric-chip"><strong>8.4 / 10</strong><span>Recommendation</span></div>
+                        <div class="metric-chip"><strong>5 Eras</strong><span>Historical Loop</span></div>
+                    </div>
+                    <div class="project-card-footer">
+                        <div class="tech-tags">
+                            <span class="tech-pill">Figma Prototyping</span><span class="tech-pill">UNESCO MIL</span><span class="tech-pill">xAPI Telemetry</span>
+                        </div>
+                        <button class="card-action-btn" onclick="event.stopPropagation(); showProject('archivist')" data-vi="Xem Chi Tiết ↗" data-en="Deep Dive ↗">Deep Dive ↗</button>
+                    </div>
+                </div>
+
+                <!-- 04: Pharma ESG Strategy -->
+                <div class="editorial-project-card" data-category="esg" onclick="showProject('esg')">
+                    <div class="project-card-badge-row">
+                        <span class="badge-num">PROJECT № 04</span>
+                        <span class="badge-tag tag-ochre" data-vi="Nghiên Cứu Tư Vấn FPT Digital" data-en="FPT Digital Consulting Research">FPT Digital Consulting Research</span>
+                    </div>
+                    <h3 class="project-card-title">Pharmaceutical ESG & Sustainability Strategy</h3>
+                    <p class="project-card-subtitle" data-vi="Phát Triển Bền Vững Ngành Dược Việt Nam Theo Chuẩn GRI" data-en="GRI Standards & Sustainability in Vietnam Pharma">GRI Standards & Sustainability in Vietnam Pharma</p>
+                    <p class="project-card-desc" data-vi="Nghiên cứu tiêu chuẩn GRI, phân tích thực trạng 90% nguyên liệu nhập khẩu (API) và 17/250 nhà máy đạt chuẩn EU-GMP; đề xuất 8 khuyến nghị hành động chiến lược cho doanh nghiệp dược."
+                       data-en="Consulting research applying GRI Standards, analyzing Vietnam's 90% API import reliance and 17/250 EU-GMP benchmark to formulate 8 strategic corporate directives.">
+                       Consulting research applying GRI Standards, analyzing Vietnam's 90% API import reliance and 17/250 EU-GMP benchmark to formulate 8 strategic corporate directives.
+                    </p>
+                    <div class="project-card-metrics">
+                        <div class="metric-chip"><strong>8 Directives</strong><span>Strategic Action</span></div>
+                        <div class="metric-chip"><strong>90% API</strong><span>Import Vulnerability</span></div>
+                        <div class="metric-chip"><strong>GRI Standards</strong><span>CSR Framework</span></div>
+                    </div>
+                    <div class="project-card-footer">
+                        <div class="tech-tags">
+                            <span class="tech-pill">GRI Standards</span><span class="tech-pill">ESG Benchmarking</span><span class="tech-pill">Pharma Supply Chain</span>
+                        </div>
+                        <button class="card-action-btn" onclick="event.stopPropagation(); showProject('esg')" data-vi="Xem Chi Tiết ↗" data-en="Deep Dive ↗">Deep Dive ↗</button>
+                    </div>
+                </div>
+
+                <!-- 05: Sustainable Outdoor Apparel System (MIS201 Assignment 2) -->
+                <div class="editorial-project-card" data-category="ba" onclick="showProject('outdoor-system')">
+                    <div class="project-card-badge-row">
+                        <span class="badge-num">PROJECT № 05</span>
+                        <span class="badge-tag tag-espresso" data-vi="Deakin MIS201 Đồ Án Nhóm 06 (25%)" data-en="Deakin MIS201 Module 2 Group 06 (25%)">Deakin MIS201 Module 2 Group 06 (25%)</span>
+                    </div>
+                    <h3 class="project-card-title">Sustainable Outdoor Apparel Information System</h3>
+                    <p class="project-card-subtitle" data-vi="Mô Hình Miền 15 Lớp, Use Case & Sơ Đồ Tuần Tự UML" data-en="15-Class Domain Model, Use Case & Sequence Architecture">15-Class Domain Model, Use Case & Sequence Architecture</p>
+                    <p class="project-card-desc" data-vi="Đặc tả 5 yêu cầu chức năng (AI gợi ý sinh thái theo Rane 2024, điểm thưởng đánh giá 5 sao, cảnh báo tồn kho, theo dõi đơn hàng thời gian thực, thanh toán 2FA) và xây dựng Domain Model 15 lớp hoàn chỉnh."
+                       data-en="Engineered 5 functional requirements (AI recommendations, review rewards, stockout alerts, live tracking, 2FA payments), complete UML Use Case, Sequence Diagram, and 15-Class Domain Model.">
+                       Engineered 5 functional requirements (AI recommendations, review rewards, stockout alerts, live tracking, 2FA payments), complete UML Use Case, Sequence Diagram, and 15-Class Domain Model.
+                    </p>
+                    <div class="project-card-metrics">
+                        <div class="metric-chip"><strong>15 Classes</strong><span>Domain Architecture</span></div>
+                        <div class="metric-chip"><strong>5 Specs</strong><span>Functional Requirements</span></div>
+                        <div class="metric-chip"><strong>UML Flows</strong><span>Use Case & Sequence</span></div>
+                    </div>
+                    <div class="project-card-footer">
+                        <div class="tech-tags">
+                            <span class="tech-pill">UML Architecture</span><span class="tech-pill">Domain Modeling</span><span class="tech-pill">System Analysis</span>
+                        </div>
+                        <button class="card-action-btn" onclick="event.stopPropagation(); showProject('outdoor-system')" data-vi="Xem Chi Tiết ↗" data-en="Deep Dive ↗">Deep Dive ↗</button>
+                    </div>
+                </div>
+
+                <!-- 06: Sustainable Outdoor Co. Strategy (MIS201 Assignment 1) -->
+                <div class="editorial-project-card" data-category="ba" onclick="showProject('outdoor-strategy')">
+                    <div class="project-card-badge-row">
+                        <span class="badge-num">PROJECT № 06</span>
+                        <span class="badge-tag tag-matcha" data-vi="Deakin MIS201 Bài Tập Cá Nhân" data-en="Deakin MIS201 Module 1 Individual">Deakin MIS201 Module 1 Individual</span>
+                    </div>
+                    <h3 class="project-card-title">Sustainable Outdoor Co. Strategy & SWOT Analysis</h3>
+                    <p class="project-card-subtitle" data-vi="Ma Trận 11 Stakeholders & Chiến Lược Cặp Đôi O4+S4" data-en="11-Stakeholder Matrix & Strategic O4+S4 Pairing">11-Stakeholder Matrix & Strategic O4+S4 Pairing</p>
+                    <p class="project-card-desc" data-vi="Hoạch định chiến lược chuyển đổi tuần hoàn cho công ty thời trang dã ngoại, phân tích ma trận SWOT toàn diện, thiết lập cặp chiến lược O4+S4 và xây dựng ma trận Tầm quan trọng - Tác động cho 11 nhóm bên liên quan."
+                       data-en="Formulated circular enterprise transformation strategy, complete SWOT matrix, O4+S4 strategic alignment, and an Importance-Influence matrix for 11 key stakeholders.">
+                       Formulated circular enterprise transformation strategy, complete SWOT matrix, O4+S4 strategic alignment, and an Importance-Influence matrix for 11 key stakeholders.
+                    </p>
+                    <div class="project-card-metrics">
+                        <div class="metric-chip"><strong>11 Groups</strong><span>Stakeholder Matrix</span></div>
+                        <div class="metric-chip"><strong>SWOT S1-T5</strong><span>5x4 Factor Grid</span></div>
+                        <div class="metric-chip"><strong>O4 + S4</strong><span>Strategic Pairing</span></div>
+                    </div>
+                    <div class="project-card-footer">
+                        <div class="tech-tags">
+                            <span class="tech-pill">SWOT Strategy</span><span class="tech-pill">Stakeholder Matrix</span><span class="tech-pill">Circular Economy</span>
+                        </div>
+                        <button class="card-action-btn" onclick="event.stopPropagation(); showProject('outdoor-strategy')" data-vi="Xem Chi Tiết ↗" data-en="Deep Dive ↗">Deep Dive ↗</button>
+                    </div>
+                </div>
+
+                <!-- 07: House Price NN4 -->
+                <div class="editorial-project-card" data-category="ai" onclick="showProject('house')">
+                    <div class="project-card-badge-row">
+                        <span class="badge-num">PROJECT № 07</span>
+                        <span class="badge-tag tag-ochre" data-vi="Deakin MIS373 Deep Learning" data-en="Deakin MIS373 Deep Learning">Deakin MIS373 Deep Learning</span>
+                    </div>
+                    <h3 class="project-card-title">House Price Prediction (NN4 Champion Model)</h3>
+                    <p class="project-card-subtitle" data-vi="Định Giá Bất Động Sản Bằng Mạng Nơ-ron Sâu (19.801 Mẫu)" data-en="Property Valuation via Deep Neural Networks (19.8k Records)">Property Valuation via Deep Neural Networks (19.8k Records)</p>
+                    <p class="project-card-desc" data-vi="Khảo sát 8 kiến trúc mạng nơ-ron trên 19.801 bản ghi sau khi lọc ngoại lai 99%; mô hình tối ưu NN4 đạt R² = 0.8445, hệ số tương quan 0.9193 và MAE thấp nhất $71,705."
+                       data-en="Benchmarked 8 neural network configurations on 19,801 refined records; champion model NN4 achieved Test R² = 0.8445, correlation 0.9193, and lowest MAE $71,705.">
+                       Benchmarked 8 neural network configurations on 19,801 refined records; champion model NN4 achieved Test R² = 0.8445, correlation 0.9193, and lowest MAE $71,705.
+                    </p>
+                    <div class="project-card-metrics">
+                        <div class="metric-chip"><strong>R² = 0.8445</strong><span>Champion Score</span></div>
+                        <div class="metric-chip"><strong>19,801</strong><span>Refined Records</span></div>
+                        <div class="metric-chip"><strong>$71,705</strong><span>MAE Error</span></div>
+                    </div>
+                    <div class="project-card-footer">
+                        <div class="tech-tags">
+                            <span class="tech-pill">Keras / TensorFlow</span><span class="tech-pill">Deep Learning</span><span class="tech-pill">Regression</span>
+                        </div>
+                        <button class="card-action-btn" onclick="event.stopPropagation(); showProject('house')" data-vi="Xem Chi Tiết ↗" data-en="Deep Dive ↗">Deep Dive ↗</button>
+                    </div>
+                </div>
+
+                <!-- 08: Airbnb Victoria NLP -->
+                <div class="editorial-project-card" data-category="ai" onclick="showProject('airbnb')">
+                    <div class="project-card-badge-row">
+                        <span class="badge-num">PROJECT № 08</span>
+                        <span class="badge-tag tag-slate" data-vi="Deakin MIS373 NLP & Analytics" data-en="Deakin MIS373 NLP & Analytics">Deakin MIS373 NLP & Analytics</span>
+                    </div>
+                    <h3 class="project-card-title">Airbnb Victoria Analytics (85,155 Reviews)</h3>
+                    <p class="project-card-subtitle" data-vi="Phân Tích Cảm Xúc VADER 9 Khía Cạnh & 10-Topic LDA" data-en="9-Aspect VADER Sentiment & 10-Topic LDA Modeling">9-Aspect VADER Sentiment & 10-Topic LDA Modeling</p>
+                    <p class="project-card-desc" data-vi="Khai phá 85.155 đánh giá thực tế trên toàn bang Victoria; giải mã nghịch lý Melbourne dẫn đầu số lượng nhưng xếp thứ 7 về hài lòng, trong khi Yarra Ranges đạt đỉnh (0.87)."
+                       data-en="Analyzed 85,155 customer reviews across Victoria; resolved Melbourne's volume vs satisfaction paradox and identified primary guest dissatisfaction drivers.">
+                       Analyzed 85,155 customer reviews across Victoria; resolved Melbourne's volume vs satisfaction paradox and identified primary guest dissatisfaction drivers.
+                    </p>
+                    <div class="project-card-metrics">
+                        <div class="metric-chip"><strong>85,155</strong><span>Processed Reviews</span></div>
+                        <div class="metric-chip"><strong>10 Topics</strong><span>LDA Modeling</span></div>
+                        <div class="metric-chip"><strong>0.87 Peak</strong><span>Yarra Ranges</span></div>
+                    </div>
+                    <div class="project-card-footer">
+                        <div class="tech-tags">
+                            <span class="tech-pill">VADER Sentiment</span><span class="tech-pill">LDA Modeling</span><span class="tech-pill">NLTK / Python</span>
+                        </div>
+                        <button class="card-action-btn" onclick="event.stopPropagation(); showProject('airbnb')" data-vi="Xem Chi Tiết ↗" data-en="Deep Dive ↗">Deep Dive ↗</button>
+                    </div>
+                </div>
+
+                <!-- 09: Waste Image CNN4 -->
+                <div class="editorial-project-card" data-category="ai" onclick="showProject('waste')">
+                    <div class="project-card-badge-row">
+                        <span class="badge-num">PROJECT № 09</span>
+                        <span class="badge-tag tag-matcha" data-vi="Deakin MIS373 Computer Vision" data-en="Deakin MIS373 Computer Vision">Deakin MIS373 Computer Vision</span>
+                    </div>
+                    <h3 class="project-card-title">Waste Image Classification (CNN4 Model)</h3>
+                    <p class="project-card-subtitle" data-vi="Phân Loại Rác Tự Động Bằng Mạng Nơ-ron Tích Chập (2.864 Ảnh)" data-en="Automated Waste Vision via 2-Conv CNN (2,864 Images)">Automated Waste Vision via 2-Conv CNN (2,864 Images)</p>
+                    <p class="project-card-desc" data-vi="Đánh giá 4 ANN và 6 CNN trên 2.864 ảnh rác 6 phân lớp; mô hình tối ưu CNN4 đạt 69.53% độ chính xác test, Cohen's Kappa 0.631 và F1 rác hữu cơ thực vật đạt 0.94."
+                       data-en="Benchmarked 4 ANNs and 6 CNNs on 2,864 images; champion CNN4 achieved 69.53% test accuracy, 0.631 Kappa, and 0.94 Vegetation F1.">
+                       Benchmarked 4 ANNs and 6 CNNs on 2,864 images; champion CNN4 achieved 69.53% test accuracy, 0.631 Kappa, and 0.94 Vegetation F1.
+                    </p>
+                    <div class="project-card-metrics">
+                        <div class="metric-chip"><strong>69.53%</strong><span>Test Accuracy</span></div>
+                        <div class="metric-chip"><strong>0.631</strong><span>Cohen's Kappa</span></div>
+                        <div class="metric-chip"><strong>0.94 F1</strong><span>Vegetation Precision</span></div>
+                    </div>
+                    <div class="project-card-footer">
+                        <div class="tech-tags">
+                            <span class="tech-pill">CNN Vision</span><span class="tech-pill">TensorFlow</span><span class="tech-pill">Multi-Class CV</span>
+                        </div>
+                        <button class="card-action-btn" onclick="event.stopPropagation(); showProject('waste')" data-vi="Xem Chi Tiết ↗" data-en="Deep Dive ↗">Deep Dive ↗</button>
+                    </div>
+                </div>
+
+                <!-- 10: Share the Love -->
+                <div class="editorial-project-card" data-category="lead" onclick="showProject('sharethelove')">
+                    <div class="project-card-badge-row">
+                        <span class="badge-num">PROJECT № 10</span>
+                        <span class="badge-tag tag-espresso" data-vi="Lãnh Đạo Dự Án Tình Nguyện" data-en="Volunteer Operations Leadership">Volunteer Operations Leadership</span>
+                    </div>
+                    <h3 class="project-card-title">"Share the Love, Send Warmth" Relief</h3>
+                    <p class="project-card-subtitle" data-vi="Điều Phối Logistics Điểm Trường Mầm Non Vùng Cao Y Tý, Lào Cai" data-en="Highland Logistics & Relief Operations in Y Ty, Lao Cai">Highland Logistics & Relief Operations in Y Ty, Lao Cai</p>
+                    <p class="project-card-desc" data-vi="Trưởng ban điều phối Logistics và ngân sách gây quỹ hơn 60 triệu VNĐ, vận chuyển hơn 500kg hàng cứu trợ mùa đông đến các điểm trường mầm non vùng cao với 100% đúng tiến độ và minh bạch tài chính."
+                       data-en="Led end-to-end logistics coordination and budget management raising 60M+ VND and delivering 500kg+ winter supplies to remote mountain schools in Y Ty.">
+                       Led end-to-end logistics coordination and budget management raising 60M+ VND and delivering 500kg+ winter supplies to remote mountain schools in Y Ty.
+                    </p>
+                    <div class="project-card-metrics">
+                        <div class="metric-chip"><strong>60M+ ₫</strong><span>Funds Raised</span></div>
+                        <div class="metric-chip"><strong>500+ kg</strong><span>Winter Supplies</span></div>
+                        <div class="metric-chip"><strong>100%</strong><span>On-time Delivery</span></div>
+                    </div>
+                    <div class="project-card-footer">
+                        <div class="tech-tags">
+                            <span class="tech-pill">Logistics Management</span><span class="tech-pill">Budget Control</span><span class="tech-pill">Team Leadership</span>
+                        </div>
+                        <button class="card-action-btn" onclick="event.stopPropagation(); showProject('sharethelove')" data-vi="Xem Chi Tiết ↗" data-en="Deep Dive ↗">Deep Dive ↗</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             ABOUT ME SECTION
+             ========================================================================== -->
+        <section id="about">
+            <h2 data-vi="Về Bản Thân Mình" data-en="About Me">About Me</h2>
+            <p data-vi="Mình tin rằng giá trị tuyệt vời nhất của dữ liệu không chỉ nằm ở việc tối ưu hóa hiệu suất kinh doanh, mà còn là <strong>tạo ra những thay đổi tích cực cho con người, môi trường và cộng đồng</strong>."
+               data-en="I believe the best use of data is not simply to optimise business performance, but to <strong>create positive change for people, the environment, and communities</strong>.">
+               I believe the best use of data is not simply to optimise business performance, but to <strong>create positive change for people, the environment, and communities</strong>.
+            </p>
+            <p data-vi="Là một sinh viên chuyên ngành Business Analytics tại Deakin University, mình có niềm đam mê sâu sắc với việc ứng dụng phân tích dữ liệu, trí tuệ nhân tạo (AI), kiến trúc hệ thống thông tin và hoạch định chiến lược chính sách để giải quyết những bài toán thực tế có ý nghĩa xã hội. Niềm đam mê này đã định hình các dự án và trải nghiệm mà mình lựa chọn – từ phân tích chính sách bảo tồn đa dạng sinh học tại Tsinghua Global SDG Competition, tư vấn phát triển bền vững chuẩn GRI tại FPT Digital, đến phát triển giải pháp AI giọng nói chăm sóc sức khỏe hậu phẫu (AfterCare App)."
+               data-en="As a Business Analytics student at Deakin University, I am passionate about applying analytics, AI, information systems architecture, and business strategy to solve challenges that matter. This passion has guided the projects and experiences I choose - from biodiversity policy research at Tsinghua Global SDG Competition, sustainability consulting at FPT Digital, to developing AI voice solutions for post-discharge healthcare (AfterCare App).">
+               As a Business Analytics student at Deakin University, I am passionate about applying analytics, AI, information systems architecture, and business strategy to solve challenges that matter. This passion has guided the projects and experiences I choose - from biodiversity policy research at Tsinghua Global SDG Competition, sustainability consulting at FPT Digital, to developing AI voice solutions for post-discharge healthcare (AfterCare App).
+            </p>
+            <p data-vi="Những trải nghiệm đó không chỉ củng cố năng lực phân tích dữ liệu chuyên sâu (SQL, Python, Power BI, Deep Learning, NLP, UML Enterprise Modeling), mà còn củng cố niềm tin rằng sự đổi mới phải luôn xoay quanh con người, mang tính đạo đức và có trách nhiệm xã hội. Mình yêu thích việc làm việc trong các đội ngũ đa lĩnh vực, chuyển đổi các vấn đề phức tạp thành những insights hành động được, và thiết kế các giải pháp cân bằng giữa giá trị kinh tế với sự bền vững lâu dài."
+               data-en="These experiences have strengthened both my analytical capabilities (SQL, Python, Power BI, Deep Learning, NLP, UML Enterprise Modeling) and my belief that innovation should be human-centred, ethical, and socially meaningful. I enjoy working with multidisciplinary teams, turning complex problems into actionable insights, and designing solutions that balance business value with long-term sustainability.">
+               These experiences have strengthened both my analytical capabilities (SQL, Python, Power BI, Deep Learning, NLP, UML Enterprise Modeling) and my belief that innovation should be human-centred, ethical, and socially meaningful. I enjoy working with multidisciplinary teams, turning complex problems into actionable insights, and designing solutions that balance business value with long-term sustainability.
+            </p>
+        </section>
+
+        <!-- ==========================================================================
+             WORK EXPERIENCE SECTION
+             ========================================================================== -->
+        <section id="experience">
+            <h2 data-vi="Kinh Nghiệm Làm Việc" data-en="Work Experience">Work Experience</h2>
+            
+            <div class="grid-card" style="margin-bottom:20px;">
+                <span class="card-tag">01/2026</span>
+                <h3 class="card-title" data-vi="Project Team Intern - VnF (Vietnam Food)" data-en="Project Team Intern - VnF (Vietnam Food)">Project Team Intern - VnF (Vietnam Food) - Ho Chi Minh, Vietnam</h3>
+                <p class="card-desc" data-vi="• Hỗ trợ chuẩn bị các cuộc họp với khách hàng quốc tế thông qua nghiên cứu nền tảng chi tiết và các hoạt động bioscan.<br>• Tham gia các cuộc họp nội bộ, hội thảo ESG và chuyến công tác đến Cần Thơ, qua đó hiểu rõ cách các phòng ban phối hợp trong chuỗi giá trị sinh học tuần hoàn.<br>• Tiếp cận trực tiếp với ngành công nghiệp phụ phẩm thủy sản và các giải pháp thu hồi giá trị gia tăng, hiểu sâu về thực tiễn triển khai sáng kiến bền vững.<br>• Được đào tạo sử dụng công cụ AI và kỹ thuật prompt engineering (bao gồm NotebookLM) để tổng hợp thông tin và báo cáo chuyên sâu."
+                   data-en="• Facilitated preparation for international client meetings through detailed background research and bioscan activities.<br>• Participated in internal meetings, an ESG seminar, and a business trip to Can Tho, gaining a clearer understanding of cross-departmental coordination in circular bio-economy.<br>• Gained first-hand exposure to the seafood by-product valorisation industry, deepening practical understanding of corporate sustainability initiatives.<br>• Trained in using AI tools and prompt engineering (including NotebookLM) for efficient synthesis, translation, and executive content creation.">
+                   • Facilitated preparation for international client meetings through detailed background research and bioscan activities.<br>• Participated in internal meetings, an ESG seminar, and a business trip to Can Tho, gaining a clearer understanding of cross-departmental coordination in circular bio-economy.<br>• Gained first-hand exposure to the seafood by-product valorisation industry, deepening practical understanding of corporate sustainability initiatives.<br>• Trained in using AI tools and prompt engineering (including NotebookLM) for efficient synthesis, translation, and executive content creation.
+                </p>
+            </div>
+
+            <div class="grid-card" style="margin-bottom:20px;">
+                <span class="card-tag">12/2024 – 02/2025</span>
+                <h3 class="card-title" data-vi="Business Analytics Intern - FPT Digital" data-en="Business Analytics Intern - FPT Digital">Business Analytics Intern - FPT Digital - Hanoi, Vietnam</h3>
+                <p class="card-desc" data-vi="• Đóng góp nội dung cho phần CSR (Trách nhiệm xã hội doanh nghiệp) trong Báo cáo Phát triển bền vững của khách hàng, tuân theo tiêu chuẩn tư vấn chuyên nghiệp.<br>• Thực hiện nghiên cứu độc lập về phát triển bền vững trong ngành Dược phẩm Việt Nam, phân tích 8 khuyến nghị ESG, thực trạng nhập khẩu nguyên liệu và tiêu chuẩn EU-GMP.<br>• Hỗ trợ các dự án tư vấn chiến lược bền vững thông qua việc tham gia họp khách hàng và quan sát phương pháp tư vấn quản trị chuyên nghiệp."
+                   data-en="• Contributed content to the CSR (Corporate Social Responsibility) section of a client's Sustainability Report, aligning with professional consulting standards.<br>• Conducted independent research on sustainable development within Vietnam's pharmaceutical industry, analyzing ESG practices, policies, API imports, and EU-GMP benchmarks.<br>• Supported sustainability consulting projects by participating in client meetings and observing professional consulting methodologies.">
+                   • Contributed content to the CSR (Corporate Social Responsibility) section of a client's Sustainability Report, aligning with professional consulting standards.<br>• Conducted independent research on sustainable development within Vietnam's pharmaceutical industry, analyzing ESG practices, policies, API imports, and EU-GMP benchmarks.<br>• Supported sustainability consulting projects by participating in client meetings and observing professional consulting methodologies.
+                </p>
+            </div>
+
+            <div class="grid-card">
+                <span class="card-tag">12/2023 – 02/2024</span>
+                <h3 class="card-title" data-vi="Logistics Team Leader - Dự án 'Share the Love, Send Warmth'" data-en="Logistics Team Leader - 'Share the Love, Send Warmth' Project">Logistics Team Leader - 'Share the Love, Send Warmth' Project</h3>
+                <p class="card-desc" data-vi="• Điều phối toàn diện hoạt động logistics và giao tiếp nhà cung ứng hỗ trợ các điểm trường mầm non tại Y Tý, Lào Cai.<br>• Giám sát quy trình tiếp nhận, kiểm kê, đóng gói và phân phối hơn 500kg hàng hóa quyên góp, đảm bảo giao hàng đúng thời gian 100% qua địa hình đồi núi hiểm trở.<br>• Lãnh đạo hoạt động gây quỹ hơn 60 triệu VNĐ với sự minh bạch tài chính tuyệt đối."
+                   data-en="• Coordinated end-to-end logistics operations and supplier communications for a volunteer project supporting remote highland preschools in Y Ty, Lao Cai.<br>• Supervised the reception, inventory sorting, packaging, and distribution of 500+ kg of donated winter essentials with 100% on-time delivery across complex mountain terrain.<br>• Led fundraising efforts generating 60+ million VND with transparent financial reporting.">
+                   • Coordinated end-to-end logistics operations and supplier communications for a volunteer project supporting remote highland preschools in Y Ty, Lao Cai.<br>• Supervised the reception, inventory sorting, packaging, and distribution of 500+ kg of donated winter essentials with 100% on-time delivery across complex mountain terrain.<br>• Led fundraising efforts generating 60+ million VND with transparent financial reporting.
+                </p>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             TECHNICAL SKILLS SECTION
+             ========================================================================== -->
+        <section id="skills">
+            <h2 data-vi="Kỹ Năng Chuyên Môn" data-en="Technical & Domain Skills">Technical & Domain Skills</h2>
+            <div class="skills-grid">
+                <span class="skill-pill">Python (Pandas, NumPy, Scikit-learn)</span>
+                <span class="skill-pill">SQL & Relational Databases</span>
+                <span class="skill-pill">Deep Learning (TensorFlow / Keras)</span>
+                <span class="skill-pill">NLP & Text Mining (VADER, LDA, NLTK)</span>
+                <span class="skill-pill">Computer Vision (CNN, Multi-Class CV)</span>
+                <span class="skill-pill">UML Architecture (Use Case, Sequence, Domain Class)</span>
+                <span class="skill-pill">Business Analysis (SWOT, BPMN, Elicitation)</span>
+                <span class="skill-pill">Power BI & Data Visualization</span>
+                <span class="skill-pill">GRI Sustainability Standards</span>
+                <span class="skill-pill">Figma Prototyping</span>
+                <span class="skill-pill">Prompt Engineering & GenAI (NotebookLM)</span>
+                <span class="skill-pill">Logistics & Operational Management</span>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             CERTIFICATIONS SECTION
+             ========================================================================== -->
+        <section id="certifications">
+            <h2 data-vi="Chứng Chỉ & Khóa Học" data-en="Certifications & Coursework">Certifications & Coursework</h2>
+            <div class="jelly-grid">
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Professional Certificate</div>
+                    <div class="bubble-value">Google Data Analytics Professional Certificate</div>
+                    <div class="bubble-note">Coursera • Data cleaning, SQL querying, R programming, and Tableau dashboards.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Specialization</div>
+                    <div class="bubble-value">Business Analytics with Excel & Power BI</div>
+                    <div class="bubble-note">Advanced business modeling, DAX queries, and KPI executive dashboards.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">University Coursework</div>
+                    <div class="bubble-value">Deakin University Bachelor of Business Analytics</div>
+                    <div class="bubble-note">MIS373 Applied AI for Business, MIS201 Business Requirements & Modeling, Database Systems.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             CONTACT SECTION
+             ========================================================================== -->
+        <section id="contact">
+            <h2 data-vi="Liên Hệ & Kết Nối" data-en="Contact & Connect">Contact & Connect</h2>
+            <p data-vi="Mình luôn sẵn sàng trao đổi về các cơ hội hợp tác trong lĩnh vực Business Analytics, AI ứng dụng, tư vấn ESG hoặc các dự án công nghệ xã hội."
+               data-en="I am always open to discussing collaboration opportunities in Business Analytics, Applied AI, ESG Strategy Consulting, or Social Impact Technology.">
+               I am always open to discussing collaboration opportunities in Business Analytics, Applied AI, ESG Strategy Consulting, or Social Impact Technology.
+            </p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+                <button class="btn" onclick="copyEmail()" data-vi="📧 Sao Chép Email" data-en="📧 Copy Email">📧 Copy Email</button>
+                <a href="https://www.linkedin.com/in/huong-linh-vu/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn Profile ↗</a>
+                <a href="https://github.com/harlin-vu" target="_blank" rel="noopener" class="btn btn-secondary">GitHub ↗</a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ==========================================================================
+         DETAIL SINGLE-PAGE VIEWS (ALL 10 PROJECTS WITH EMBEDDED DIAGRAMS & CHARTS)
+         ========================================================================== -->
+
+    <!-- 1. AfterCare App Detail -->
+    <div id="project-aftercare" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" style="margin-bottom: 20px;">← <span data-vi="Quay lại Danh Mục Dự Án" data-en="Back to Projects">Back to Projects</span></button>
+        <section>
+            <span class="card-tag" data-vi="Giải Khuyến Khích HackAIthon 2026 (Top 8 / 210 Đội)" data-en="HackAIthon 2026 Merit Prize (Top 8 / 210 Global Teams)">HackAIthon 2026 Merit Prize (Top 8 / 210 Global Teams)</span>
+            <h2 style="border:none; margin-top:10px;">AfterCare: B2B SaaS Post-Discharge Clinical Voice AI Platform</h2>
+            <p style="font-weight: 800; color: var(--espresso);" data-vi="Khẩu hiệu: 'Một hành trình – Một sự chở che' • Đội thi AIgnite (Giải Khuyến Khích Chung Cuộc)" data-en="Slogan: 'Virtual Care from Ward to Home' • Team AIgnite (Grand Merit Prize Winner)">Slogan: 'Virtual Care from Ward to Home' • Team AIgnite (Grand Merit Prize Winner)</p>
+
+            <div class="metric-row">
+                <div class="metric-card"><strong>Top 8 / 210</strong><span>Merit Prize Winner</span></div>
+                <div class="metric-card"><strong>VNPT Voice</strong><span>Vietnamese Clinical Calls</span></div>
+                <div class="metric-card"><strong>3 Tiers</strong><span>Explainable Risk Triage</span></div>
+                <div class="metric-card"><strong>B2B SaaS</strong><span>Hospital EHR Integration</span></div>
+            </div>
+
+            <h3 style="margin-top:24px;">Problem Statement & Healthcare Gap</h3>
+            <p>Hospitals in Vietnam face severe overcrowding, leading to early patient discharges without continuous monitoring. Post-discharge complications frequently go unnoticed until acute re-admission occurs. Manual follow-up calls by nurses are time-consuming, unstandardized, and lack systematic data recording.</p>
+
+            <h3 style="margin-top:24px;">Core Solution Architecture</h3>
+            <p>AfterCare bridges the hospital-to-home recovery gap by combining <strong>VNPT SmartVoice automated telephony AI</strong> with an <strong>Intelligent Physician Dashboard</strong>:</p>
+            <div class="jelly-grid">
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Core Pillar 01</div>
+                    <div class="bubble-value">Automated Clinical Voice Agent</div>
+                    <div class="bubble-note">Conducts proactive daily/weekly phone calls with discharged patients in natural Vietnamese, screening for pain levels, surgical wound status, medication adherence, and vital anomalies.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Core Pillar 02</div>
+                    <div class="bubble-value">3-Tier Explainable Risk Triage</div>
+                    <div class="bubble-note">Categorizes patient status into <strong>Green (Low Risk)</strong>, <strong>Yellow (Moderate Warning)</strong>, and <strong>Red (Critical Anomaly)</strong> with clear clinical reasoning tags for immediate physician escalation.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Core Pillar 03</div>
+                    <div class="bubble-value">Hospital EHR Synchronization</div>
+                    <div class="bubble-note">Seamlessly feeds conversation transcripts, structured symptom summaries, and compliance logs directly into hospital medical records for continuity of care.</div>
+                </div>
+            </div>
+
+            <!-- Embedded Diagrams Gallery -->
+            <h3 style="margin-top:28px;" data-vi="Sơ Đồ Kiến Trúc & Giao Diện Bác Sĩ" data-en="System Architecture & Clinical UI Diagrams">System Architecture & Clinical UI Diagrams</h3>
+            <div class="diagram-gallery-wrap">
+                <div class="diagram-frame">
+                    <img src="assets/diagram_aftercare_doctor_dashboard.png" alt="Doctor Dashboard UI" class="diagram-img">
+                    <div class="diagram-caption"><strong>Figure 01:</strong> Intelligent Physician Dashboard (3-Tier Patient Risk Monitoring)</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/diagram_aftercare_system_architecture.jpg" alt="AfterCare System Architecture" class="diagram-img">
+                    <div class="diagram-caption"><strong>Figure 02:</strong> End-to-End Voice AI & Hospital EHR Architecture</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/diagram_aftercare_risk_triage_flow.png" alt="Clinical Risk Triage Flow" class="diagram-img">
+                    <div class="diagram-caption"><strong>Figure 03:</strong> Explainable 3-Tier Clinical Risk Triage Decision Flow</div>
+                </div>
+            </div>
+
+            <div class="skills-grid" style="margin-top:16px; margin-bottom:24px;">
+                <span class="skill-pill">Healthtech SaaS</span><span class="skill-pill">VNPT Smartbot Voice AI</span><span class="skill-pill">Clinical Risk Triage</span><span class="skill-pill">EHR Integration</span><span class="skill-pill">Product Strategy</span>
+            </div>
+
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px;">
+                <a href="https://mvp-aftercare.onrender.com/index.html" target="_blank" rel="noopener" class="btn" data-vi="🌐 Trải Nghiệm Live MVP ↗" data-en="🌐 Live MVP Web Demo ↗">🌐 Live MVP Web Demo ↗</a>
+                <a href="https://github.com/HungPhamGia/MVP_Aftercare" target="_blank" rel="noopener" class="btn btn-secondary" data-vi="💻 Mã Nguồn GitHub ↗" data-en="💻 GitHub Repository ↗">💻 GitHub Repository ↗</a>
+                <a href="https://drive.google.com/drive/u/0/folders/1rU9ES-tkaqqQzBazaMoM2UPlBPxvtqLU" target="_blank" rel="noopener" class="btn btn-secondary" data-vi="🎬 Video Demo Trực Quan ↗" data-en="🎬 Video Demo Drive ↗">🎬 Video Demo Drive ↗</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- 2. Tsinghua SDG Case Detail -->
+    <div id="project-tsinghua" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" style="margin-bottom: 20px;">← <span data-vi="Quay lại Danh Mục Dự Án" data-en="Back to Projects">Back to Projects</span></button>
+        <section>
+            <span class="card-tag">Tsinghua Global SDG Case Competition 2026 • Round 2</span>
+            <h2 style="border:none; margin-top:10px;">The Biodiversity Dilemma in the Pilbara: Balancing Mining Boom and Subterranean Conservation</h2>
+            <p style="font-weight: 800; color: var(--espresso);" data-vi="Tác giả: Vũ Hương Linh, Bùi Mai Phương • Đề tài Vòng 2 SDG Case Competition" data-en="Authors: Huong Linh Vu, Mai Phuong Bui • Round 2 SDG Case Competition">Authors: Huong Linh Vu, Mai Phuong Bui • Round 2 SDG Case Competition</p>
+
+            <div class="metric-row">
+                <div class="metric-card"><strong>507,896 km²</strong><span>Pilbara Region Scope</span></div>
+                <div class="metric-card"><strong>A$140B</strong><span>Iron Ore Export Value</span></div>
+                <div class="metric-card"><strong>98%</strong><span>Australia Iron Ore Export</span></div>
+                <div class="metric-card"><strong>4,500+</strong><span>Subterranean Species</span></div>
+            </div>
+
+            <h3 style="margin-top:24px;">Core Dilemma & Spatial Conflict</h3>
+            <p>The Pilbara region in Western Australia spans <strong>507,896 km²</strong> (twice the land area of the UK). It is both an economic superpower generating <strong>A$140 billion in annual iron ore exports (98% of Australia's total)</strong> and a global subterranean biodiversity hotspot harboring over <strong>4,500 endemic stygofauna (groundwater-dwelling) and troglofauna (air-breathing underground) species</strong>, over 90% of which are restricted to tiny geographic ranges (<1,000 km²).</p>
+            <p>Open-pit iron ore mining operations lower groundwater tables by tens of meters and physically excavate subterranean habitats, directly threatening non-renewable evolutionary ecosystems while encroaching on sacred First Nations cultural landscapes.</p>
+
+            <h3 style="margin-top:24px;">7 Landscape-Scale Governance Directives</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Directives 01 - 02</div>
+                    <div class="bubble-value">Integrated Science & Cumulative EIA</div>
+                    <div class="bubble-note">Transition from isolated, project-by-project environmental impact assessments to mandatory cumulative, regional-scale hydrogeological and subterranean biodiversity modeling.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Directives 03 - 05</div>
+                    <div class="bubble-value">Refuge Networks & Indigenous Co-Governance</div>
+                    <div class="bubble-note">Establish interconnected subterranean ecological reserves, mandate aquifer re-injection protocols, and guarantee First Nations FPIC (Free, Prior, and Informed Consent) decision-making authority.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Directives 06 - 07</div>
+                    <div class="bubble-value">Financial Assurance & Global Standards</div>
+                    <div class="bubble-note">Implement ring-fenced long-term mine closure rehabilitation bonds and align regional reporting with TNFD (Taskforce on Nature-related Financial Disclosures) standards.</div>
+                </div>
+            </div>
+
+            <!-- Embedded Diagrams Gallery -->
+            <h3 style="margin-top:28px;" data-vi="Bản Đồ Không Gian & Khung Quản Trị Đa Dạng Sinh Học" data-en="Spatial Maps & Biodiversity Governance Framework">Spatial Maps & Biodiversity Governance Framework</h3>
+            <div class="diagram-gallery-wrap">
+                <div class="diagram-frame">
+                    <img src="assets/diagram_tsinghua_pilbara_map.jpg" alt="Pilbara Mining Scope Map" class="diagram-img">
+                    <div class="diagram-caption"><strong>Map 01:</strong> 507,896 km² Pilbara Scope & Mining Corridor Distribution</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/diagram_tsinghua_subterranean_species.jpg" alt="Subterranean Species Map" class="diagram-img">
+                    <div class="diagram-caption"><strong>Map 02:</strong> 4,500+ Stygofauna & Troglofauna Hotspot Distributions</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/diagram_tsinghua_governance_framework.jpg" alt="Governance Framework" class="diagram-img">
+                    <div class="diagram-caption"><strong>Figure 01:</strong> 7 Landscape-Scale Ecological Governance Directives</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/diagram_tsinghua_policy_matrix.jpg" alt="Policy Evaluation Matrix" class="diagram-img">
+                    <div class="diagram-caption"><strong>Figure 02:</strong> Cumulative Impact & Indigenous FPIC Trade-Off Matrix</div>
+                </div>
+            </div>
+
+            <div class="skills-grid" style="margin-top:16px; margin-bottom:24px;">
+                <span class="skill-pill">SDG 15 (Life on Land)</span><span class="skill-pill">SDG 13 (Climate Action)</span><span class="skill-pill">Policy Research</span><span class="skill-pill">Environmental Governance</span><span class="skill-pill">Stakeholder Negotiation</span>
+            </div>
+        </section>
+    </div>
+
+    <!-- 3. The Archivist Detail -->
+    <div id="project-archivist" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" style="margin-bottom: 20px;">← <span data-vi="Quay lại Danh Mục Dự Án" data-en="Back to Projects">Back to Projects</span></button>
+        <section>
+            <span class="card-tag">UNESCO Global Youth Hackathon 2026 Project</span>
+            <h2 style="border:none; margin-top:10px;">The Archivist – "Every Choice Becomes History"</h2>
+            <p style="font-weight: 800; color: var(--espresso);" data-vi="Team Time Travelers • Gia Hưng Phạm, Sơn Hải Anh Nguyễn, Vũ Hương Linh" data-en="Team Time Travelers • Gia Hung Pham, Son Hai Anh Nguyen, Huong Linh Vu">Team Time Travelers • Gia Hung Pham, Son Hai Anh Nguyen, Huong Linh Vu</p>
+
+            <div class="metric-row">
+                <div class="metric-card"><strong>4.0 / 5.0</strong><span>Playtest Experience</span></div>
+                <div class="metric-card"><strong>8.4 / 10</strong><span>Recommendation Score</span></div>
+                <div class="metric-card"><strong>70%</strong><span>Media Thinking Shift</span></div>
+                <div class="metric-card"><strong>5 Eras</strong><span>Historical Game Loop</span></div>
+            </div>
+
+            <h3 style="margin-top:24px;">Research Context & Educational Rationale</h3>
+            <p>UNESCO's 2025 global mapping revealed that only <strong>43% of countries</strong> have integrated Media and Information Literacy (MIL) into school curricula, while AI incidents in media rose tenfold (from ~50/mo to ~500/mo by Jan 2026). Global news trust dropped to 37% as 62% of citizens fear online misinformation. Conventional lectures fail because learners never practice consequential decision-making under uncertainty.</p>
+
+            <h3 style="margin-top:24px;">Game Architecture & 5 Information Eras</h3>
+            <p>Following "The Great Reset", players rebuild civilization through 5 historical eras: <em>Stone Age (Oral Tradition) ➔ Written Age (Preserving Memory) ➔ Printed Age (Information for the Masses) ➔ Connected Age (Information Explosion) ➔ Intelligent Age (Truth in the Age of AI)</em>. Players manage crises on a Council Board under resource constraints, balancing 8 civilization indicators (Knowledge, Critical Thinking, Public Trust, Economy, Public Health, Social Stability, Cultural Heritage, Freedom of Information) to generate their personalized <strong>Chronicle of Civilization</strong>.</p>
+
+            <h3 style="margin-top:24px;">Verified Playtest Survey Results</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Survey Score 1</div>
+                    <div class="bubble-value">4.0 / 5.0 Overall & Engagement</div>
+                    <div class="bubble-note">70% of participants rated the demo 4 or 5/5, with 0% rating below 3. 50% gave top engagement score 5/5.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Survey Score 2</div>
+                    <div class="bubble-value">70% Impact on Media Thinking</div>
+                    <div class="bubble-note">70% reported the game changed their way of thinking about information "a lot" (50%) or "significantly" (20%).</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Survey Score 3</div>
+                    <div class="bubble-value">8.4 / 10 Recommendation Willingness</div>
+                    <div class="bubble-note">80% gave scores between 7-10/10, with 40% giving a perfect 10/10 score.</div>
+                </div>
+            </div>
+
+            <div class="skills-grid" style="margin-top:16px; margin-bottom:24px;">
+                <span class="skill-pill">Figma Prototyping</span><span class="skill-pill">Game Design Document (GDD)</span><span class="skill-pill">UNESCO MIL Curriculum</span><span class="skill-pill">xAPI Telemetry</span><span class="skill-pill">User Research & Playtesting</span>
+            </div>
+
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px;">
+                <a href="https://www.figma.com/proto/JzYnP9ItkevwK89ASXEL7G/unesco?node-id=184-7661&p=f&t=sjt02Ra2JNjHAKC0-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=184%3A7661" target="_blank" rel="noopener" class="btn" data-vi="🎨 Bản Thiết Kế Figma ↗" data-en="🎨 Figma Interactive Prototype ↗">🎨 Figma Interactive Prototype ↗</a>
+                <a href="https://drive.google.com/file/d/1QlAdbtxXK1miacLI0DprPhOecMnb0hTs/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-secondary" data-vi="🎬 Video Thuyết Trình (Drive) ↗" data-en="🎬 Presentation Video (Drive) ↗">🎬 Presentation Video (Drive) ↗</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- 4. ESG Pharma Detail -->
+    <div id="project-esg" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" style="margin-bottom: 20px;">← <span data-vi="Quay lại Danh Mục Dự Án" data-en="Back to Projects">Back to Projects</span></button>
+        <section>
+            <span class="card-tag">FPT Digital Internship Research</span>
+            <h2 style="border:none; margin-top:10px;">Sustainable Development & ESG Strategy in Vietnam's Pharmaceutical Sector</h2>
+            <p style="font-weight: 800; color: var(--espresso);">Strategic Consulting Research • FPT Digital</p>
+
+            <div class="metric-row">
+                <div class="metric-card"><strong>90%</strong><span>API Import Reliance</span></div>
+                <div class="metric-card"><strong>17 / 250</strong><span>EU-GMP Certified Plants</span></div>
+                <div class="metric-card"><strong>8 Pillars</strong><span>Strategic Directives</span></div>
+                <div class="metric-card"><strong>GRI</strong><span>Standards Benchmark</span></div>
+            </div>
+
+            <h3 style="margin-top:24px;">Industry Context & Supply Chain Vulnerability</h3>
+            <p>While global pharmaceutical leaders transition aggressively toward net-zero (Pfizer 46% direct emission cut, Amgen $750M green bond, Nordic green tenders reducing CO2 by >21%), Vietnamese pharmaceutical companies face critical structural bottlenecks. Approximately <strong>90% of active pharmaceutical ingredients (APIs)</strong> must be imported (primarily from China and India), exposing the domestic market to global supply shocks. Furthermore, only <strong>17 out of 250 factories in Vietnam reach advanced GMP standards (EU-GMP/PIC/S)</strong>, and zero plants currently hold WHO prequalification.</p>
+
+            <h3 style="margin-top:24px;">8 Strategic Policy Recommendations</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Directives 01 - 03</div>
+                    <div class="bubble-value">Supply Chain Oversight & Herb Conservation</div>
+                    <div class="bubble-note">End-to-end quality control, regulatory transparency, anti-smuggling, and preservation of endemic medicinal gene pools (GACP-WHO).</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Directives 04 - 06</div>
+                    <div class="bubble-value">Modernization & Digital Transformation</div>
+                    <div class="bubble-note">Pharmacovigilance safety, upgrading facilities toward WHO Level 4, and legal frameworks for AI & digital health management.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Directives 07 - 08</div>
+                    <div class="bubble-value">Global Talent & Domestic Self-Sufficiency</div>
+                    <div class="bubble-note">International value chain integration, advanced talent development, and prioritizing domestic manufacturing to reduce import dependency.</div>
+                </div>
+            </div>
+
+            <!-- Embedded Diagrams Gallery -->
+            <h3 style="margin-top:28px;" data-vi="Khung Phân Tích Báo Cáo Chuẩn GRI" data-en="GRI Standards & Policy Framework">GRI Standards & Policy Framework</h3>
+            <div class="diagram-gallery-wrap">
+                <div class="diagram-frame">
+                    <img src="assets/esg_pharma_page_1.png" alt="GRI Sustainability Report" class="diagram-img">
+                    <div class="diagram-caption"><strong>Figure 01:</strong> Sustainable Pharma Reporting Framework & Supply Chain Overview</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/esg_pharma_page_5.png" alt="ESG Directives" class="diagram-img">
+                    <div class="diagram-caption"><strong>Figure 02:</strong> 8 Strategic Action Directives for EU-GMP Upgrades</div>
+                </div>
+            </div>
+
+            <div class="skills-grid" style="margin-top:20px;">
+                <span class="skill-pill">GRI Standards</span><span class="skill-pill">ESG Benchmarking</span><span class="skill-pill">CSR Report Authoring</span><span class="skill-pill">Pharmaceutical Supply Chain</span><span class="skill-pill">Strategic Management</span>
+            </div>
+        </section>
+    </div>
+
+    <!-- 5. Sustainable Outdoor Apparel System (MIS201 Assignment 2) Detail -->
+    <div id="project-outdoor-system" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" style="margin-bottom: 20px;">← <span data-vi="Quay lại Danh Mục Dự Án" data-en="Back to Projects">Back to Projects</span></button>
+        <section>
+            <span class="card-tag">Deakin University MIS201 Module 2 • Group 06</span>
+            <h2 style="border:none; margin-top:10px;">Sustainable Outdoor Apparel Information System – Requirements & UML Architecture</h2>
+            <p style="font-weight: 800; color: var(--espresso);" data-vi="Tác giả: Nhóm 06 (Hiền Anh Nguyễn, Vũ Hương Linh [25%], Hà Linh Nguyễn, Thành Trung Nguyễn)" data-en="Authors: Group 06 (Hien Anh Nguyen, Huong Linh Vu [25%], Ha Linh Nguyen, Thanh Trung Nguyen)">Authors: Group 06 (Hien Anh Nguyen, Huong Linh Vu [25%], Ha Linh Nguyen, Thanh Trung Nguyen)</p>
+
+            <div class="metric-row">
+                <div class="metric-card"><strong>15 Classes</strong><span>Domain Model</span></div>
+                <div class="metric-card"><strong>5 Core Specs</strong><span>Functional Requirements</span></div>
+                <div class="metric-card"><strong>UML Diagrams</strong><span>Use Case & Sequence</span></div>
+                <div class="metric-card"><strong>25% Lead</strong><span>Huong Linh Vu</span></div>
+            </div>
+
+            <h3 style="margin-top:24px;">Project Context & Business Objectives</h3>
+            <p>Sustainable Outdoor Co., founded by environmental advocates Rob Brown and Jim Green, required an enterprise-grade digital commerce and supply chain architecture. The apparel industry generates 10% of global carbon emissions and over 92 million tonnes of textile waste annually. To scale their circular business model, Group 06 designed a comprehensive systems architecture incorporating rigorous requirements elicitation, UML behavioral modeling, and a 15-class domain structure.</p>
+
+            <h3 style="margin-top:24px;">5 Detailed Functional Requirements</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Requirement 01</div>
+                    <div class="bubble-value">AI-Driven Sustainable Recommendations</div>
+                    <div class="bubble-note">Integrates collaborative filtering and customer preference clustering (grounded in Rane et al. 2024) to recommend eco-friendly gear based on past purchase history and sustainability scores.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Requirement 02</div>
+                    <div class="bubble-value">5-Star Review Loyalty Point Engine</div>
+                    <div class="bubble-note">Automates customer reward incentives upon verified product reviews, generating loyalty points redeemable for discounts on circular, repaired, or recycled apparel.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Requirement 03</div>
+                    <div class="bubble-value">Automated Stockout Alert System</div>
+                    <div class="bubble-note">Triggers real-time notifications to inventory managers when warehouse safety stock falls below reorder thresholds, preventing lost sales.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Requirement 04</div>
+                    <div class="bubble-value">Real-Time Carrier Order Tracking</div>
+                    <div class="bubble-note">Synchronizes logistics carrier status updates via API webhooks, displaying live delivery timelines to customers and estimated carbon offsets per shipment.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Requirement 05</div>
+                    <div class="bubble-value">2FA Encrypted Payment Gateway</div>
+                    <div class="bubble-note">Enforces multi-factor authentication (2FA) and tokenized end-to-end encryption across credit cards, digital wallets, and sustainable payment options.</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top:24px;">15-Class Domain Model Architecture</h3>
+            <p>The enterprise domain class diagram models the complete transactional lifecycle: <code>Customer</code>, <code>Order</code>, <code>OrderItem</code>, <code>Product</code>, <code>SustainableRating</code>, <code>Review</code>, <code>LoyaltyAccount</code>, <code>RewardPoint</code>, <code>Payment</code>, <code>PaymentMethod</code>, <code>Inventory</code>, <code>Warehouse</code>, <code>Shipment</code>, <code>DeliveryCarrier</code>, and <code>Notification</code>, specifying full attribute types, methods, and relationship multiplicities (1..*, 0..1).</p>
+
+            <!-- Embedded UML Diagrams Gallery -->
+            <h3 style="margin-top:28px;" data-vi="Sơ Đồ Kiến Trúc UML & Mô Hình Miền 15 Lớp" data-en="UML Diagrams & 15-Class Domain Model">UML Diagrams & 15-Class Domain Model</h3>
+            <div class="diagram-gallery-wrap">
+                <div class="diagram-frame">
+                    <img src="assets/diagram_mis201_use_case.jpg" alt="UML Use Case Diagram" class="diagram-img">
+                    <div class="diagram-caption"><strong>UML Diagram 01:</strong> System Use Case Diagram (Actors & Functional Scenarios)</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/diagram_mis201_sequence.jpg" alt="UML Sequence Diagram" class="diagram-img">
+                    <div class="diagram-caption"><strong>UML Diagram 02:</strong> Online Purchase & 2FA Payment Sequence Flow</div>
+                </div>
+                <div class="diagram-frame" style="grid-column: 1 / -1;">
+                    <img src="assets/diagram_mis201_domain_model.jpg" alt="15-Class Domain Model" class="diagram-img" style="max-height: 520px;">
+                    <div class="diagram-caption"><strong>Domain Model:</strong> Comprehensive 15-Class Enterprise Domain Model with Attributes & Multiplicities</div>
+                </div>
+            </div>
+
+            <div class="skills-grid" style="margin-top:16px; margin-bottom:24px;">
+                <span class="skill-pill">UML Use Case Diagrams</span><span class="skill-pill">UML Sequence Diagrams</span><span class="skill-pill">15-Class Domain Model</span><span class="skill-pill">Requirements Elicitation</span><span class="skill-pill">Enterprise Systems</span>
+            </div>
+        </section>
+    </div>
+
+    <!-- 6. Sustainable Outdoor Strategy (MIS201 Assignment 1) Detail -->
+    <div id="project-outdoor-strategy" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" style="margin-bottom: 20px;">← <span data-vi="Quay lại Danh Mục Dự Án" data-en="Back to Projects">Back to Projects</span></button>
+        <section>
+            <span class="card-tag">Deakin University MIS201 Module 1 • Individual Assignment</span>
+            <h2 style="border:none; margin-top:10px;">Sustainable Outdoor Co. – Strategic Planning, SWOT & Stakeholder Analysis</h2>
+            <p style="font-weight: 800; color: var(--espresso);" data-vi="Tác giả: Vũ Hương Linh • Đồ án Cá nhân MIS201" data-en="Author: Huong Linh Vu • Individual Strategic Project">Author: Huong Linh Vu • Individual Strategic Project</p>
+
+            <div class="metric-row">
+                <div class="metric-card"><strong>11 Groups</strong><span>Stakeholders Mapped</span></div>
+                <div class="metric-card"><strong>20 Factors</strong><span>Full SWOT Matrix</span></div>
+                <div class="metric-card"><strong>O4 + S4</strong><span>Strategic Alignment</span></div>
+                <div class="metric-card"><strong>10% Carbon</strong><span>Fashion Emission Gap</span></div>
+            </div>
+
+            <h3 style="margin-top:24px;">Strategic Context & Industry Problem</h3>
+            <p>The global textile and fashion industry is responsible for <strong>10% of total global carbon emissions</strong>—exceeding all international flights and maritime shipping combined—alongside severe microfiber water pollution. Sustainable Outdoor Co., founded by outdoor enthusiasts Rob Brown and Jim Green, aims to challenge fast-fashion norms by establishing a closed-loop outdoor brand leveraging 100% organic/recycled materials and lifetime garment repair guarantees.</p>
+
+            <h3 style="margin-top:24px;">Comprehensive SWOT Analysis</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Strengths (S1-S5)</div>
+                    <div class="bubble-value">Eco-Credibility & Agile Local Supply</div>
+                    <div class="bubble-note">Certified organic textiles (S1), closed-loop repair/recycling (S2), supply chain transparency (S3), highly loyal eco-advocate customer base (S4), agile domestic manufacturing (S5).</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Weaknesses (W1-W5)</div>
+                    <div class="bubble-value">Unit Costs & Digital Infrastructure</div>
+                    <div class="bubble-note">Higher unit manufacturing cost (W1), narrow initial SKU catalog (W2), recycled material supply bottleneck (W3), legacy IT systems (W4), smaller ad budget vs fast-fashion giants (W5).</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Opportunities (O1-O5)</div>
+                    <div class="bubble-value">Consumer Shift & DTC Channel Expansion</div>
+                    <div class="bubble-note">>30% growth in sustainable gear demand (O1), circular government subsidies (O2), B2B corporate eco-partnerships (O3), Direct-to-Consumer (DTC) e-commerce scale (O4), EPR regulations (O5).</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Threats (T1-T5)</div>
+                    <div class="bubble-value">Incumbent Greenwashing & Inflation</div>
+                    <div class="bubble-note">Greenwashing by fast-fashion conglomerates (T1), raw material price surges (T2), inflation dampening discretionary spending (T3), e-commerce platform fee hikes (T4), trade tariff shifts (T5).</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top:24px;">Core Strategic Pairing: O4 + S4 Strategy</h3>
+            <p>By pairing <strong>Opportunity O4 (Expanding DTC digital presence)</strong> with <strong>Strength S4 (Deep eco-conscious brand loyalty)</strong>, Sustainable Outdoor Co. builds an interactive community-led commerce platform. This strategy disintermediates costly third-party retailers, recaptures premium margins to offset higher raw material costs, and engages loyal brand advocates directly through loyalty points and repair programs.</p>
+
+            <h3 style="margin-top:24px;">11 Key Stakeholders & Importance-Influence Matrix</h3>
+            <p>Systematically evaluated 11 stakeholder groups: <em>Founders, Private Investors, Eco-Conscious Customers, Sustainable Textile Millers, Garment Artisans, Green Logistics Carriers, Environmental Regulators, Local Community Groups, Brand Ambassadors, Wholesalers, and Textile Recycling Facilitators</em> across four strategic quadrants (Manage Closely, Keep Satisfied, Keep Informed, Monitor).</p>
+
+            <!-- Embedded Diagrams Gallery -->
+            <h3 style="margin-top:28px;" data-vi="Ma Trận Chiến Lược SWOT & Các Bên Liên Quan" data-en="SWOT Strategic Matrix & Stakeholder Analysis">SWOT Strategic Matrix & Stakeholder Analysis</h3>
+            <div class="diagram-gallery-wrap">
+                <div class="diagram-frame">
+                    <img src="assets/mis201_a1_page_3.png" alt="SWOT Matrix" class="diagram-img">
+                    <div class="diagram-caption"><strong>Figure 01:</strong> 20-Factor SWOT Matrix & Strategic O4+S4 Pairing</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/mis201_a1_page_5.png" alt="Stakeholder Matrix" class="diagram-img">
+                    <div class="diagram-caption"><strong>Figure 02:</strong> 11-Stakeholder Importance-Influence Strategic Grid</div>
+                </div>
+            </div>
+
+            <div class="skills-grid" style="margin-top:16px; margin-bottom:24px;">
+                <span class="skill-pill">SWOT Strategic Pairing</span><span class="skill-pill">Stakeholder Importance-Influence</span><span class="skill-pill">Circular Economy</span><span class="skill-pill">Fashion Supply Chain</span><span class="skill-pill">Business Planning</span>
+            </div>
+        </section>
+    </div>
+
+    <!-- 7. House Price Detail -->
+    <div id="project-house" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" style="margin-bottom: 20px;">← <span data-vi="Quay lại Danh Mục Dự Án" data-en="Back to Projects">Back to Projects</span></button>
+        <section>
+            <span class="card-tag">Deakin University MIS373 • Applied AI for Business</span>
+            <h2 style="border:none; margin-top:10px;">House Price Prediction using Deep Neural Networks</h2>
+            <p style="font-weight: 800; color: var(--espresso);">Benchmarking 8 Deep Neural Architectures • Champion Model NN4</p>
+
+            <div class="metric-row">
+                <div class="metric-card"><strong data-count="19801">0</strong><span>Refined Records</span></div>
+                <div class="metric-card"><strong>0.8445</strong><span>Champion R² (NN4)</span></div>
+                <div class="metric-card"><strong>0.9193</strong><span>Test Correlation</span></div>
+                <div class="metric-card"><strong>$71,705</strong><span>Lowest MAE Error</span></div>
+            </div>
+
+            <h3 style="margin-top:24px;">Dataset Exploration & Preprocessing</h3>
+            <p>The original dataset containing ~20,000 housing observations underwent rigorous data cleaning. Outliers above the 99th percentile threshold (~$1,950,000) were removed to stabilize variance, resulting in a refined dataset of <strong>19,801 observations</strong>. Features underwent Min-Max normalization (0 to 1) and were partitioned into a <strong>70/30 train-validation split (13,860 train / 5,941 validation)</strong>.</p>
+
+            <h3 style="margin-top:24px;">Model Benchmarking & Architectural Comparison</h3>
+            <p>Eight neural network configurations (1 to 4 layers) were benchmarked against a baseline Linear Regression model ($R^2 = 0.7112, \text{MAE } \$106,419$).</p>
+            <div class="jelly-grid">
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Champion Architecture</div>
+                    <div class="bubble-value">Model NN4 (3-Layer Tuned)</div>
+                    <div class="bubble-note">Dense 100 (tanh + 0.2 dropout) ➔ Dense 180 (ReLU) ➔ Dense 20 (ReLU), Adam optimizer (lr=0.001, batch 64, 500 epochs). Achieved <strong>R² = 0.8445, Correlation = 0.9193, MAE = $71,705, MAPE = 14.33%</strong> with overlapping train-validation learning curves.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Key Empirical Finding</div>
+                    <div class="bubble-value">Vanishing Gradient in NN5</div>
+                    <div class="bubble-note">Model NN5 overused tanh activation across multiple layers, causing severe vanishing gradient ($R^2 = -3.2201, \text{Correlation } 0.0954$), highlighting that architectural synergy outweighs raw parameter depth.</div>
+                </div>
+            </div>
+
+            <!-- Embedded Diagrams Gallery -->
+            <h3 style="margin-top:28px;" data-vi="Đồ Thị Huấn Luyện & Kiểm Định Mô Hình NN4" data-en="Empirical Training Curves & Validation Plots">Empirical Training Curves & Validation Plots</h3>
+            <div class="diagram-gallery-wrap">
+                <div class="diagram-frame">
+                    <img src="assets/diagram_house_price_loss_curve.jpg" alt="NN4 Loss Curve" class="diagram-img">
+                    <div class="diagram-caption"><strong>Plot 01:</strong> NN4 Train vs Validation Loss Curve (Overlapping Convergence)</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/diagram_house_price_predicted_vs_actual.jpg" alt="Predicted vs Actual" class="diagram-img">
+                    <div class="diagram-caption"><strong>Plot 02:</strong> Predicted vs Actual Valuation Scatter (R² = 0.8445, Corr = 0.9193)</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/diagram_house_price_correlations.jpg" alt="Feature Correlations" class="diagram-img">
+                    <div class="diagram-caption"><strong>Plot 03:</strong> 19,801 Refined Records Feature Correlation Heatmap</div>
+                </div>
+            </div>
+
+            <div class="skills-grid" style="margin-top:16px; margin-bottom:24px;">
+                <span class="skill-pill">Keras / TensorFlow</span><span class="skill-pill">Deep Learning</span><span class="skill-pill">Hyperparameter Tuning</span><span class="skill-pill">Python</span><span class="skill-pill">Pandas / NumPy</span>
+            </div>
+
+            <a href="https://github.com/harlin-vu/houseprice_prediction" target="_blank" class="btn" data-vi="Mã Nguồn GitHub ↗" data-en="GitHub Repository ↗">GitHub Repository ↗</a>
+        </section>
+    </div>
+
+    <!-- 8. Airbnb Detail -->
+    <div id="project-airbnb" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" style="margin-bottom: 20px;">← <span data-vi="Quay lại Danh Mục Dự Án" data-en="Back to Projects">Back to Projects</span></button>
+        <section>
+            <span class="card-tag">Deakin University MIS373 • NLP & Text Analytics</span>
+            <h2 style="border:none; margin-top:10px;">Airbnb Victoria Review Analytics using NLP & Topic Modeling</h2>
+            <p style="font-weight: 800; color: var(--espresso);">Aspect-Based VADER Sentiment Analysis & 10-Topic LDA on 85,155 Reviews</p>
+
+            <div class="metric-row">
+                <div class="metric-card"><strong data-count="85155">0</strong><span>Total Reviews Analyzed</span></div>
+                <div class="metric-card"><strong data-count="82787">0</strong><span>Positive Reviews</span></div>
+                <div class="metric-card"><strong data-count="10">0</strong><span>LDA Latent Topics</span></div>
+                <div class="metric-card"><strong>0.87</strong><span>Top Sentiment (Yarra)</span></div>
+            </div>
+
+            <h3 style="margin-top:24px;">Analytic Methodology</h3>
+            <p>Analyzed 85,155 customer reviews across Victoria. Employed sentence-level tokenization, custom stopword removal, and VADER compound sentiment scoring across 9 key lodging dimensions (bathroom, host, clean, noise, cleanliness, WiFi, amenities, value, location). Applied unsupervised <strong>Latent Dirichlet Allocation (LDA)</strong> with vocabulary restricted to 5,000–20,000 terms to identify 10 core conversation topics.</p>
+
+            <h3 style="margin-top:24px;">Key Empirical Findings & Business Insights</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Finding 01</div>
+                    <div class="bubble-value">Geographic Satisfaction Paradox</div>
+                    <div class="bubble-note">Melbourne had the highest listings (~8,000) but ranked only 7th in guest satisfaction. Yarra Ranges achieved top satisfaction (0.87 average, 0.90 median) driven by nature and views. Monash recorded lowest (0.73).</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Finding 02</div>
+                    <div class="bubble-value">Dissatisfaction Drivers</div>
+                    <div class="bubble-note">Location was the only positive aspect in negative reviews (+0.044). Primary drivers of dissatisfaction were bathroom conditions (-0.036), host responsiveness (-0.032), and cleanliness (-0.020).</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Finding 03</div>
+                    <div class="bubble-value">Room Type Segmentation</div>
+                    <div class="bubble-note">Private room guests prioritize host hospitality, communication, and room care (Topics 2, 3, 6); entire home guests prioritize location accessibility, independence, and group comfort (Topics 1, 4, 10).</div>
+                </div>
+            </div>
+
+            <!-- Embedded Diagrams Gallery -->
+            <h3 style="margin-top:28px;" data-vi="Biểu Đồ Khai Phá Cảm Xúc & Phân Cụm Chủ Đề LDA" data-en="VADER Sentiment & LDA Topic Distributions">VADER Sentiment & LDA Topic Distributions</h3>
+            <div class="diagram-gallery-wrap">
+                <div class="diagram-frame">
+                    <img src="assets/airbnb_nlp_page_3.png" alt="9-Aspect Sentiment" class="diagram-img">
+                    <div class="diagram-caption"><strong>Chart 01:</strong> 9-Aspect VADER Sentiment Distribution across Victorian LGAs</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/airbnb_nlp_page_5.png" alt="10-Topic LDA" class="diagram-img">
+                    <div class="diagram-caption"><strong>Chart 02:</strong> 10-Topic LDA Latent Topic Clustering on 85,155 Reviews</div>
+                </div>
+            </div>
+
+            <div class="skills-grid" style="margin-top:16px; margin-bottom:24px;">
+                <span class="skill-pill">VADER Sentiment Analysis</span><span class="skill-pill">LDA Topic Modeling</span><span class="skill-pill">NLTK / Python</span><span class="skill-pill">Text Mining</span><span class="skill-pill">Hospitality Analytics</span>
+            </div>
+
+            <a href="https://github.com/harlin-vu/airbnb-victoria-sentiment-analysis" target="_blank" class="btn" data-vi="Mã Nguồn GitHub ↗" data-en="GitHub Repository ↗">GitHub Repository ↗</a>
+        </section>
+    </div>
+
+    <!-- 9. Waste Detail -->
+    <div id="project-waste" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" style="margin-bottom: 20px;">← <span data-vi="Quay lại Danh Mục Dự Án" data-en="Back to Projects">Back to Projects</span></button>
+        <section>
+            <span class="card-tag">Deakin University MIS373 • Computer Vision</span>
+            <h2 style="border:none; margin-top:10px;">Waste Image Classification using Convolutional Neural Networks</h2>
+            <p style="font-weight: 800; color: var(--espresso);">Benchmarking 4 ANNs vs 6 CNNs on 2,864 Real Images • Champion Model CNN4</p>
+
+            <div class="metric-row">
+                <div class="metric-card"><strong data-count="2864">0</strong><span>Total Images (6 Classes)</span></div>
+                <div class="metric-card"><strong>69.53%</strong><span>Test Accuracy (CNN4)</span></div>
+                <div class="metric-card"><strong>0.631</strong><span>Cohen's Kappa</span></div>
+                <div class="metric-card"><strong>0.94</strong><span>Vegetation F1-Score</span></div>
+            </div>
+
+            <h3 style="margin-top:24px;">Dataset & Deep Learning Pipeline</h3>
+            <p>Evaluated 2,864 real waste images across 6 classes (Cardboard, Glass, Metal, Paper, Plastic, Vegetation). Images were resized to 100x100x3 pixels, normalized, label encoded, and split 70/30 (2,004 train / 860 test). Dense ANNs failed (best accuracy 44.88%, Kappa 0.337) because flattening 30,000-dimensional vectors destroyed spatial feature hierarchies.</p>
+
+            <h3 style="margin-top:24px;">Champion Model CNN4 Results</h3>
+            <div class="jelly-grid">
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">CNN4 Topology</div>
+                    <div class="bubble-value">2-Conv Block Architecture</div>
+                    <div class="bubble-note">Conv Block 1 (32 filters 3x3, MaxPool 2x2, 0.25 dropout) ➔ Conv Block 2 (64 filters 3x3, MaxPool 2x2, 0.25 dropout) ➔ Dense 128 ReLU (0.25 dropout) ➔ Softmax 6 classes with Adam optimizer.</div>
+                </div>
+                <div class="jelly-bubble">
+                    <div class="bubble-kicker">Class-Level Precision</div>
+                    <div class="bubble-value">Vegetation F1 = 0.94</div>
+                    <div class="bubble-note">Vegetation achieved near-perfect classification (Precision 0.94, Recall 0.93, F1 0.94). Glass and Paper reached 0.70 F1. Metal (0.62) and Cardboard (0.61) had visual overlap with plastic containers under variable lighting.</div>
+                </div>
+            </div>
+
+            <!-- Embedded Diagrams Gallery -->
+            <h3 style="margin-top:28px;" data-vi="Tập Dữ Liệu Mẫu & Ma Trận Nhầm Lẫn CNN4" data-en="Dataset Samples, Learning Curves & Confusion Matrix">Dataset Samples, Learning Curves & Confusion Matrix</h3>
+            <div class="diagram-gallery-wrap">
+                <div class="diagram-frame">
+                    <img src="assets/diagram_waste_sample_grid.jpg" alt="Waste Samples" class="diagram-img">
+                    <div class="diagram-caption"><strong>Figure 01:</strong> 6-Class Waste Image Dataset Samples (2,864 Real Images)</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/diagram_waste_cnn4_accuracy_curves.jpg" alt="CNN4 Accuracy Curves" class="diagram-img">
+                    <div class="diagram-caption"><strong>Figure 02:</strong> Champion CNN4 Training Accuracy & Loss Across 50 Epochs</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/diagram_waste_cnn4_confusion_matrix.jpg" alt="Confusion Matrix Heatmap" class="diagram-img">
+                    <div class="diagram-caption"><strong>Figure 03:</strong> 6-Class Confusion Matrix Heatmap (Vegetation F1 = 0.94)</div>
+                </div>
+            </div>
+
+            <div class="skills-grid" style="margin-top:16px; margin-bottom:24px;">
+                <span class="skill-pill">Convolutional Neural Networks</span><span class="skill-pill">TensorFlow / Keras</span><span class="skill-pill">Computer Vision</span><span class="skill-pill">Confusion Matrix Analysis</span>
+            </div>
+
+            <a href="https://github.com/harlin-vu/waste_classification" target="_blank" class="btn" data-vi="Mã Nguồn GitHub ↗" data-en="GitHub Repository ↗">GitHub Repository ↗</a>
+        </section>
+    </div>
+
+    <!-- 10. Share the Love Detail -->
+    <div id="project-sharethelove" class="view-section">
+        <button class="btn btn-secondary" onclick="showHome('#projects')" style="margin-bottom: 20px;">← <span data-vi="Quay lại Danh Mục Dự Án" data-en="Back to Projects">Back to Projects</span></button>
+        <section>
+            <span class="card-tag">Volunteering & Community Leadership</span>
+            <h2 style="border:none; margin-top:10px;">"Share the Love, Send Warmth" – Y Tý Highland School Support</h2>
+            <p style="font-weight: 800; color: var(--espresso);">Logistics Team Leader • Community Campaign in Y Tý, Bát Xát, Lào Cai</p>
+
+            <div class="metric-row">
+                <div class="metric-card"><strong>60M+ ₫</strong><span>Funds Raised</span></div>
+                <div class="metric-card"><strong>500+ kg</strong><span>Winter Supplies</span></div>
+                <div class="metric-card"><strong>100%</strong><span>On-time Delivery</span></div>
+                <div class="metric-card"><strong>Y Tý</strong><span>Lào Cai, Vietnam</span></div>
+            </div>
+
+            <h3 style="margin-top:24px;">Logistics Management & Operational Execution</h3>
+            <p>Led end-to-end logistics coordination and supplier negotiations for a winter relief campaign supporting remote ethnic minority preschools in Y Ty, Lao Cai. Managed supplier communications, inventory auditing, waterproof packaging, and road transport scheduling across treacherous mountain passes, ensuring 100% safe, on-schedule delivery of 500+ kg of warm clothing, footwear, and classroom learning supplies with zero inventory loss.</p>
+
+            <!-- Embedded Field Photos & Budget Gallery -->
+            <h3 style="margin-top:28px;" data-vi="Hình Ảnh Thực Địa & Biểu Đồ Ngân Sách Logistics" data-en="Field Operations & Budget Allocation">Field Operations & Budget Allocation</h3>
+            <div class="diagram-gallery-wrap">
+                <div class="diagram-frame">
+                    <img src="assets/photo_sharethelove_y_ty_school.jpg" alt="Y Ty School" class="diagram-img">
+                    <div class="diagram-caption"><strong>Photo 01:</strong> Remote Preschool in Y Tý, Bát Xát, Lào Cai</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/photo_sharethelove_logistics_packing.jpg" alt="Logistics Packing" class="diagram-img">
+                    <div class="diagram-caption"><strong>Photo 02:</strong> Inventory Sorting & 500+ kg Donated Supplies Packing</div>
+                </div>
+                <div class="diagram-frame">
+                    <img src="assets/diagram_sharethelove_budget_chart.png" alt="Budget Chart" class="diagram-img">
+                    <div class="diagram-caption"><strong>Chart 01:</strong> Transparent 60M+ VND Fundraising & Logistics Budget Breakdown</div>
+                </div>
+            </div>
+
+            <div class="skills-grid" style="margin-top:16px; margin-bottom:24px;">
+                <span class="skill-pill">Logistics Operations</span><span class="skill-pill">Supplier Negotiation</span><span class="skill-pill">Budget Management</span><span class="skill-pill">Team Leadership</span>
+            </div>
+
+            <a href="https://drive.google.com/drive/folders/1glsoQjJaocc8EY7Y96roef9Bvtzhqh8A" target="_blank" rel="noopener" class="btn" data-vi="Tài Liệu & Hình Ảnh Dự Án ↗" data-en="Project Drive Folder ↗">Project Drive Folder ↗</a>
+        </section>
+    </div>
+
+    <footer>
+        <p data-vi="Thiết kế và xây dựng bởi Vũ Hương Linh (Harlin Vu) • Deakin University" data-en="Designed & Built by Huong Linh Vu (Harlin Vu) • Deakin University">Designed & Built by Huong Linh Vu (Harlin Vu) • Deakin University</p>
+    </footer>
+
+</div>
+
+<!-- External Modular JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>
